@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <%@include file= "include/header.jsp" %>
 </head>
 <body>

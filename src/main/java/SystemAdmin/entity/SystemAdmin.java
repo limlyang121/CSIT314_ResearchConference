@@ -9,8 +9,6 @@ import SystemAdmin.DAO.SystemAdminDAO;;
 
 
 public class SystemAdmin extends User {
-    private String profileName;
-    private String description;
     private SystemAdminDAO myDAO;
     
     public List<User> viewAllUser(){
@@ -69,38 +67,25 @@ public class SystemAdmin extends User {
         myDAO = new SystemAdminDAO();
     }
     
-    public SystemAdmin(String profileName, String description) {
-        super();
-        this.profileName = profileName;
-        this.description = description;
-    }
-
-
+    
 
     public SystemAdmin(String username, String fullname, String password, String email, String profileName) {
-        super(username, fullname, password, email);
-        this.profileName = profileName;
+        super(username, fullname, password, email, profileName);
         myDAO = new SystemAdminDAO();
     }
 
-
-
-    @Override
-    public String getProfileName() {
-        return profileName;
+    public SystemAdmin(String username, String fullname, String password, String email, String profileName,
+            String description) {
+        super(username, fullname, password, email, profileName, description);
+        myDAO = new SystemAdminDAO();
     }
+    
 
-    public void setProfileName(String profileName) {
-        this.profileName = profileName;
-    }
+    
+    
+    
+    
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
     
 }

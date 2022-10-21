@@ -143,7 +143,7 @@ public class SystemAdminDAO {
                 
                 String profilename = rs.getString("profilename");
                 String description = rs.getString("description");
-                allProfile.add(new SystemAdmin(profilename,description));
+                allProfile.add(new User(profilename,description));
                 
     
             }
@@ -166,7 +166,7 @@ public class SystemAdminDAO {
             
             String profilename = rs.getString("profilename");
             String description = rs.getString("description");
-            temp = new SystemAdmin(profilename, description);
+            temp = new User(profilename, description);
 
         }catch(SQLException e) {
             printSQLException (e);
@@ -194,17 +194,8 @@ public class SystemAdminDAO {
                     String name = rs.getString("fullname");
                     String profileName = rs.getString("profileName");
                             
-                    if (tempProfile.get(i).getProfileName().equalsIgnoreCase("systemadmin")) {
-                        temp = new SystemAdmin(username, name, password, email, profileName);
-                    }else if (tempProfile.get(i).getProfileName().equalsIgnoreCase("reviewer")) {
-                        temp = new Reviewer(username, name, password, email, profileName);
-                    }else if (tempProfile.get(i).getProfileName().equalsIgnoreCase("author")) {
-                        temp = new Author(username, name, password, email, profileName);
-                    }else if (tempProfile.get(i).getProfileName().equalsIgnoreCase("conference")) {
-                        temp = new ConferenceChair(username, name, password, email, profileName);
-                    }else {
-                        temp = new User();
-                    }
+                    temp = new User(username, name, password, email, profileName);
+                    
                     tempUser.add(temp);
                 }
             }catch (SQLException e) {

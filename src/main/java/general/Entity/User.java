@@ -7,6 +7,9 @@ public class User {
 	private String fullname;
 	private String password;
 	private String email;
+	private String profileName;
+    private String description;
+    
 	private UserDAO myDAO;
 	
 	public boolean login(String username, String password,String profileName) {
@@ -19,11 +22,33 @@ public class User {
     }
 
 
-
-    public User(String username, String password) {
+    public User(String username, String fullname, String password, String email, String profileName) {
         super();
         this.username = username;
+        this.fullname = fullname;
         this.password = password;
+        this.email = email;
+        this.profileName = profileName;
+        myDAO = new UserDAO();
+    }
+
+    public User(String username, String fullname, String password, String email, String profileName, String description) {
+        super();
+        this.username = username;
+        this.fullname = fullname;
+        this.password = password;
+        this.email = email;
+        this.profileName = profileName;
+        this.description = description;
+        myDAO = new UserDAO();
+    }
+
+    
+
+    public User(String profileName, String description) {
+        super();
+        this.profileName = profileName;
+        this.description = description;
         myDAO = new UserDAO();
     }
 
@@ -67,10 +92,32 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	public String getProfileName() {
-        return "";
+
+    public String getProfileName() {
+        return profileName;
     }
+
+    public void setProfileName(String profileName) {
+        this.profileName = profileName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public UserDAO getMyDAO() {
+        return myDAO;
+    }
+
+    public void setMyDAO(UserDAO myDAO) {
+        this.myDAO = myDAO;
+    }
+	
+	
 
 	
 	

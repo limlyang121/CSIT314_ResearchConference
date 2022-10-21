@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="CSS/style.css">
     <script src="js/script.js"></script>
     
+    
     <c:if test = "${sessionScope.message != null}">
 		<script>
 			alert("<c:out value = '${message}'/> ");
