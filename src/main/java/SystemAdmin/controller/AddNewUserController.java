@@ -59,7 +59,7 @@ public class AddNewUserController extends HttpServlet{
             response.sendRedirect("HomePageAdmin.jsp");
 		}else {
             session.setAttribute("message", "Fail to create User ");
-            response.sendRedirect("UserForm.jsp");
+            response.sendRedirect("UserAccountForm.jsp");
 		}
 		
 	}
