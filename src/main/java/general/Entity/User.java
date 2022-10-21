@@ -3,10 +3,12 @@ package general.Entity;
 import general.DAO.*;
 
 public class User {
+    private int ID;
 	private String username;
 	private String fullname;
 	private String password;
 	private String email;
+	private int profileID;
 	private String profileName;
     private String description;
     
@@ -21,45 +23,76 @@ public class User {
         myDAO = new UserDAO();
     }
 
-
-    public User(String username, String fullname, String password, String email, String profileName) {
+	
+	
+    public User(int id, String username, String fullname, String password, String email, int profileID, String profileName) {
         super();
+        this.ID = id;
         this.username = username;
         this.fullname = fullname;
         this.password = password;
         this.email = email;
+        this.profileID = profileID;
         this.profileName = profileName;
         myDAO = new UserDAO();
     }
+    
+    
 
-    public User(String username, String fullname, String password, String email, String profileName, String description) {
+    public User(int id,String username, String fullname, String password, String email, int profileID) {
         super();
+        this.ID = id;
         this.username = username;
         this.fullname = fullname;
         this.password = password;
         this.email = email;
+        this.profileID = profileID;
+        myDAO = new UserDAO();
+    }
+
+    public User(int id, String username, String fullname, String password, String email, int profileID, String profileName,
+            String description) {
+        super();
+        this.ID = id;
+        this.username = username;
+        this.fullname = fullname;
+        this.password = password;
+        this.email = email;
+        this.profileID = profileID;
         this.profileName = profileName;
+        this.description = description;
+        myDAO = new UserDAO();
+    }
+    
+    
+
+
+   
+
+    public User(int profileID, String profileName, String description) {
+        super();
+        this.profileID = profileID;
+        this.profileName = profileName;
+        this.description = description;
+    }
+
+    public User(int profileID, String description) {
+        super();
+        this.profileID = profileID;
         this.description = description;
         myDAO = new UserDAO();
     }
 
     
-
-    public User(String profileName, String description) {
-        super();
-        this.profileName = profileName;
-        this.description = description;
-        myDAO = new UserDAO();
+    public int getID() {
+        return ID;
     }
 
-    public User(String username, String fullname, String password, String email) {
-		super();
-		this.username = username;
-		this.fullname = fullname;
-		this.password = password;
-		this.email = email;
-		myDAO = new UserDAO();
-	}
+    public void setID(int iD) {
+        ID = iD;
+    }
+
+    
 
 	public String getUsername() {
 		return username;
@@ -68,8 +101,11 @@ public class User {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	
+	
 
-	public String getFullname() {
+
+    public String getFullname() {
 		return fullname;
 	}
 
@@ -116,6 +152,17 @@ public class User {
     public void setMyDAO(UserDAO myDAO) {
         this.myDAO = myDAO;
     }
+
+    public int getProfileID() {
+        return profileID;
+    }
+
+    public void setProfileID(int profileID) {
+        this.profileID = profileID;
+    }
+    
+    
+    
 	
 	
 

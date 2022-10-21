@@ -4,6 +4,17 @@
 <%@include file= "include/header.jsp" %>
 </head>
 <body>
+
+<a href="<%=request.getContextPath()%>/HomePageAdmin.jsp" >
+		<button  >Add New User</button>
+</a>
+
+<h1>
+	<label> My name</label>
+	<input type="text" value =<c:out value = '${sessionScope.tusername}'/>>
+
+
+</h1>
 	<h1>All User Account</h1>
 	<br/>
 

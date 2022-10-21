@@ -41,8 +41,6 @@
 	<br/>
 
 	
-	<button onclick="javascript:logout();" >Log Out</button>
-	<a  href=<%session.invalidate();  %>"index.jsp"> <button > Log out </button></a> 
 
 	
 </body>

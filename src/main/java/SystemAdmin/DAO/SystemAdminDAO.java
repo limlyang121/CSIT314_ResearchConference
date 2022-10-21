@@ -51,6 +51,10 @@ public class SystemAdminDAO {
     public boolean updateUserAccount(String username, String password, String name, String email, String profileName, String oldUserName, String oldProfileName) throws SQLException  {        
         if (!(oldProfileName.equalsIgnoreCase(profileName))) {
             
+            if (usernameExist(username, profileName)) {
+                return false;
+            }
+            
             String delete_one_from_db = "delete from " +oldProfileName + " where username = ?;";
             try(Connection connection = DbConnection.init();
                     
@@ -62,58 +66,54 @@ public class SystemAdminDAO {
                 return true;
             }
         }else {
-            String update_one_in_database = "update " + profileName+ " set username = ?, fullname = ?, password = ?, email = ?, profilename = ? "
-                    + "where username = ?;";
-            try(Connection connection = DbConnection.init();
+            if (!(usernameExist(username, profileName)) || oldUserName.equalsIgnoreCase(username) ) {
+                String update_one_in_database = "update " + profileName+ " set username = ?, fullname = ?, password = ?, email = ? "
+                        + "where username = ?;";
+                try(Connection connection = DbConnection.init();
+                        
+                        PreparedStatement preparedStatement = connection.prepareStatement(update_one_in_database))
+                {
+                    preparedStatement.setString(1, username);
+                    preparedStatement.setString(2, name);
+                    preparedStatement.setString(3, password);
+                    preparedStatement.setString(4, email);
+                    preparedStatement.setString(5, oldUserName);
                     
-                    PreparedStatement preparedStatement = connection.prepareStatement(update_one_in_database))
-            {
-                preparedStatement.setString(1, username);
-                preparedStatement.setString(2, name);
-                preparedStatement.setString(3, password);
-                preparedStatement.setString(4, email);
-                preparedStatement.setString(5, profileName);
-                preparedStatement.setString(6, oldUserName);
-                
-                preparedStatement.executeUpdate();
-                
+                    preparedStatement.executeUpdate();
+                    
+                    
+                    
+                }
                 return true;
-                
-                
+            }else {
+                return false;
             }
+            
             
         }
        
     }
-    
-    public User readUser(String tempUsername, String profileName) {
-        String SELECT_ONE_FOR_READ = "select * from "+ profileName + " where username = ?;";
-        User temp = new User();
-        
+   
+    public User readUser(String userName, String profileName) {
+        User tempP = new SystemAdmin().getProfile(profileName);
+        String SELECT_ONE_FOR_READ = "select * from "+ profileName + " inner join userprofile on "+ tempP.getProfileID() + 
+                " = userprofile.profileID where username = ?;";
+        User temp = new User();        
         try(Connection connection = DbConnection.init();
                 
                 PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ONE_FOR_READ))
         {
 //            preparedStatement.setString(1, profileName);
-            preparedStatement.setString(1, tempUsername);
+            preparedStatement.setString(1, userName);
             ResultSet rs = preparedStatement.executeQuery();
             
             while (rs.next()) {
-                String userName = rs.getString("username");
+                int id = rs.getInt("id");
+                String username = rs.getString("username");
                 String password = rs.getString("password");
                 String email = rs.getString("email");
                 String name = rs.getString("fullname");
-                String profilename = rs.getString("profilename");
-                if (profileName.equalsIgnoreCase("systemAdmin")) {
-                    temp = new SystemAdmin(userName, name, password, email, profilename);
-                }else if (profileName.equalsIgnoreCase("Reviewer")){
-                    temp = new Reviewer(userName, name, password, email, profilename);
-                }else if (profileName.equalsIgnoreCase("Author")){
-                    temp = new Author(userName, name, password, email, profilename);
-                }else if (profileName.equalsIgnoreCase("Conference")){
-                    temp = new ConferenceChair(userName, name, password, email, profilename);
-                }
-
+                temp = new User(id,username, name, password, email, tempP.getProfileID(),tempP.getProfileName());
                 
 
             }
@@ -140,10 +140,10 @@ public class SystemAdminDAO {
             
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                
+                int profileID = Integer.parseInt(rs.getString("profileID"));
                 String profilename = rs.getString("profilename");
                 String description = rs.getString("description");
-                allProfile.add(new User(profilename,description));
+                allProfile.add(new User(profileID ,profilename,description));
                 
     
             }
@@ -163,10 +163,12 @@ public class SystemAdminDAO {
             ResultSet rs = preparedStatement.executeQuery();
             
             rs.next();
-            
+            int profileID = Integer.parseInt(rs.getString("profileID"));
             String profilename = rs.getString("profilename");
             String description = rs.getString("description");
-            temp = new User(profilename, description);
+            temp = new User(profileID,profilename, description);
+            
+            
 
         }catch(SQLException e) {
             printSQLException (e);
@@ -179,22 +181,27 @@ public class SystemAdminDAO {
         List<User> tempUser = new ArrayList<User>();
         List<User> tempProfile = getAllProfile();
         for (int i = 0 ; i < tempProfile.size(); i++) {
-            String SELECT_USER_FROM_EACH_DATABASE= "select * from " + tempProfile.get(i).getProfileName()+" ;";
+            String SELECT_USER_FROM_EACH_DATABASE= "select * from " + tempProfile.get(i).getProfileName()+" inner join userprofile on "
+                    + tempProfile.get(i).getProfileID()+ " = userprofile.profileID";
             try(Connection connection = DbConnection.init();
-                    
+                    //private static final String SELECT_ALL_USERACCOUNTS = "select * from useraccount inner join userprofile on useraccount.userprofile "
+                      //      + "= userprofile.id order by useraccount.id;";                    
                     PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_FROM_EACH_DATABASE))
             {
 //                
                 ResultSet rs = preparedStatement.executeQuery();
                 while (rs.next()) {
                     User temp ;
+                    int id = rs.getInt("id");
                     String username = rs.getString("username");
                     String password = rs.getString("password");
                     String email = rs.getString("email");
                     String name = rs.getString("fullname");
+                    int profileID = Integer.parseInt(rs.getString("profileID"));
                     String profileName = rs.getString("profileName");
+                    String desc = rs.getString("description");
                             
-                    temp = new User(username, name, password, email, profileName);
+                    temp = new User(id,username, name, password, email, profileID, profileName, desc);
                     
                     tempUser.add(temp);
                 }
@@ -207,7 +214,8 @@ public class SystemAdminDAO {
     }
     
     public void insertNewUser(String username, String password, String name, String email, String profileName) throws SQLException {
-        final String INSERT_USEERACCOUNT = "INSERT INTO " + profileName + "(`username`,`fullname`, `password`, email , `profileName`) VALUES"
+        
+        final String INSERT_USEERACCOUNT = "INSERT INTO " + profileName + "(`username`,`fullname`, `password`, email , `profileID`) VALUES"
                 + "(?, ?, ?, ?, ?)";
         try (Connection connection = DbConnection.init();
                 PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USEERACCOUNT)) 
@@ -216,7 +224,18 @@ public class SystemAdminDAO {
             preparedStatement.setString(2, name);
             preparedStatement.setString(3, password);
             preparedStatement.setString(4, email);
-            preparedStatement.setString(5, profileName);
+            int profileID = 0;
+            if (profileName.equalsIgnoreCase("systemadmin")) 
+                profileID = 1;
+            else if (profileName.equalsIgnoreCase("reviewer"))
+                profileID = 2;
+            else if (profileName.equalsIgnoreCase("Conference"))
+                profileID = 3;
+            else if (profileName.equalsIgnoreCase("Author"))
+                profileID = 4;
+            
+            
+            preparedStatement.setInt(5, profileID);
             preparedStatement.executeUpdate(); 
         }
     }
@@ -256,40 +275,7 @@ public class SystemAdminDAO {
         
         return usernameExist;
     }
-    
 
-//    public List<UserAccount> searchUserAccount(String searchName){
-//        List<UserAccount> userAccounts = new ArrayList<>();
-//        try(Connection connection = DbConnection.init();
-//                PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_USERACCOUNT_BY_NAME))
-//        {
-//            preparedStatement.setString(1, searchName);
-//            ResultSet rs =preparedStatement.executeQuery();
-//            while (rs.next()) {
-//                int id = rs.getInt(1);
-//                String name = rs.getString("name");
-//                String username = rs.getString("username");
-//                String password = rs.getString("password");
-//                String status = rs.getString("status");
-//                int profileID = rs.getInt("userprofile");
-//                String profile = rs.getString("profile");
-//                String description = rs.getString("description");
-//                
-//                 
-//                UserProfile tempP = new UserProfile (profileID, profile, description);
-//                UserAccount temp = new UserAccount(id ,name ,username, password, status, tempP);
-//                userAccounts.add(temp);
-//                
-//                
-//            }
-//            
-//        
-//        }catch(SQLException e) {
-//            printSQLException(e);
-//        }
-//                
-//        return userAccounts;
-//    }
  
     
     private void printSQLException(SQLException ex) 

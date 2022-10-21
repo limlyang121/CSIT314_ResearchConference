@@ -30,11 +30,8 @@ public class SystemAdmin extends User {
     }
     
     public boolean updateUser(String username, String password, String name, String email, String profileName, String oldUserName, String oldProfileName)throws SQLException {
-        if (!(myDAO.usernameExist(username, profileName)) || oldProfileName.equalsIgnoreCase(profileName) ) {
-            return myDAO.updateUserAccount(username, password, name, email, profileName, oldUserName, oldProfileName);
-        }else {
-            return false;
-        }
+        return myDAO.updateUserAccount(username, password, name, email, profileName, oldUserName, oldProfileName);
+
     }
     
     public User getProfile(String profilename) {
@@ -48,8 +45,8 @@ public class SystemAdmin extends User {
         return myDAO.getAllProfile();
     }
     
-    public User readUser(String username, String profileName) {
-        return myDAO.readUser(username, profileName);
+    public User readUser(String userName,String profileName) {
+        return myDAO.readUser(userName ,profileName);
     }
     
     public boolean InsertNewUser(String username, String passowrd, String name, String email, String profileName )throws SQLException {
@@ -69,17 +66,21 @@ public class SystemAdmin extends User {
     
     
 
-    public SystemAdmin(String username, String fullname, String password, String email, String profileName) {
-        super(username, fullname, password, email, profileName);
-        myDAO = new SystemAdminDAO();
-    }
-
-    public SystemAdmin(String username, String fullname, String password, String email, String profileName,
-            String description) {
-        super(username, fullname, password, email, profileName, description);
+    
+    public SystemAdmin(int ID,String username, String fullname, String password, String email, int profileID,
+            String profileName, String description, SystemAdminDAO myDAO) {
+        super(ID, username, fullname, password, email, profileID, profileName, description);
         myDAO = new SystemAdminDAO();
     }
     
+    
+
+    public SystemAdmin(int id,String username, String fullname, String password, String email, int profileID,
+            String profileName, SystemAdminDAO myDAO) {
+        super(id, username, fullname, password, email, profileID, profileName);
+        myDAO = new SystemAdminDAO();
+    }
+
     public boolean equals() {
         boolean isSame = false;
         return false;

@@ -43,7 +43,7 @@ public class AddNewUserController extends HttpServlet{
 	}
 	
 	protected void submitNewUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException{
-		String username = request.getParameter("username");
+	    String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
