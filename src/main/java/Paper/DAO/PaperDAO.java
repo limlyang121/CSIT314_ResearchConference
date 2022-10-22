@@ -135,13 +135,9 @@ public class PaperDAO{
             
         }
         
-        if(rs1 == 0 && rs2 == 0 && rs3 == 0 && rs4 == 0 && rs5 == 0){
+   
             return true;
-        }
-        
-        else {
-            return false;
-        }
+     
         
     }
     
