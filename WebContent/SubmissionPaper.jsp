@@ -20,7 +20,7 @@
                     <td><input type="file" name="paper" size="50"/></td>
                 </tr>
                 <tr>
-                	<td>Add Author: </td>
+                	<td>Add Co-Author: </td>
                 	<td>
                 		 <select name="authors">
         					<c:forEach items="${listAuthor}" var="author">
