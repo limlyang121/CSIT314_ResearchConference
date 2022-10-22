@@ -54,6 +54,8 @@ public class SubmitPaperController extends HttpServlet{
             HttpServletResponse response) throws ServletException, IOException{
         
         // gets values of text fields
+        HttpSession test= request.getSession();
+        String a = test.getAttribute("username").toString();
         String filename = request.getParameter("fileName");
         String co_author = request.getParameter("authors");
         
@@ -70,7 +72,9 @@ public class SubmitPaperController extends HttpServlet{
         Paper paper = new Paper();
         boolean success = paper.createSubmission(filename, authors, inputStream);
        
-        if(success){response.sendRedirect("ShowMyPapers.jsp");}
+        if(success){
+            response.sendRedirect("ShowMyPapers?username="+a);
+        }
         return;
     }
     
