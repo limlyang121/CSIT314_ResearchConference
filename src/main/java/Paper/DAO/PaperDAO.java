@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dbconnection.DbConnection;
-import Paper.Entity.*;
+import general.Entity.Paper;
 
 public class PaperDAO{
     
@@ -58,7 +58,7 @@ public class PaperDAO{
             printSQLException (e);
         }
         
-        if(rs == 0 && result == 0){
+        if(rs == 1 && result == 1){
             return true;
         }
         
@@ -145,6 +145,14 @@ public class PaperDAO{
         
     }
     
+//    public boolean editPaper(int id, String papername, ArrayList<String> authors) throws SQLException{
+//        
+//    }
+//    
+//    public String paperInfo(int id) throws SQLException{
+//        
+//    }
+//    
     private void printSQLException(SQLException ex) 
     {
         for (Throwable e : ex) 
