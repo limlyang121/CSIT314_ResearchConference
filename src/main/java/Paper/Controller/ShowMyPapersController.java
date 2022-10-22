@@ -1,7 +1,10 @@
 package Paper.Controller;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -12,26 +15,33 @@ import javax.servlet.http.HttpServletResponse;
 import general.Entity.Paper;
 
 
-@WebServlet ("/deletePaper")
+@WebServlet ("/ShowMyPapers")
 @MultipartConfig(maxFileSize = 16177215)    // upload file's size up to 16MB
-public class DeletePaperController extends HttpServlet{
-    int id = 0;
+public class ShowMyPapersController extends HttpServlet{
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        id = Integer.parseInt(request.getParameter("paperid"));
-        deletePaper(request, response);
+        listPaper(request,response);
     }
     
-    private void deletePaper(HttpServletRequest request, HttpServletResponse response)
+    
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+       
+       // listPaper(request, response);
+    }
+    
+    private void listPaper(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Paper paper = new Paper();
  
         try {
-            
-            boolean result = paper.deletePaper(id);
-            if(result){response.sendRedirect("ShowMyPapers.jsp");}
-            return;
+            String user = request.getParameter("username");
+            ArrayList<Paper> listPaper = paper.showMyPapers(user);
+            request.setAttribute("listPaper", listPaper);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("ShowMyPapers.jsp");
+            dispatcher.forward(request, response);
  
         } catch (SQLException e) {
             e.printStackTrace();
