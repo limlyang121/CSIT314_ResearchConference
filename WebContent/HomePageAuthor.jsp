@@ -16,10 +16,13 @@
 </head>
 <body>
 	<h1>Author</h1>
+
 	
 
 	
-	<a  href=<%session.invalidate();  %>"index.jsp"> <button > Log out </button></a> 
+
+    <a  href="SubmissionPaper?username=<c:out value = '${sessionScope.username}'/>"> <button > Create Submission </button></a> 
+    <a  href="ShowMyPapers?username=<c:out value = '${sessionScope.username}'/> "> <button > View My Papers </button></a> 
 
 	
 </body>
