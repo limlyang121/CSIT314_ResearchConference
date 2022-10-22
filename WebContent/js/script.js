@@ -1,3 +1,4 @@
+
 function loginValidation() {
     var username = document.getElementById("username");
     var password = document.getElementById("password");
@@ -34,13 +35,7 @@ function loginValidation() {
     return canSubmit;
 }
 
-function logout() {
-	// alert("A");
-    if (confirm("Are you sure want to log out?")){
-    	alert("A");
+function logout2() {
+	return confirm("Are you sure want to log out?");
+}  
 
-		session_destroy();
-		response.sendRedirect("/index.jsp");
-	
-	}
-}

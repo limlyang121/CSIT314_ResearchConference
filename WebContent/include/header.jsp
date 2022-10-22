@@ -24,10 +24,14 @@
     <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
     
     <!-- External -->
-    <link rel="stylesheet" href="CSS/style.css">
-    <script src="js/script.js"></script>
-    
-    
+	
+	<script>
+		function logout2() {
+			return confirm ("Are you sure want to log out");
+		}  
+
+	</script>
+	
     <c:if test = "${sessionScope.message != null}">
 		<script>
 			alert("<c:out value = '${message}'/> ");
