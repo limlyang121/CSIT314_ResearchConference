@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 package Author.Entity;
 
 import java.io.File;
@@ -49,43 +48,3 @@ public class Author extends User {
         return true;
     }
 }
-=======
-package Author.Entity;
-
-import general.Entity.*;
-
-
-public class Author extends User {
-    private String profileName;
-    private String description;
-    
-
-    public Author(String profileName, String description) {
-        super();
-        this.profileName = profileName;
-        this.description = description;
-    }
-
-    public String getProfileName() {
-        return profileName;
-    }
-
-    public void setProfileName(String profileName) {
-        this.profileName = profileName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-    
-    
-    
-    
-    
-    
-}
->>>>>>> Stashed changes
