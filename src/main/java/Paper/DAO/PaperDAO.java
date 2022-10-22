@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dbconnection.DbConnection;
-import general.Entity.Paper;
+import Paper.Entity.*;
 
 public class PaperDAO{
     
