@@ -31,7 +31,7 @@ public class LoginController extends HttpServlet{
 		HttpSession session = request.getSession();
 		
 		if (temp.login(username, password ,profileName)) {
-		    session.setAttribute("tusername", username);
+		    session.setAttribute("username", username);
 		    session.setAttribute("profilename", profileName);
             
             if (profileName.equalsIgnoreCase("systemadmin")) {

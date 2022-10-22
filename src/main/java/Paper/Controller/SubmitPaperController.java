@@ -8,7 +8,7 @@ import java.util.List;
 
 import Author.DAO.*;
 import Author.Entity.Author;
-import general.Entity.Paper;
+import Paper.Entity.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
