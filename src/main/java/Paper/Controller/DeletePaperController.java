@@ -9,17 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Paper.Entity.*;
+import general.Entity.Paper;
 
 
 @WebServlet ("/deletePaper")
 @MultipartConfig(maxFileSize = 16177215)    // upload file's size up to 16MB
 public class DeletePaperController extends HttpServlet{
     int id = 0;
+    String username = "";
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         id = Integer.parseInt(request.getParameter("paperid"));
+        username = request.getParameter("username");
         deletePaper(request, response);
     }
     
@@ -30,7 +32,7 @@ public class DeletePaperController extends HttpServlet{
         try {
             
             boolean result = paper.deletePaper(id);
-            if(result){response.sendRedirect("ShowMyPapers.jsp");}
+            if(result){response.sendRedirect("ShowMyPapers?username="+username);}
             return;
  
         } catch (SQLException e) {
