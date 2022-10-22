@@ -31,8 +31,8 @@ public class SystemAdminDAO {
            }
     }
    
-    public boolean updateProfile(String profileName, String description){
-        String update_user_profile = "update userprofile set profilename = ?, description = ? where profilename = ?;";
+    public boolean updateProfile(int profileID,String profileName, String description){
+        String update_user_profile = "update userprofile set profilename = ?, description = ? where profileID = ?;";
    
         try(Connection connection = DbConnection.init();
                 
@@ -40,7 +40,7 @@ public class SystemAdminDAO {
         {
             preparedStatement.setString(1, profileName);
             preparedStatement.setString(2, description);
-            preparedStatement.setString(3, profileName);
+            preparedStatement.setInt(3, profileID);
             preparedStatement.executeUpdate();
             return true;
         }catch (SQLException e) {

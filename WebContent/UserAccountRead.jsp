@@ -7,6 +7,11 @@
 <title>FUCK</title>
 </head>
 <body>
+	<a href="<%=request.getContextPath()%>/HomePageAdmin.jsp" >
+			<button  >Home</button>
+	</a>
+
+
 		<label>Fullname</label>
 		<input type="text" name="name" id="name" value="<c:out value='${userAccount.fullname}' />" readonly>
 		

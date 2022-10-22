@@ -10,7 +10,7 @@
 
 <h1>
 	<label> My name</label>
-	<input type="text" value =<c:out value = '${sessionScope.tusername}'/>>
+	<input type="text" value =<c:out value = '${sessionScope.username}'/>>
 
 
 </h1>

@@ -16,8 +16,8 @@ public class SystemAdmin extends User {
         return myDAO.viewAllUserAccount();
     }
     
-    public boolean updateProfile(String profileName, String description)throws SQLException   {
-        return myDAO.updateProfile(profileName, description);
+    public boolean updateProfile(int profileID, String profileName, String description)throws SQLException   {
+        return myDAO.updateProfile(profileID, profileName, description);
     }
     
     public boolean insertNewProfile(String profileName, String description)throws SQLException  {

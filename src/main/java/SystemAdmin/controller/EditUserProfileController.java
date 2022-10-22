@@ -39,6 +39,7 @@ public class EditUserProfileController extends HttpServlet{
     }
     
     protected void editUserProfile(HttpServletRequest request, HttpServletResponse response)  throws SQLException, IOException {
+        int profileID = Integer.parseInt(request.getParameter("id"));
         String profileName = request.getParameter("profilename");
         String description = request.getParameter("description");   
         
@@ -46,7 +47,7 @@ public class EditUserProfileController extends HttpServlet{
         
         HttpSession session = request.getSession();
         
-        if (temp.updateProfile(profileName, description)) {
+        if (temp.updateProfile(profileID, profileName, description)) {
             session.setAttribute("message", "Successfully Update User Account");
             response.sendRedirect("HomePageAdmin.jsp");
         }else {

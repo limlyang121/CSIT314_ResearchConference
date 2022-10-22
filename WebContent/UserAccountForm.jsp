@@ -5,6 +5,9 @@
 
 </head>
 <body>
+<a href="<%=request.getContextPath()%>/HomePageAdmin.jsp" >
+		<button  >Home</button>
+</a>
 
 	<c:if test="${userAccount != null}">
 	<%

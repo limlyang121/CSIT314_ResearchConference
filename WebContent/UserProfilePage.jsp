@@ -7,14 +7,6 @@
 </head>
 <body>
 
-<h1>
-	<label> My name</label>
-	<input type="text" value =<c:out value = '${sessionScope.tusername}'/>>
-AAAA
-
-</h1>
-
-
 	<h1>All User Profile</h1>
 	<br/>
 
