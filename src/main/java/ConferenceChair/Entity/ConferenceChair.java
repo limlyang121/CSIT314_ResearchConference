@@ -1,57 +1,24 @@
 package ConferenceChair.Entity;
 
+import ConferenceChair.DAO.ConferenceChairDAO;
 import general.Entity.*;
 
 public class ConferenceChair  extends User{
-    private String profileName;
-    private String description;
-    
-    
-    
-    public ConferenceChair(String username, String fullname, String password, String email, String profileName) {
-        super(username, fullname, password, email);
-        this.profileName = profileName;
-    }
+    private ConferenceChairDAO myDAO;
 
-    
-
-    public ConferenceChair(String profileName, String description) {
+    public ConferenceChair() {
         super();
-        this.profileName = profileName;
-        this.description = description;
+        myDAO = new ConferenceChairDAO();
     }
 
-
-
-    public ConferenceChair(String username, String password, String profileName) {
-        super(username, password);
-        this.profileName = profileName;
+    public ConferenceChair(int id, String username, String fullname, String password, String email, int profileID,
+            String profileName, String description) {
+        super(id, username, fullname, password, email, profileID, profileName, description);
+        myDAO = new ConferenceChairDAO();
     }
-
-    public ConferenceChair(String username, String fullname, String password, String email, String profileName,
-            String description) {
-        super(username, fullname, password, email);
-        this.profileName = profileName;
-        this.description = description;
-    }
-
-    public String getProfileName() {
-        return profileName;
-    }
-
-    public void setProfileName(String profileName) {
-        this.profileName = profileName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
+    
     
 
+    
     
 }

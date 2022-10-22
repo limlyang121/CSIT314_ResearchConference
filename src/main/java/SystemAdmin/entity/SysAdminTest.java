@@ -48,7 +48,7 @@ public class SysAdminTest {
     @Test
     public void readUserTest() {
         temp = new SystemAdmin();
-        User myAcc = new SystemAdmin("admin", "AdminTest", "admin",  "adminTest@gmail.com", "systemadmin");
+        User myAcc = new SystemAdmin(1,"admin", "AdminTest", "admin",  "adminTest@gmail.com", 1);
         User expected = temp.readUser("admin", "systemadmin");
         
         

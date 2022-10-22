@@ -65,8 +65,15 @@ public class SystemAdmin extends User {
     }
     
     
+    
+    
 
     
+    public SystemAdmin(int id, String username, String fullname, String password, String email, int profileID) {
+        super(id, username, fullname, password, email, profileID);
+        myDAO = new SystemAdminDAO();
+    }
+
     public SystemAdmin(int ID,String username, String fullname, String password, String email, int profileID,
             String profileName, String description, SystemAdminDAO myDAO) {
         super(ID, username, fullname, password, email, profileID, profileName, description);
