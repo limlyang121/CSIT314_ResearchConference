@@ -1,4 +1,4 @@
-package Paper.Entity;
+package general.Entity;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -14,6 +14,7 @@ public class Paper{
     private String papername;
     private int id;
     private String author;
+    private String coauthor;
     private FileInputStream inputstream;
     private String status;
     private PaperDAO paperDao;
@@ -26,6 +27,13 @@ public class Paper{
         this.id = id;
         this.papername = papername;
         this.status = status;
+        paperDao = new PaperDAO();
+    }
+    
+    public Paper(String papername, int id, String co_author) {
+        this.id = id;
+        this.papername = papername;
+        this.coauthor = co_author;
         paperDao = new PaperDAO();
     }
     
@@ -65,6 +73,14 @@ public class Paper{
         return paperDao.deletePaper(id);
     }
     
+//    public boolean editPaper(int id, String papername, ArrayList<String> authors) throws SQLException{
+//        return paperDao.editPaper(id, papername, authors);
+//    }
+    
+    public Paper getpaperInfo(int id, String username) throws SQLException{
+        return paperDao.getpaperInfo(id, username);
+    }
+    
     public String getPapername() {
         return papername;
     }
@@ -75,6 +91,10 @@ public class Paper{
     
     public int getId() {
         return id;
+    }
+    
+    public String getCoauthor() {
+        return coauthor;
     }
     
     public String getStatus() {
