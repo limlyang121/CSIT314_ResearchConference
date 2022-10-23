@@ -10,7 +10,7 @@
 <body>
 	<h1> My name is <c:out value= '${sessionScope.username}' /> </h1>
 	
-	<a href="<%=request.getContextPath()%>/conferenceUpdateForm?username=
+	<a href="<%=request.getContextPath()%>/selfUpdateForm?username=
 	<c:out value ='${sessionScope.username}'/>&profileName=<c:out value = '${sessionScope.profileName}'/>" >
 		<button  >My Profile Update</button>
 	</a>

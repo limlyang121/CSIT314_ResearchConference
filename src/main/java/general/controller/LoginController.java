@@ -27,6 +27,7 @@ public class LoginController extends HttpServlet{
 		String profileName= request.getParameter("profile") ;
 		
 		User temp = new User();
+
 		
 		HttpSession session = request.getSession();
 		

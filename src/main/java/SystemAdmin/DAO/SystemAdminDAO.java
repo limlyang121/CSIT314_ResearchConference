@@ -113,7 +113,13 @@ public class SystemAdminDAO {
                 String password = rs.getString("password");
                 String email = rs.getString("email");
                 String name = rs.getString("fullname");
-                temp = new User(id,username, name, password, email, tempP.getProfileID(),tempP.getProfileName());
+                if (profileName.equalsIgnoreCase("reviewer")) {
+                    int maxPapers =Integer.parseInt(rs.getString("max_no_papers"));
+                    temp = new Reviewer(id,username, name, password, email, tempP.getProfileID(),tempP.getProfileName(), maxPapers);
+                    
+                }else {
+                    temp = new User(id,username, name, password, email, tempP.getProfileID(),tempP.getProfileName());                    
+                }
                 
 
             }

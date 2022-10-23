@@ -5,7 +5,8 @@
 
 </head>
 <body>
-	<form>
+	<form action= "selfUpdate?id=<c:out value ='${sessionScope.id }'/>&profileName=
+	<c:out value='${sessionScope.profileName}'/>" method = "post">
 		<label> Username</label>
 		<input id = "myusername" value =<c:out value = '${myAccount.username} }'/> >
 
@@ -21,8 +22,14 @@
 		
 		<br>
 		<label> Email</label>
-		<input id = "myEmail" value =<c:out value = '${myAccount.fullname} }'/> >
+		<input id = "myemail" value =<c:out value = '${myAccount.fullname} }'/> >
 		
+		<c:if test="${sessionScope.profileName} == 'reviewer'">
+			<label> Max Number of Papers</label>
+			<input id = "maxPaper" value =<c:out value = '${myAccount.max_no_papers} }'/> >
+		</c:if>
+		
+		<button type = "submit">Submit</button>
 			
 	
 	</form>
