@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dbconnection.DbConnection;
-import Paper.Entity.*;
+import general.Entity.Paper;
 
 public class PaperDAO{
     
@@ -133,7 +133,10 @@ public class PaperDAO{
             rs4 = preparedStatement4.executeUpdate();
             rs5 = preparedStatement5.executeUpdate();
             
-        }
+        }catch (SQLException ex) {
+            ex.printStackTrace();
+            throw ex;
+        }      
         
    
             return true;
@@ -145,10 +148,42 @@ public class PaperDAO{
 //        
 //    }
 //    
-//    public String paperInfo(int id) throws SQLException{
-//        
-//    }
-//    
+    public Paper getpaperInfo(int id, String username) throws SQLException{
+        int rs1 = 0;
+        int rs2 = 0;
+        Paper paper;
+        
+        String getpapername = "Select paperName from paper where paper_id ='"+String.valueOf(id)+"';";
+        String getauthors = "Select username from Author where id in (Select Author from paperinfo where paperidfk = '"+String.valueOf(id)+"');";
+        String co_author = "";
+       
+        try (Connection connection = DbConnection.init();
+                Statement preparedStatement1 = connection.createStatement();
+                Statement preparedStatement2 = connection.createStatement();){
+             
+                ResultSet papername = preparedStatement1.executeQuery(getpapername);  
+                ResultSet authorsname = preparedStatement2.executeQuery(getauthors); 
+                papername.next();
+                while(authorsname.next()) {
+                    if(username != authorsname.getString("username")) {
+                        co_author = authorsname.getString("username");
+                    }
+                }
+                
+                paper = new Paper(papername.getString("Papername"), id, co_author);
+                
+        }
+        
+        catch (SQLException ex) {
+            ex.printStackTrace();
+            throw ex;
+        }      
+     
+                return paper;
+        
+        
+    }
+    
     private void printSQLException(SQLException ex) 
     {
         for (Throwable e : ex) 
