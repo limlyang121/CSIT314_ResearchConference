@@ -1,6 +1,7 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,18 +24,12 @@
                     <td><c:out value="${paper.papername}" /></td>
                     <td><c:out value="${paper.status}" /></td>
                     <td>
-						<a href="/editPaper?paperid=<c:out value = '${paper.id}'/> " >
+						<a href="EditPaper?paperid=<c:out value = '${paper.id}'/>&username=<c:out value = '${sessionScope.username}'/>">
 						Edit
 						</a>
 					</td>
 					<td>
-						<a href="viewPaper?paperid=<c:out value = '${paper.id}'/> " >
-						View
-						</a>
-						
-					</td>
-					<td>
-						<a href="deletePaper?paperid=<c:out value = '${paper.id}'/> " >
+						<a href="deletePaper?paperid=<c:out value = '${paper.id}'/>&username=<c:out value = '${sessionScope.username}'/> " >
 						Delete
 						</a>
 					</td>
