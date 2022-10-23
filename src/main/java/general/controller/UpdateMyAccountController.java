@@ -64,16 +64,7 @@ public class UpdateMyAccountController extends HttpServlet {
         }
 
         if (success) {
-            
-            if (!oldUsername.equalsIgnoreCase(username)) {
-                session.setAttribute("message", "Username Changed, Direct to homepage");
-                session.removeAttribute("username");
-                session.removeAttribute("profileName");
-                session.removeAttribute("id");
-                session.invalidate();
-                response.sendRedirect("index.jsp");
-            }
-            
+            session.setAttribute("username", username);            
             session.setAttribute("message", "Successfully Updated");
             if (profileName.equalsIgnoreCase("conference")) {
                 response.sendRedirect("HomePageConference.jsp");
