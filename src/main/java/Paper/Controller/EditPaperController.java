@@ -1,46 +1,46 @@
 package Paper.Controller;
-
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import Author.DAO.*;
-import Author.Entity.Author;
-import general.Entity.Paper;
-
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
-import javax.servlet.*;
 
-@WebServlet ("/SubmissionPaper")
-@MultipartConfig(maxFileSize = 16177215)    // upload file's size up to 16MB
-public class SubmitPaperController extends HttpServlet{
+import Author.Entity.Author;
+import general.Entity.Paper;
+
+
+@WebServlet ("/EditPaper")
+public class EditPaperController extends HttpServlet{
+    int id = 0;
     String username = "";
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        listAuthor(request, response);
+        id = Integer.parseInt(request.getParameter("paperid"));
         username = request.getParameter("username");
-        
+        listAuthor(request, response);
     }
- 
+    
+    
     private void listAuthor(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Author dao = new Author();
+        Paper paper = new Paper();
  
         try {
  
             List<String> dropdown = dao.dropDownList();
+            Paper newpaper = paper.getpaperInfo(id, username);
             request.setAttribute("listAuthor", dropdown);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("SubmissionPaper.jsp");
+            request.setAttribute("paperinfo", newpaper);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("EditPaper.jsp");
             dispatcher.forward(request, response);
  
         } catch (SQLException e) {
@@ -49,29 +49,25 @@ public class SubmitPaperController extends HttpServlet{
         }
     }
     
-    @Override
-    protected void doPost(HttpServletRequest request,
-            HttpServletResponse response) throws ServletException, IOException{
-        
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        Paper paper = new Paper();
         // gets values of text fields
         String filename = request.getParameter("fileName");
         String co_author = request.getParameter("authors");
-        
-        InputStream inputStream = null; // input stream of the upload file
-         
-        // obtains the upload file part in this multipart request
-        Part filePart = request.getPart("paper");
-        inputStream = filePart.getInputStream();
         ArrayList<String> authors = new ArrayList<String>();
         authors.add(co_author);
         authors.add(username);
-        
-        Paper paper = new Paper();
-        boolean success = paper.createSubmission(filename, authors, inputStream);
-       
-        if(success){response.sendRedirect("ShowMyPapers?username="+username);}
-        return;
-    }
-    
  
+        try {
+            
+            boolean result = paper.editPaper(id, filename, authors);
+            if(result){response.sendRedirect("ShowMyPapers?username="+username);}
+            return;
+ 
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new ServletException(e);
+        }
+    }
 }

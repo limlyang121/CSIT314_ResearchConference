@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Paper.Entity.*;
+import general.Entity.Paper;
 
 
 @WebServlet ("/ShowMyPapers")
@@ -40,7 +40,7 @@ public class ShowMyPapersController extends HttpServlet{
             String user = request.getParameter("username");
             ArrayList<Paper> listPaper = paper.showMyPapers(user);
             request.setAttribute("listPaper", listPaper);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/ShowMyPapers.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("ShowMyPapers.jsp");
             dispatcher.forward(request, response);
  
         } catch (SQLException e) {
