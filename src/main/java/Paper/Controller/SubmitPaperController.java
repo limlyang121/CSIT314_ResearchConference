@@ -1,6 +1,7 @@
 package Paper.Controller;
 
 import java.io.IOException;
+import Paper.Entity.*;
 import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -8,7 +9,6 @@ import java.util.List;
 
 import Author.DAO.*;
 import Author.Entity.Author;
-import general.Entity.Paper;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
