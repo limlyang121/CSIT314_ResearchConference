@@ -64,6 +64,24 @@ public class UserDAO  {
         return loginSuccessful;
     }
     
+    public boolean usernameExist(String username, String profileName) {
+        final String CHECK_USERNAME_EXIST_ID = "select 1 from " + profileName +" where username = ? ;";
+        
+        boolean usernameExist = false;
+        try (Connection connection = DbConnection.init();
+                PreparedStatement preparedStatement = connection.prepareStatement(CHECK_USERNAME_EXIST_ID )) 
+        {
+            preparedStatement.setString(1, username);
+            ResultSet rs = preparedStatement.executeQuery();
+            usernameExist = rs.next();
+            
+        }catch (SQLException e) {
+            printSQLException (e);
+        }
+        
+        return usernameExist;
+    }
+    
     
     
     

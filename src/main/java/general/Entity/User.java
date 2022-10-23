@@ -19,7 +19,7 @@ public class User {
 	}
 	
 	public boolean updateMyAccount(int myID, String username, String pasword, String name, String email, String profileName ) {
-	    if (myDAO.updateMyAccount(myID, username, pasword, name, email, profileName))
+	    if (myDAO.usernameExist(username, profileName) &&  myDAO.updateMyAccount(myID, username, pasword, name, email, profileName) )
 	        return true;
 	    else
 	        return false;
@@ -31,7 +31,6 @@ public class User {
         myDAO = new UserDAO();
     }
 
-	
 	
     public User(int id, String username, String fullname, String password, String email, int profileID, String profileName) {
         super();
@@ -168,18 +167,5 @@ public class User {
     public void setProfileID(int profileID) {
         this.profileID = profileID;
     }
-    
-    
-    
-	
-	
 
-	
-	
-	
-	
-	
-	
-	
-	
 }

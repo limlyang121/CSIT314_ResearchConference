@@ -24,11 +24,14 @@
 		<label> Email</label>
 		<input id = "myemail"  name="myemail" value =<c:out value = '${myAccount.email} }'/> >
 		
-		<c:if test="${sessionScope.profileName} == 'reviewer'">
+		<br>
+		
+		<c:if test="${sessionScope.profileName == 'reviewer'}">
 			<label> Max Number of Papers</label>
 			<input id = "maxPaper"  name="maxPaper" value =<c:out value = '${myAccount.max_no_papers} }'/> >
 		</c:if>
 		
+		<br>
 		<button type = "submit">Submit</button>
 			
 	

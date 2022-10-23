@@ -114,7 +114,7 @@ public class SystemAdminDAO {
                 String email = rs.getString("email");
                 String name = rs.getString("fullname");
                 if (profileName.equalsIgnoreCase("reviewer")) {
-                    int maxPapers =Integer.parseInt(rs.getString("max_no_papers"));
+                    int maxPapers =Integer.parseInt(rs.getString("max_no_paper"));
                     temp = new Reviewer(id,username, name, password, email, tempP.getProfileID(),tempP.getProfileName(), maxPapers);
                     
                 }else {

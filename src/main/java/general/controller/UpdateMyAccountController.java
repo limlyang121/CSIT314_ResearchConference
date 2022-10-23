@@ -11,21 +11,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import Reviewer.Entity.Reviewer;
 import SystemAdmin.entity.SystemAdmin;
 import general.Entity.User;
 
 @WebServlet (urlPatterns = {"/selfUpdateForm", "/selfUpdate"})
 public class UpdateMyAccountController extends HttpServlet {
     protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
-        conferenceUpdateForm (request, response);
+        selfUpdateForm (request, response);
     }
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
-        conferenceUpdate(request,response);
+        selfUpdate(request,response);
     }
     
     
-    protected void conferenceUpdateForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
+    protected void selfUpdateForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
         String username = request.getParameter("username");
         String profileName = request.getParameter("profileName");
        
@@ -38,7 +39,7 @@ public class UpdateMyAccountController extends HttpServlet {
         dis.forward(request, response);
     }
     
-    protected void conferenceUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException   {
+    protected void selfUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException   {
         HttpSession session = request.getSession();
         String profileName = request.getParameter("profileName");
         int myID = Integer.parseInt(request.getParameter("id"));
@@ -47,11 +48,20 @@ public class UpdateMyAccountController extends HttpServlet {
         String email = request.getParameter("myemail");
         String password = request.getParameter("mypassword");
         
+        User temp ;
         String maxPaper = request.getParameter("maxpaper");
+        boolean success ;
+        if (profileName.equalsIgnoreCase("reviewer")) {
+            temp = new Reviewer();
+            success = temp.updateMyAccount(myID, username, password, name, email, maxPaper ,profileName);
+        }else {
+            temp = new User();
+            success = temp.updateMyAccount(myID, username, password, name, email, profileName);
+        }
         
-        User temp = new User();
         
         if (temp.updateMyAccount(myID, username, password, name, email, profileName)) {
+            
             session.setAttribute("message", "Successfully Updated");
             if (profileName.equalsIgnoreCase("conference")) {
                 response.sendRedirect("HomePageConference.jsp");
