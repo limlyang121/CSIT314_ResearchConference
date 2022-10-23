@@ -7,6 +7,8 @@
 <body>
 	<form action= "selfUpdate?id=<c:out value ='${sessionScope.id }'/>&profileName=
 	<c:out value='${sessionScope.profileName}'/>" method = "post">
+	
+		<input name="oldusername" id = "oldusername" value =<c:out value = '${myAccount.username} }'/> hidden>
 		<label> Username</label>
 		<input id = "myusername" name="myusername" value =<c:out value = '${myAccount.username} }'/> >
 

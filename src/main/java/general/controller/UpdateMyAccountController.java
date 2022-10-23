@@ -47,27 +47,45 @@ public class UpdateMyAccountController extends HttpServlet {
         String name = request.getParameter("myname");
         String email = request.getParameter("myemail");
         String password = request.getParameter("mypassword");
-        
+        String oldUsername = request.getParameter("oldusername");
         User temp ;
-        String maxPaper = request.getParameter("maxpaper");
-        boolean success ;
+        
+        
+
+        boolean success = false;
         if (profileName.equalsIgnoreCase("reviewer")) {
-            temp = new Reviewer();
-            success = temp.updateMyAccount(myID, username, password, name, email, maxPaper ,profileName);
+            int maxPaper = Integer.parseInt(request.getParameter("maxPaper")) ;
+            Reviewer tempA = new Reviewer();
+            success =tempA.updateMyAccountR(myID, username, password, name, email, maxPaper,profileName);
+
         }else {
             temp = new User();
             success = temp.updateMyAccount(myID, username, password, name, email, profileName);
         }
-        
-        
-        if (temp.updateMyAccount(myID, username, password, name, email, profileName)) {
+
+        if (success) {
+            
+            if (!oldUsername.equalsIgnoreCase(username)) {
+                session.setAttribute("message", "Username Changed, Direct to homepage");
+                session.removeAttribute("username");
+                session.removeAttribute("profileName");
+                session.removeAttribute("id");
+                session.invalidate();
+                response.sendRedirect("index.jsp");
+            }
             
             session.setAttribute("message", "Successfully Updated");
             if (profileName.equalsIgnoreCase("conference")) {
                 response.sendRedirect("HomePageConference.jsp");
             }else if (profileName.equalsIgnoreCase("Author"))
                 response.sendRedirect("HomePageAuthor.jsp");
+            else if (profileName.equalsIgnoreCase("Reviewer")){
+                response.sendRedirect("HomePageReviewer.jsp");
+            }
                 
+        }else {
+            session.setAttribute("message", "Fail to Update");
+            response.sendRedirect("selfUpdateForm?username="+oldUsername+"&profileName="+profileName);
         }
         
     }
