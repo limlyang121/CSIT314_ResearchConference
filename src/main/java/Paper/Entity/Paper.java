@@ -1,4 +1,4 @@
-package general.Entity;
+package Paper.Entity;
 
 import java.io.FileInputStream;
 import java.io.InputStream;

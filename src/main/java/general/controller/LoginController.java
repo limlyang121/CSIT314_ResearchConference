@@ -40,7 +40,7 @@ public class LoginController extends HttpServlet{
             }else if (profileName.equalsIgnoreCase("reviewer")) {
                 response.sendRedirect("HomePageReviewer.jsp");
             }else if (profileName.equalsIgnoreCase("Conference")) {
-                response.sendRedirect("HomePageAdmin.jsp");
+                response.sendRedirect("HomePageConference.jsp");
             }else if (profileName.equalsIgnoreCase("Author")) {
                 response.sendRedirect("HomePageAuthor.jsp");
             }

@@ -8,7 +8,7 @@
 </head>
 
 <body>
-	<h1> My name is <c:out value= '${sessionScope.username} }' /> </h1>
+	<h1> My name is <c:out value= '${sessionScope.username}' /> </h1>
 	
 </body>
 </html>
