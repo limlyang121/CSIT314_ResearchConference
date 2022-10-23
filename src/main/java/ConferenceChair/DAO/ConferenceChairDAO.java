@@ -1,12 +1,12 @@
 package ConferenceChair.DAO;
 
-import general.Entity.User;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import dbconnection.DbConnection;
 
 public class ConferenceChairDAO {
 
-    public boolean updateMyAccount() {
-        
-        
-        return true;
-    }
+
 }

@@ -16,6 +16,12 @@ public class ConferenceChair  extends User{
         super(id, username, fullname, password, email, profileID, profileName, description);
         myDAO = new ConferenceChairDAO();
     }
+
+    public void setMyDAO(ConferenceChairDAO myDAO) {
+        this.myDAO = myDAO;
+    }
+    
+    
     
     
 

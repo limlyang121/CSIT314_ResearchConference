@@ -27,12 +27,15 @@ public class LoginController extends HttpServlet{
 		String profileName= request.getParameter("profile") ;
 		
 		User temp = new User();
+
 		
 		HttpSession session = request.getSession();
 		
 		if (temp.login(username, password ,profileName)) {
+		    User tempT = new SystemAdmin().readUser(username, profileName);
+		    session.setAttribute("id", tempT.getID());
 		    session.setAttribute("username", username);
-		    session.setAttribute("profilename", profileName);
+		    session.setAttribute("profileName", profileName);
             
             if (profileName.equalsIgnoreCase("systemadmin")) {
                 response.sendRedirect("HomePageAdmin.jsp");

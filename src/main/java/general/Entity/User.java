@@ -18,6 +18,14 @@ public class User {
 	    return myDAO.login(username, password, profileName);
 	}
 	
+	public boolean updateMyAccount(int myID, String username, String pasword, String name, String email, String profileName ) {
+	    if (myDAO.updateMyAccount(myID, username, pasword, name, email, profileName))
+	        return true;
+	    else
+	        return false;
+	       
+	}
+	
 	public User() {
         super();
         myDAO = new UserDAO();
