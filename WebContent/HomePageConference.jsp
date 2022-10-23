@@ -14,5 +14,9 @@
 	<c:out value ='${sessionScope.username}'/>&profileName=<c:out value = '${sessionScope.profileName}'/>" >
 		<button  >My Profile Update</button>
 	</a>
+	
+	<form  action = "logout" onsubmit = "return logoutUser();" >
+		<button type = "submit"> Button </button>
+	</form>
 </body>
 </html>

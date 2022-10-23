@@ -51,7 +51,7 @@ public class UpdateMyAccountController extends HttpServlet {
         
         User temp = new User();
         
-        if (temp.updateMyAccount(myID, username, password, name, email, name)) {
+        if (temp.updateMyAccount(myID, username, password, name, email, profileName)) {
             session.setAttribute("message", "Successfully Updated");
             if (profileName.equalsIgnoreCase("conference")) {
                 response.sendRedirect("HomePageConference.jsp");
