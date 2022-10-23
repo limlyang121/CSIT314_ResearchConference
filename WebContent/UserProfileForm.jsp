@@ -7,10 +7,10 @@
 <body>
 
 	<c:if test="${userProfile == null}">
-		<form id="newUserProfileForm" action = "newUserProfile" method="post"  >	
+		<form id="newUserProfileForm" action = "newUserProfile" method="post"/>	
 	</c:if>
 	<c:if test="${userProfile != null}">
-		<form id="editUserProfileForm" action = "editUserProfileForm" method="post"  >	
+		<form id="editUserProfileForm" action = "editUserProfileForm" method="post"/>	
 	</c:if>
 	
 		<input type="text" id ="id" name ="id" value="<c:out value='${userProfile.profileID}' />" hidden >

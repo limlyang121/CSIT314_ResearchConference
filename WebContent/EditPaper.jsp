@@ -9,15 +9,15 @@
 </head>
 <body>
         <h1>Edit Your Paper</h1>
-        <form method="post" action="SubmissionPaper">
+        <form method="post" action="EditPaper">
             <table border="0">
                 <tr>
                     <td>Edit file Name: </td>
-                    <td><input type="text" name="fileName" placeholder="${paperinfo.papername}"/></td>
+                    <td><input type="text" name="fileName" value="<c:out value='${paperinfo.papername}'/>"></td>
                 </tr>
                 <tr>
                     <td>Edit Co-Author: </td>
-                    <td><input type="text" placeholder="${paperinfo.coauthor}"</td>
+                    <td><input type="text" value="<c:out value='${paperinfo.coauthor}'/>"></td>
                     <td>
                          <select name="authors">
                             <c:forEach items="${listAuthor}" var="author">
