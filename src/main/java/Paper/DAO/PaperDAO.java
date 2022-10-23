@@ -17,10 +17,6 @@ public class PaperDAO{
     public boolean createSubmission(String filename, ArrayList<String>authors, InputStream inputStream ) {
         int rs = 0;
         int result = 0;
-        if (inputStream != null) {
-            // fetches input stream of the upload file for the blob column
-            System.out.print("Not null");
-        }
         
         String Submission_Paper = "INSERT INTO paper (paperName, fileContent, Status) values (?, ?, ?);";
         String Submission_PaperInfo = "INSERT INTO paperinfo (paperidfk, Author) values (?, ?);";
@@ -144,10 +140,45 @@ public class PaperDAO{
         
     }
     
-//    public boolean editPaper(int id, String papername, ArrayList<String> authors) throws SQLException{
-//        
-//    }
-//    
+    public boolean editPaper(int id, String papername, ArrayList<String> authors) throws SQLException{
+        String changepapername = "Update paper set paperName = ? where paper_id = ?;";
+        String authorid = "Select id from author where username = '"+authors.get(1)+"';";
+        String coauthorid = "Select id from author where username = '"+authors.get(0)+"';";
+        String getauthors = "Select username from author where id in (Select Author from paperinfo where paperidfk = '"+String.valueOf(id)+"');";
+        String changecoauthor = "Update paperinfo set Author = ? where paperidfk = ? and not author=?;";
+
+        String co_author;
+        int rs1=0;
+        int rs2 = 0;
+      
+        
+        try (Connection connection = DbConnection.init();
+                PreparedStatement preparedStatement1 = connection.prepareStatement(changepapername);
+                Statement statement1 = connection.createStatement();
+                Statement statement2 = connection.createStatement();
+                PreparedStatement preparedStatement2 = connection.prepareStatement(changecoauthor);){
+            
+            preparedStatement1.setString(1, papername);
+            preparedStatement1.setInt(2, id);
+            rs1 = preparedStatement1.executeUpdate();
+            
+            ResultSet getauthorid = statement1.executeQuery(authorid);
+            ResultSet getcoauthorid = statement2.executeQuery(coauthorid);
+            
+            getauthorid.next();
+            getcoauthorid.next();
+            System.out.println(getcoauthorid.getInt("id"));
+            System.out.println(getauthorid.getInt("id"));
+            
+            preparedStatement2.setInt(1, getcoauthorid.getInt("id"));
+            preparedStatement2.setInt(2, id);
+            preparedStatement2.setInt(3, getauthorid.getInt("id"));
+            rs2 = preparedStatement2.executeUpdate();
+            
+        }
+        return true;
+    }
+    
     public Paper getpaperInfo(int id, String username) throws SQLException{
         int rs1 = 0;
         int rs2 = 0;

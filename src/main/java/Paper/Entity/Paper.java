@@ -73,9 +73,9 @@ public class Paper{
         return paperDao.deletePaper(id);
     }
     
-//    public boolean editPaper(int id, String papername, ArrayList<String> authors) throws SQLException{
-//        return paperDao.editPaper(id, papername, authors);
-//    }
+    public boolean editPaper(int id, String papername, ArrayList<String> authors) throws SQLException{
+        return paperDao.editPaper(id, papername, authors);
+    }
     
     public Paper getpaperInfo(int id, String username) throws SQLException{
         return paperDao.getpaperInfo(id, username);
