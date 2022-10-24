@@ -56,7 +56,7 @@ public class EditPaperController extends HttpServlet{
         String co_author = request.getParameter("authors");
         ArrayList<String> authors = new ArrayList<String>();
         authors.add(co_author);
-    
+        authors.add(username);
  
         try {
             
