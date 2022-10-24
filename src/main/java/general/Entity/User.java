@@ -19,17 +19,28 @@ public class User {
 	}
 	
 	public boolean updateMyAccount(int myID, String username, String pasword, String name, String email, String profileName ) {
-	    if (!myDAO.usernameExist(username, profileName) &&  myDAO.updateMyAccount(myID, username, pasword, name, email, profileName) )
+	    if (myDAO.updateMyAccount(myID, username, pasword, name, email, profileName) )
 	        return true;
 	    else
 	        return false;
 	       
 	}
 	
+	public boolean usernameExist(String username, String profileName) {
+	    return myDAO.usernameExist(username, profileName);
+	}
+	
 	public User() {
         super();
         myDAO = new UserDAO();
     }
+	
+	public boolean checkUserNameSame(String username, String oldusername) {
+	    if (username.equalsIgnoreCase(oldusername)) {
+	        return true;
+	    }else
+	        return false;
+	}
 
 	
     public User(int id, String username, String fullname, String password, String email, int profileID, String profileName) {
