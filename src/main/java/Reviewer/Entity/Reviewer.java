@@ -1,6 +1,6 @@
 package Reviewer.Entity;
 
-import Reviewer.DAO.ReviewerDAO;
+import Reviewer.DAO.*;
 import general.Entity.*;
 
 public class Reviewer extends User {
