@@ -53,8 +53,6 @@ public class PaperDAO{
             result = preparedStatement2.executeUpdate();
                 //Submission_Paper_success= result.next();
             
-            
-            
         }catch (SQLException e) {
             printSQLException (e);
         }
@@ -68,6 +66,42 @@ public class PaperDAO{
         }
         
     }
+    
+    
+    public ArrayList<Paper> showAllPapers()throws SQLException{
+        ArrayList<Paper> listPaper = new ArrayList<>();
+        String paperinfo = "Select paperidfk, Author, Coauthor from paperinfo where paperidfk not in (Select paperidfk from reviews);";
+        
+        try (Connection connection = DbConnection.init();
+                Statement statement1 = connection.createStatement();){
+            
+            ResultSet paper = statement1.executeQuery(paperinfo);
+            while(paper.next()) {
+                String papername = "Select paperName from paper where paper_id = '"+paper.getInt("paperidfk")+"';";
+                String authorname = "Select fullname from author where id = '"+paper.getInt("Author")+"';";
+                String coauthorname = "Select fullname from author where id = '"+paper.getInt("Coauthor")+"';";
+                
+                Statement statement2 = connection.createStatement();
+                Statement statement3 = connection.createStatement();
+                Statement statement4 = connection.createStatement();
+                
+                ResultSet paper_name = statement2.executeQuery(papername);
+                paper_name.next();
+                ResultSet author_name = statement3.executeQuery(authorname);
+                author_name.next();
+                ResultSet coauthor_name = statement4.executeQuery(coauthorname);
+                coauthor_name.next();
+                
+                listPaper.add(new Paper(paper.getInt("paperidfk"),  paper_name.getString("paperName"), author_name.getString("fullname"),  coauthor_name.getString("fullname")));
+                
+            }
+        }
+        return listPaper;
+        
+    }
+    
+    
+    
     
     public ArrayList<Paper> showMyPapers(String username) throws SQLException {
             

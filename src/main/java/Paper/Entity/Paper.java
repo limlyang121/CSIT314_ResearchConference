@@ -34,6 +34,14 @@ public class Paper{
         paperDao = new PaperDAO();
     }
     
+    public Paper(int id,String papername, String author, String coauthor) {
+        this.id = id;
+        this.papername = papername;
+        this.author = author;
+        this.coauthor = coauthor;
+        paperDao = new PaperDAO();
+    }
+    
     public Paper(String papername, int id, String co_author) {
         this.id = id;
         this.papername = papername;
@@ -71,6 +79,10 @@ public class Paper{
     
     public ArrayList<Paper> showMyPapers(String username)throws SQLException {
         return paperDao.showMyPapers(username);
+    }
+    
+    public ArrayList<Paper> showAllPapers()throws SQLException{
+        return paperDao.showAllPapers();
     }
     
     public boolean deletePaper(int id) throws SQLException{
