@@ -17,21 +17,42 @@
             	<th>ID</th>
                 <th>PaperName</th>
                 <th>Status</th>
+                <th>Author</th>
+                <th>Co-Author</th>
             </tr>
             <c:forEach var="paper" items="${listPaper}">
                 <tr>
                 	<td><c:out value="${paper.id}" /></td>
                     <td><c:out value="${paper.papername}" /></td>
                     <td><c:out value="${paper.status}" /></td>
-                    <td>
-						<a href="EditPaper?paperid=<c:out value = '${paper.id}'/>&username=<c:out value = '${sessionScope.username}'/>">
+                    <td><c:out value="${paper.author}" /></td>
+                    <td><c:out value="${paper.coauthor}" /></td>
+            		
+                    <td style="width:10%">
+                    <c:choose>
+    					<c:when test = "${paper.authorusername == sessionScope.username}">
+        					<a href="EditPaper?paperid=<c:out value = '${paper.id}'/>&username=<c:out value = '${sessionScope.username}'/>">
 						Edit
 						</a>
+        					
+						</c:when>    
+    					<c:otherwise>
+        					
+    					</c:otherwise>
+					</c:choose>
+        
 					</td>
-					<td>
+					<td style="width:10%">
+					 <c:choose>
+    					<c:when test = "${paper.authorusername == sessionScope.username}">
 						<a href="deletePaper?paperid=<c:out value = '${paper.id}'/>&username=<c:out value = '${sessionScope.username}'/> " >
 						Delete
 						</a>
+						</c:when>    
+    					<c:otherwise>
+        					
+    					</c:otherwise>
+					</c:choose>
 					</td>
                 </tr>
             </c:forEach>

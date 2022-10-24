@@ -102,7 +102,9 @@ CREATE TABLE `paperinfo` (
 	 `paper_id` int not null auto_increment primary key,
 	`paperidfk` int(11) not null,
 	`Author` int(11) not null,
+	`Coauthor` int(11) not null,
 	 FOREIGN KEY fk_authorname(`Author`) REFERENCES author(id),
+	 FOREIGN KEY fk_coauthorname(`Coauthor`) REFERENCES author(id),
 	 FOREIGN KEY fk_paper(`paperidfk`) REFERENCES paper(paper_id)
 );
 

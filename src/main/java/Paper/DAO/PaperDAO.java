@@ -19,7 +19,7 @@ public class PaperDAO{
         int result = 0;
         
         String Submission_Paper = "INSERT INTO paper (paperName, fileContent, Status) values (?, ?, ?);";
-        String Submission_PaperInfo = "INSERT INTO paperinfo (paperidfk, Author) values (?, ?);";
+        String Submission_PaperInfo = "INSERT INTO paperinfo (paperidfk, Author, Coauthor) values (?, ?, ?);";
         
         try(Connection connection = DbConnection.init();
                 
@@ -36,18 +36,23 @@ public class PaperDAO{
            // Submission_PaperInfo_success = rs.next();
             Statement statement1 = connection.createStatement();
             Statement statement2 = connection.createStatement();
-            for(String author: authors) {
-                String getAuthorID = "Select id from author where username = '"+author+"';";
-                ResultSet id = statement1.executeQuery(getAuthorID);
-                id.next();
-                String getPaperID = "Select paper_id from paper where paperName = '"+filename+"';";
-                ResultSet paperid = statement2.executeQuery(getPaperID);
-                paperid.next();
-                preparedStatement2.setInt(1, paperid.getInt("paper_id"));
-                preparedStatement2.setInt(2, id.getInt("id"));
-                result = preparedStatement2.executeUpdate();
+            Statement statement3 = connection.createStatement();
+
+            String getAuthorID = "Select id from author where username = '"+authors.get(1)+"';";
+            String getCoAuthorID = "Select id from author where username = '"+authors.get(0)+"';";
+            ResultSet id = statement1.executeQuery(getAuthorID);
+            id.next();
+            ResultSet id2 = statement3.executeQuery(getCoAuthorID);
+            id2.next();
+            String getPaperID = "Select paper_id from paper where paperName = '"+filename+"';";
+            ResultSet paperid = statement2.executeQuery(getPaperID);
+            paperid.next();
+            preparedStatement2.setInt(1, paperid.getInt("paper_id"));
+            preparedStatement2.setInt(2, id.getInt("id"));
+            preparedStatement2.setInt(3, id2.getInt("id"));
+            result = preparedStatement2.executeUpdate();
                 //Submission_Paper_success= result.next();
-            }
+            
             
             
         }catch (SQLException e) {
@@ -70,24 +75,39 @@ public class PaperDAO{
              
             try (Connection connection = DbConnection.init()) {
                 
-                String getauthorid = "Select id from author where username = '"+username+"'";
+                String getauthorid = "Select id from author where username = '"+username+"';";
                 Statement statement1 = connection.createStatement();
                 ResultSet authid = statement1.executeQuery(getauthorid);
                 authid.next();
-                String paperidfk = "SELECT DISTINCT paperidfk FROM paperinfo where Author = '"+authid.getInt("id")+"';";
+                String paperidfk = "SELECT paperidfk, Author, Coauthor FROM paperinfo where Author = '"+authid.getInt("id")+"' or Coauthor = '"+authid.getInt("id")+"';";
                 Statement statement2 = connection.createStatement();
                 ResultSet papidfk = statement2.executeQuery(paperidfk);
                 
-                while (papidfk.next()) {
-                    String getPaper = "Select paper_id, paperName, Status from paper where paper_id='"+papidfk.getInt("paperidfk")+"'";
+                while(papidfk.next()) { 
+                    String getPaper = "Select paper_id, paperName, Status from paper where paper_id='"+papidfk.getInt("paperidfk")+"';";
                     Statement statement3 = connection.createStatement();
                     ResultSet paper = statement3.executeQuery(getPaper);
                     paper.next();
                     String name = paper.getString("paperName");
                     String Status = paper.getString("Status");
                     int paper_id = paper.getInt("paper_id");
-                    listPaper.add(new Paper(paper_id, name, Status));
-                }          
+                    int idauthor = papidfk.getInt("Author");
+                    int idcoauthor = papidfk.getInt("Coauthor");
+                    String getauthor = "Select fullname from author where id = '"+String.valueOf(idauthor)+"';";
+                    String getauthorusername = "Select username from author where id = '"+String.valueOf(idauthor)+"';";
+                    String getcoauthor = "Select fullname from author where id = '"+String.valueOf(idcoauthor)+"';";
+                    Statement statement4 = connection.createStatement();
+                    Statement statement5 = connection.createStatement();
+                    Statement statement6= connection.createStatement();
+                    ResultSet authoruser = statement4.executeQuery(getauthor);
+                    ResultSet coauthoruser = statement5.executeQuery(getcoauthor);
+                    ResultSet authorusername = statement6.executeQuery(getauthorusername);
+                    authoruser.next();
+                    coauthoruser.next();
+                    authorusername.next();
+                    
+                    listPaper.add(new Paper(paper_id, name, Status,authoruser.getString("fullname"),coauthoruser.getString("fullname"),authorusername.getString("username")));
+                }
                  
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -144,7 +164,7 @@ public class PaperDAO{
         String changepapername = "Update paper set paperName = ? where paper_id = ?;";
         String authorid = "Select id from author where username = '"+authors.get(1)+"';";
         String coauthorid = "Select id from author where username = '"+authors.get(0)+"';";
-        String changecoauthor = "Update paperinfo set Author = ? where paperidfk = ? and not author=?;";
+        String changecoauthor = "Update paperinfo set Coauthor = ? where paperidfk = ? and Author=?;";
 
         int rs1=0;
         int rs2 = 0;

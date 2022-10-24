@@ -14,6 +14,7 @@ public class Paper{
     private String papername;
     private int id;
     private String author;
+    private String authorusername;
     private String coauthor;
     private FileInputStream inputstream;
     private String status;
@@ -23,10 +24,13 @@ public class Paper{
         paperDao = new PaperDAO();
     }
     
-    public Paper(int id,String papername, String status) {
+    public Paper(int id,String papername, String status, String author, String coauthor, String authorusername) {
         this.id = id;
         this.papername = papername;
         this.status = status;
+        this.author = author;
+        this.coauthor = coauthor;
+        this.authorusername = authorusername;
         paperDao = new PaperDAO();
     }
     
@@ -99,6 +103,10 @@ public class Paper{
     
     public String getStatus() {
         return status;
+    }
+    
+    public String getAuthorusername() {
+        return authorusername;
     }
     
     
