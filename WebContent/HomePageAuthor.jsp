@@ -20,7 +20,11 @@
 	
 
 	
-
+     <a href="<%=request.getContextPath()%>/selfUpdateForm?username=
+	<c:out value ='${sessionScope.username}'/>&profileName=<c:out value = '${sessionScope.profileName}'/>" >
+		<button  >My Profile Update</button>
+	</a>
+	
     <a  href="SubmissionPaper?username=<c:out value = '${sessionScope.username}'/>"> <button > Create Submission </button></a> 
     <a  href="ShowMyPapers?username=<c:out value = '${sessionScope.username}'/> "> <button > View My Papers </button></a> 
 
