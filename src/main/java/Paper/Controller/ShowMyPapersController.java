@@ -25,12 +25,6 @@ public class ShowMyPapersController extends HttpServlet{
     }
     
     
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-       
-        // listPaper(request, response);
-    }
-    
     private void listPaper(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Paper paper = new Paper();

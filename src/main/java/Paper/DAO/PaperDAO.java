@@ -144,10 +144,8 @@ public class PaperDAO{
         String changepapername = "Update paper set paperName = ? where paper_id = ?;";
         String authorid = "Select id from author where username = '"+authors.get(1)+"';";
         String coauthorid = "Select id from author where username = '"+authors.get(0)+"';";
-        String getauthors = "Select username from author where id in (Select Author from paperinfo where paperidfk = '"+String.valueOf(id)+"');";
         String changecoauthor = "Update paperinfo set Author = ? where paperidfk = ? and not author=?;";
 
-        String co_author;
         int rs1=0;
         int rs2 = 0;
       
