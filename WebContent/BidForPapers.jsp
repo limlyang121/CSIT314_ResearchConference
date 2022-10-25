@@ -18,6 +18,9 @@
                 <th>PaperName</th>
                 <th>Author</th>
                 <th>Co-Author</th>
+                <th>Bid</th>
+                <th>Download</th>
+                
             </tr>
             <c:forEach var="paper" items="${listPaper}">
                 <tr>
@@ -26,8 +29,8 @@
                     <td><c:out value="${paper.author}" /></td>
                     <td><c:out value="${paper.coauthor}" /></td>
             		
-                    <td style="width:10%">
-                     <a href="EditPaper?paperid=<c:out value = '${paper.id}'/>&username=<c:out value = '${sessionScope.username}'/>">
+                    <td>
+                     <a href="bidPaper?paperid=<c:out value = '${paper.id}'/>&userid=<c:out value = '${sessionScope.id}'/>">
 						Bid
 						</a>
 					</td>

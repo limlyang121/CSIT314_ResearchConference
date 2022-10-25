@@ -68,9 +68,9 @@ public class PaperDAO{
     }
     
     
-    public ArrayList<Paper> showAllPapers()throws SQLException{
+    public ArrayList<Paper> showAllPaperstoBid(int reviewer_id)throws SQLException{
         ArrayList<Paper> listPaper = new ArrayList<>();
-        String paperinfo = "Select paperidfk, Author, Coauthor from paperinfo where paperidfk not in (Select paperidfk from reviews);";
+        String paperinfo = "Select paperidfk, Author, Coauthor from paperinfo where paperidfk not in (Select paperidfk from reviews) and paperidfk not in (Select paperidfk from bid where reviewName ='"+String.valueOf(reviewer_id)+"');";
         
         try (Connection connection = DbConnection.init();
                 Statement statement1 = connection.createStatement();){

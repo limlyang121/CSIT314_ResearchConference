@@ -15,12 +15,13 @@ import javax.servlet.http.HttpServletResponse;
 import Paper.Entity.*;
 
 
-@WebServlet(urlPatterns="/ShowAllPapers")
-public class ShowAllPapersController extends HttpServlet{
-    
+@WebServlet(urlPatterns="/ShowAllPaperstoBid")
+public class ShowAllPaperstoBidController extends HttpServlet{
+    int reviewer_id;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        reviewer_id = Integer.parseInt(request.getParameter("userid"));
         listPaper(request,response);
     }
     
@@ -31,7 +32,7 @@ public class ShowAllPapersController extends HttpServlet{
  
         try {
            
-            ArrayList<Paper> listPaper = paper.showAllPapers();
+            ArrayList<Paper> listPaper = paper.showAllPaperstoBid(reviewer_id);
             request.setAttribute("listPaper", listPaper);
             RequestDispatcher dispatcher = request.getRequestDispatcher("BidForPapers.jsp");
             dispatcher.forward(request, response);

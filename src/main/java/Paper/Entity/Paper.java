@@ -81,8 +81,8 @@ public class Paper{
         return paperDao.showMyPapers(username);
     }
     
-    public ArrayList<Paper> showAllPapers()throws SQLException{
-        return paperDao.showAllPapers();
+    public ArrayList<Paper> showAllPaperstoBid(int reviewer_id)throws SQLException{
+        return paperDao.showAllPaperstoBid(reviewer_id);
     }
     
     public boolean deletePaper(int id) throws SQLException{
