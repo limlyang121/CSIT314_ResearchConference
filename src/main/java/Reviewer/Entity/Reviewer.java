@@ -1,5 +1,9 @@
 package Reviewer.Entity;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import Paper.Entity.Paper;
 import Reviewer.DAO.*;
 import general.Entity.*;
 
@@ -20,6 +24,10 @@ public class Reviewer extends User {
         this.max_no_papers = max_no_papers;
     }
     
+    
+    public ArrayList<Paper> papersToReview(int reviewer_id)throws SQLException{
+        return revDAO.papersToReview(reviewer_id);
+    }
     
 
     public Reviewer() {

@@ -1,0 +1,21 @@
+package Review.Entity;
+
+import java.sql.SQLException;
+
+import Review.DAO.ReviewDAO;
+
+public class Review{
+    int paperid;
+    int rating;
+    int authorid;
+    String review;
+    ReviewDAO revDAO;
+    
+    public Review() {
+        revDAO = new ReviewDAO();
+    }
+    
+    public boolean submitReview(String review, int rating, int paperid, int reviewerid) throws SQLException {
+        return revDAO.submitReview(review, rating, paperid, reviewerid);
+    }
+}

@@ -13,6 +13,7 @@
 	<c:out value ='${sessionScope.username}'/>&profileName=<c:out value = '${sessionScope.profileName}'/>" >
 		<button  >My Profile Update</button>
 	</a>
+	 <a  href="PaperstoReview?userid=<c:out value = '${sessionScope.id}'/>"><button > Papers to be reviewed </button></a> 
 	 <a  href="ShowAllPaperstoBid?userid=<c:out value = '${sessionScope.id}'/>"><button > Bid For Paper </button></a> 
 	<form  action = "logout" onsubmit = "return logoutUser();" >
 		<button type = "submit"> Button </button>
