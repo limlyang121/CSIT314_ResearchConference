@@ -1,5 +1,6 @@
 package Bid.Entity;
 import java.sql.SQLException;
+import java.util.List;
 
 import Bid.DAO.*;
 
@@ -16,7 +17,9 @@ public class Bid{
     }
     
     
-    
+    public List<Bid> getAllBid(){
+        return dao.getAllBid();
+    }
     
     public Bid(int bid_id, int paper_id, int reviewer_id) {
         super();
