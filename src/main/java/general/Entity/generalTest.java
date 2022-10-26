@@ -32,9 +32,9 @@ public class generalTest {
     
     @Test
     public void readUserTest() {
-        SystemAdmin tempA = new SystemAdmin();
-        User myAcc = new SystemAdmin(1,"admin", "AdminTest", "admin",  "adminTest@gmail.com", 1);
-        User expected = tempA.readUser ("admin", "systemadmin");
+        temp = new User();
+        User myAcc = new User(1,"admin", "AdminTest", "admin",  "adminTest@gmail.com", 1, "systemadmin");
+        User expected = temp.getMyInfo("admin", "systemadmin");
         
         
         

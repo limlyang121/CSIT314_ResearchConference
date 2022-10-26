@@ -15,23 +15,29 @@ public class User {
 	private UserDAO myDAO;
 	
 	//For test
-	public boolean equals(User tempUser) {
-        boolean isSame = true;
-        
-        if (!username.equalsIgnoreCase(tempUser.getUsername()))
-            isSame  = false;
-        
-        if (!fullname.equalsIgnoreCase(tempUser.getFullname()))
-            isSame  = false;
-        
-        if (!password.equalsIgnoreCase(tempUser.getPassword()))
-            isSame  = false;
-        
-        if (!email.equalsIgnoreCase(tempUser.getEmail()))
-            isSame  = false;
-        
-        if (profileID != tempUser.getProfileID())
-            isSame  = false;
+	@Override
+	public boolean equals(Object obj) {
+	    boolean isSame = true;
+	    if (obj instanceof User) {
+	        User tempUser = (User) obj;
+	        
+	        if (!username.equalsIgnoreCase(tempUser.getUsername()))
+	            isSame  = false;
+	        
+	        if (!fullname.equalsIgnoreCase(tempUser.getFullname()))
+	            isSame  = false;
+	        
+	        if (!password.equalsIgnoreCase(tempUser.getPassword()))
+	            isSame  = false;
+	        
+	        if (!email.equalsIgnoreCase(tempUser.getEmail()))
+	            isSame  = false;
+	        
+	        if (profileID != tempUser.getProfileID())
+	            isSame  = false;
+        }
+	    
+	    
         
         
         
