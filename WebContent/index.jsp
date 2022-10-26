@@ -3,8 +3,8 @@
 	<%@include file= "include/header.jsp" %>
 </head>
 <body>
-
-	 <form id="loginForm" action="login" method="post"  onsubmit="return loginValidation();">
+	<%@include file= "include/navbar.jsp" %>
+	<form id="loginForm" action="login" method="post"  onsubmit="return loginValidation();">
 	     <h2>Login</h2>
 	     <fieldset class="form-group">
 	        <label>Username</label>

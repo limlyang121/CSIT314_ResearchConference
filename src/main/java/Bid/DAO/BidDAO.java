@@ -2,8 +2,12 @@ package Bid.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import Bid.Entity.Bid;
 import dbconnection.DbConnection;
 
 public class BidDAO{
@@ -31,6 +35,34 @@ public class BidDAO{
         return true;
     }
     
+    
+    public  List<Bid> getAllBid() {
+        String getBid = "select * from bid;";
+        List<Bid> allBid = new ArrayList<Bid>();
+        
+        try(Connection connection = DbConnection.init();
+                
+                PreparedStatement preparedStatement = connection.prepareStatement(getBid);)
+        {
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            while (rs.next()) {
+                int bidID = rs.getInt("bid_id");
+                int reviewerID = rs.getInt("reviewName");
+                int paperIDFK = rs.getInt("paperidfk");
+                
+                Bid temp = new Bid(bidID, reviewerID, paperIDFK);
+                
+                allBid.add(temp);
+            }
+            
+        }catch (SQLException e) {
+            return null;
+        }
+        
+        
+        return allBid;
+    }
     
     private void printSQLException(SQLException ex) 
     {

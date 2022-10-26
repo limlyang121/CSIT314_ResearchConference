@@ -2,13 +2,15 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
    <div class="container">
-      <a class="navbar-brand" href="">ScreamScrum Restaurant</a>
+      <p class="navbar-brand" >SemiColon</p>
       <c:if test="${sessionScope.username != null}">
          <ul class="navbar-nav">
-            <li>
-               <a  class="nav-link" href="<%=request.getContextPath()%>/StaffHomePage.jsp">Home</a>
-            </li>
-            <c:if test="${sessionScope.profile == 'User Admin'}">
+            <c:if test="${sessionScope.profileName == 'systemadmin'}">
+				<li>
+               		<a class="nav-link" href="<%=request.getContextPath()%>/HomePageAdmin.jsp">Home</a>
+           	 	</li>
+               
+               
                <li>
                   <a class="nav-link" href="<%=request.getContextPath()%>/viewUserAccount">User Accounts</a>
                </li>

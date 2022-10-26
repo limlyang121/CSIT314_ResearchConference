@@ -16,8 +16,64 @@ public class Bid{
     }
     
     
+    
+    
+    public Bid(int bid_id, int paper_id, int reviewer_id) {
+        super();
+        this.bid_id = bid_id;
+        this.paper_id = paper_id;
+        this.reviewer_id = reviewer_id;
+        dao = new BidDAO();
+    }
+
+
+
+
     public boolean bidPaper(int paper_id, int reviewer_id)throws SQLException {
         return dao.bidPaper(paper_id, reviewer_id);
     }
+
+
+    public int getBid_id() {
+        return bid_id;
+    }
+
+
+    public void setBid_id(int bid_id) {
+        this.bid_id = bid_id;
+    }
+
+
+    public int getPaper_id() {
+        return paper_id;
+    }
+
+
+    public void setPaper_id(int paper_id) {
+        this.paper_id = paper_id;
+    }
+
+
+    public int getReviewer_id() {
+        return reviewer_id;
+    }
+
+
+    public void setReviewer_id(int reviewer_id) {
+        this.reviewer_id = reviewer_id;
+    }
+
+
+    public BidDAO getDao() {
+        return dao;
+    }
+
+
+    public void setDao(BidDAO dao) {
+        this.dao = dao;
+    }
+    
+    
+    
     
 }

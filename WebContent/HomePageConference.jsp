@@ -14,6 +14,9 @@
 		<button  >View All Paper</button>
 	</a>
 	
+	<a href="<%=request.getContextPath()%>/conferenceBidPage">
+		<button  >View Current Bid</button>
+	</a>
 	
 	
 	<a href="<%=request.getContextPath()%>/selfUpdateForm?username=
