@@ -8,6 +8,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import SystemAdmin.entity.SystemAdmin;
+
 
 public class generalTest {
     private User temp;
@@ -27,4 +29,16 @@ public class generalTest {
         assertTrue("Test User Login",temp.login("admin", "admin", "systemadmin"));
 
     }
+    
+    @Test
+    public void readUserTest() {
+        SystemAdmin tempA = new SystemAdmin();
+        User myAcc = new SystemAdmin(1,"admin", "AdminTest", "admin",  "adminTest@gmail.com", 1);
+        User expected = tempA.readUser ("admin", "systemadmin");
+        
+        
+        
+        assertEquals("Test if same account" , myAcc, expected);
+    }
+    
 }

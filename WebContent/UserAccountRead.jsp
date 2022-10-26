@@ -10,6 +10,8 @@
 	<a href="<%=request.getContextPath()%>/HomePageAdmin.jsp" >
 			<button  >Home</button>
 	</a>
+	
+	<br/>
 
 
 		<label>Fullname</label>
@@ -35,7 +37,7 @@
 		
 		<br/>
 		
-		<label for = "profile">Choose Profile: </label>
+		<label for = "profile">Current Profile: </label>
 		<input type="text" name="prof" id="prof" value="<c:out value='${userAccount.profileName}' />"  readonly>
 		
 		

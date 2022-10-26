@@ -5,16 +5,11 @@
 </head>
 <body>
 
-<a href="<%=request.getContextPath()%>/HomePageAdmin.jsp" >
-		<button  >Back Button</button>
-</a>
+	<a href="<%=request.getContextPath()%>/HomePageAdmin.jsp" >
+			<button  >Back Button</button>
+	</a>
 
-<h1>
-	<label> My name</label>
-	<input type="text" value =<c:out value = '${sessionScope.tusername}'/>>
-
-
-</h1>
+	<br/>
 	<h1>All User Account</h1>
 	<br/>
 

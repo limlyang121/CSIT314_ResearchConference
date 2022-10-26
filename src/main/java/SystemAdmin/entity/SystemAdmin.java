@@ -88,10 +88,7 @@ public class SystemAdmin extends User {
         myDAO = new SystemAdminDAO();
     }
 
-    public boolean equals() {
-        boolean isSame = false;
-        return false;
-    }
+    
     
 
     

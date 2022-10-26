@@ -32,7 +32,7 @@ public class LoginController extends HttpServlet{
 		HttpSession session = request.getSession();
 		
 		if (temp.login(username, password ,profileName)) {
-		    User tempT = new SystemAdmin().readUser(username, profileName);
+		    User tempT = temp.getMyInfo(username, profileName);
 		    session.setAttribute("id", tempT.getID());
 		    session.setAttribute("username", username);
 		    session.setAttribute("profileName", profileName);

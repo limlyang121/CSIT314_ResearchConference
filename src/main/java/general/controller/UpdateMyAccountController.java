@@ -31,7 +31,7 @@ public class UpdateMyAccountController extends HttpServlet {
         String profileName = request.getParameter("profileName");
        
         
-        User temp = new SystemAdmin().readUser(username, profileName);
+        User temp = new User().getMyInfo(username, profileName);
         
         request.setAttribute("myAccount", temp);
         

@@ -24,4 +24,44 @@ public class ReviewDAO{
         return true;
     }
     
+    public boolean allocatePaper(int paperID, int reviewerID) {
+        String allocate_paper = "insert into reviews (`paperidfk`, `reviewer`) values (?, ?);";
+        
+        try(Connection connection = DbConnection.init();
+                
+                PreparedStatement preparedStatement = connection.prepareStatement(allocate_paper))
+        {
+            preparedStatement.setInt(1, paperID);
+            preparedStatement.setInt(2, reviewerID);
+            preparedStatement.executeUpdate();
+            return true;
+        }catch (SQLException e) {
+            return false;
+        }
+        
+        
+    }
+    
+    public boolean unAllocatePaper(int paperID, int reviewerID) {
+        String unallocate_paper = "delete from reviews where paperidfk = ? and reviewer = ?;";
+        
+        try(Connection connection = DbConnection.init();
+                
+                PreparedStatement preparedStatement = connection.prepareStatement(unallocate_paper))
+        {
+            preparedStatement.setInt(1, paperID);
+            preparedStatement.setInt(2, reviewerID);
+            preparedStatement.executeUpdate();
+            return true;
+        }catch (SQLException e) {
+            return false;
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
 }

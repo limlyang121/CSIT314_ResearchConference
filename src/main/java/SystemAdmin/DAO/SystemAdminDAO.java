@@ -131,8 +131,6 @@ public class SystemAdminDAO {
 
         return temp;
 
-        
-        
     }
     
     public List<User> getAllProfile(){
