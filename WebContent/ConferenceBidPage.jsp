@@ -13,8 +13,10 @@
 		<thead>
 			<tr>
 				<th>BidID</th>
-				<th>PaperID</th>
+				<th>PaperName</th>
 				<th>ReviewerName</th>
+				<th>AuthorName </th>
+				<th>CoAuthor </th>
 				<th> </th>
 				
 
@@ -29,12 +31,27 @@
 						<c:out value="${bidInfo.bid_id}" />
 					</td>
 					<td>
-						<c:out value="${bidInfo.paper_id}" />
+						<c:out value="${bidInfo.paper.papername}" />
 					</td>
 					
 					<td>
-						<c:out value="${bidInfo.reviewer_id}" />
+						<c:out value="${bidInfo.reviewer.fullname}" />
 					</td>
+					
+					<td>
+						<c:out value="${bidInfo.paper.author}" />
+					</td>
+					<td > 	
+						<c:if test = "${bidInfo.paper.coauthor != null }"> 
+							<c:out value="${bidInfo.paper.coauthor}" />
+		
+						</c:if>
+						<c:if test = "${bidInfo.paper.coauthor == null }"> 
+							Null
+						</c:if>
+						
+					</td>
+					
 					<td>
 					<c:if test = "${bidInfo.allocateStatus == 'unallocated'}">
 						<a href="editUserAccountForm?cusername=<c:out value = '${ user.username}'  />&cprofilename=<c:out value = '${user.profileName }'/> " >

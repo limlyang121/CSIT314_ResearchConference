@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dbconnection.DbConnection;
+import general.Entity.User;
 import Paper.Entity.*;
 
 public class PaperDAO{
@@ -230,6 +231,51 @@ public class PaperDAO{
         }
         return true;
     }
+    
+    public Paper getPaperInfoNew (int id, String username) {
+        Paper temp = new Paper();
+        String getPaperInfoWithAuthor = ""
+                + "select * from paperinfo inner join author on paperinfo.Author = "
+                + "author.id inner join paper on paper.paper_id = paperinfo.paper_id "
+                + "where paper.paper_id = ? and author.username = ?;";
+        
+        try(Connection connection = DbConnection.init();
+                
+                PreparedStatement preparedStatement = connection.prepareStatement(getPaperInfoWithAuthor))
+        {
+            preparedStatement.setInt(1, id);
+            preparedStatement.setString(2, username);
+            
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            
+            while (rs.next()) {
+                
+                User tempAuthor = new User().getInfoByID(rs.getInt("paperinfo.Author"), "author");
+                User coAuthor = new User().getInfoByID(rs.getInt("paperinfo.Coauthor"), "author");
+                
+                int paperID = rs.getInt("paperinfo.paper_id");
+                String papername = rs.getString("paper.papername");
+                String status = rs.getString("paper.Status");
+                String authorName = tempAuthor.getFullname();
+                String coAuthorName = coAuthor.getFullname();
+                String authorUserName = tempAuthor.getUsername();
+                
+                temp = new Paper(paperID, papername,status, authorName, coAuthorName, authorUserName);
+                
+                
+                
+                
+                
+            }
+        }catch (SQLException e) {
+            return null;
+        }
+        
+        return temp;
+        
+    }
+ 
     
     public Paper getpaperInfo(int id, String username) throws SQLException{
         int rs1 = 0;

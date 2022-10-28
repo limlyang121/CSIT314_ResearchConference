@@ -7,8 +7,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import Author.Entity.Author;
 import Bid.Entity.Bid;
+import Paper.Entity.Paper;
+import Reviewer.Entity.Reviewer;
 import dbconnection.DbConnection;
+import general.Entity.User;
 
 public class BidDAO{
     
@@ -38,7 +42,9 @@ public class BidDAO{
     
     public  List<Bid> getAllBid() {
         
-        String getBid = "select * from bid;";
+        String getBid = "select * from bid inner join reviewer on reviewer.id = bid.reviewName "
+                + "inner join paperinfo on paperinfo.paper_id = bid.paperidfk "
+                + "inner join author on paperinfo.Author = author.id ;";
         List<Bid> allBid = new ArrayList<Bid>();
         
         try(Connection connection = DbConnection.init();
@@ -53,7 +59,12 @@ public class BidDAO{
                 int paperIDFK = rs.getInt("paperidfk");
                 String allocatedStatus = rs.getString("allocateStatus");
                 
-                Bid temp = new Bid(bidID, reviewerID, paperIDFK, allocatedStatus);
+                //Reviewer
+                User tempReviewer = new Reviewer().getInfoByID(rs.getInt("reviewer.id"), "reviewer");
+                User tempAuthor = new Author().getInfoByID(rs.getInt("author.id"), "author");
+                
+                Paper paper = new Paper().getpaperInfoNew(paperIDFK, tempAuthor.getUsername());
+                Bid temp = new Bid(bidID, paperIDFK, reviewerID, allocatedStatus, tempReviewer, paper);
                 
                 allBid.add(temp);
             }

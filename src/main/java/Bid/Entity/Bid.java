@@ -5,6 +5,7 @@ import java.util.List;
 import Bid.DAO.*;
 import Paper.Entity.Paper;
 import Reviewer.Entity.Reviewer;
+import general.Entity.User;
 
 
 public class Bid{
@@ -12,7 +13,7 @@ public class Bid{
     private int paper_id;
     private int reviewer_id;
     private String allocateStatus;
-    private Reviewer reviewer;
+    private User reviewer;
     private Paper paper;
     private BidDAO dao;
     
@@ -47,7 +48,7 @@ public class Bid{
     }
     
 
-    public Bid(int bid_id, int paper_id, int reviewer_id, String allocateStatus, Reviewer reviewer, Paper paper) {
+    public Bid(int bid_id, int paper_id, int reviewer_id, String allocateStatus, User reviewer, Paper paper) {
         super();
         this.bid_id = bid_id;
         this.paper_id = paper_id;
@@ -113,7 +114,7 @@ public class Bid{
     }
 
 
-    public Reviewer getReviewer() {
+    public User getReviewer() {
         return reviewer;
     }
 

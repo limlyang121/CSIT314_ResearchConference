@@ -57,6 +57,38 @@ public class UserDAO  {
 
     }
     
+    public User getInfoByID(int myID, String profileName) {
+        User tempP = new SystemAdmin().getProfile(profileName);
+        String getMyInfoByID = "Select * from "+ profileName + " where id = ?;" ; 
+        User temp = new User();   
+        try(Connection connection = DbConnection.init();
+                
+                PreparedStatement preparedStatement = connection.prepareStatement(getMyInfoByID))
+        {
+            preparedStatement.setInt(1, myID);
+            
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String username = rs.getString("username");
+                String password = rs.getString("password");
+                String email = rs.getString("email");
+                String name = rs.getString("fullname");
+                if (profileName.equalsIgnoreCase("reviewer")) {
+                    int maxPapers =Integer.parseInt(rs.getString("max_no_paper"));
+                    temp = new Reviewer(id,username, name, password, email, tempP.getProfileID(),tempP.getProfileName(), maxPapers);
+                    
+                }else {
+                    temp = new User(id,username, name, password, email, tempP.getProfileID(),tempP.getProfileName());                    
+                }
+            }
+        }catch (SQLException e ) {
+            return null;
+        }
+        
+        return temp;
+    }
+    
   //  private static final String SELECT_USERACCOUNT_FOR_LOGIN = "select 1 from ? where username = ? and password = ?;";
     
     public boolean updateMyAccount(int myID, String username, String password, String name ,String email, String profileName) {

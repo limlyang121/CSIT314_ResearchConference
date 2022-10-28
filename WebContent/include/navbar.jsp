@@ -26,7 +26,7 @@
             </c:if>
             <c:if test="${sessionScope.profileName == 'conference'}">
                <li>
-                  <a class="nav-link" href="<%=request.getContextPath()%>/conferenceBidPage">>View Current Bid</a>
+                  <a class="nav-link" href="<%=request.getContextPath()%>/conferenceBidPage">View Current Bid</a>
                </li>
                
                <li>

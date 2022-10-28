@@ -44,6 +44,10 @@ public class User {
         return isSame;
     }
 	
+	public User getInfoByID (int id, String profileName) {
+	    return myDAO.getInfoByID(id, profileName);
+	}
+	
     public User getMyInfo(String userName,String profileName) {
         return myDAO.getMyInfo(userName ,profileName);
     }
