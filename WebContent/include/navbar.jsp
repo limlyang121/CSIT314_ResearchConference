@@ -5,18 +5,24 @@
       <p class="navbar-brand" >SemiColon</p>
       <c:if test="${sessionScope.username != null}">
          <ul class="navbar-nav">
+         	<li>
+         		<a class="nav-link" href="<%=request.getContextPath()%>/HomePage.jsp">Home</a>
+        	</li>
             <c:if test="${sessionScope.profileName == 'systemadmin'}">
-				<li>
-               		<a class="nav-link" href="<%=request.getContextPath()%>/HomePageAdmin.jsp">Home</a>
-           	 	</li>
-               
-               
+			   
                <li>
                   <a class="nav-link" href="<%=request.getContextPath()%>/viewUserAccount">User Accounts</a>
                </li>
                <li>
                   <a class="nav-link" href="<%=request.getContextPath()%>/viewUserProfile">User Profiles</a>
                </li>
+               <li>
+                  <a class="nav-link" href="<%=request.getContextPath()%>/newUserForm">Add User Accounts</a>
+               </li>
+               <li>
+                  <a class="nav-link" href="<%=request.getContextPath()%>/newUserProfileForm" >Add New User Profile</a>
+               </li>
+               
             </c:if>
             <c:if test="${sessionScope.profile == 'Restaurant Manager'}">
                <li>
@@ -31,16 +37,17 @@
                   <a class="nav-link" href="<%=request.getContextPath()%>/viewOrder">Orders</a>
                </li>
             </c:if>
-            <c:if test="${sessionScope.profile == 'Restaurant Owner'}">
+            <c:if test="${sessionScope.profile == 'author'}">
                <li>
-                  <a class="nav-link" href="<%=request.getContextPath()%>/viewOwnerDrinksAndDishesReport">Drinks and Dishes</a>
+                  <a class="nav-link" href="SubmissionPaper?username=<c:out value = '${sessionScope.username}'/>">Create Submissions</a>
                </li>
                <li>
-                  <a class="nav-link" href="<%=request.getContextPath()%>/viewOwnerFrequencyReport">Customer Frequency</a>
+                  <a class="nav-link" href="ShowMyPapers?username=<c:out value = '${sessionScope.username}'/>">View My Papers</a>
                </li>
                <li>
-                  <a class="nav-link" href="<%=request.getContextPath()%>/viewOwnerAverageSpendReport">Customer Average Spending</a>
-               </li>
+               	    <a class="nav-link" href="<%=request.getContextPath()%>/selfUpdateForm?username=
+					<c:out value ='${sessionScope.username}'/>&profileName=<c:out value = '${sessionScope.profileName}'/>" > Update my Profile </a>
+             	</li>
             </c:if>
          </ul>
       </c:if>
@@ -49,12 +56,7 @@
             <li class="nav-item">
                <a class="nav-link" href="<%=request.getContextPath()%>/welcome">Main Menu <i class="fas fa-home"> </i></a>
             </li>
-            <li class="nav-item">
-               <a class="nav-link" href="Cart.jsp">Shopping Cart <i class="fas fa-shopping-cart"> </i> &nbsp;<span class="badge badge-danger"><c:if test="${sessionScope.sessionCartList != null}">${fn:length(sessionCartList)}</c:if></span> </a>
-            </li>
-            <li class="nav-item">
-               <a class="nav-link" href="LoginForm.jsp">Staff Login <i class="fas fa-sign-in-alt"> </i></a>
-            </li>
+
          </c:if>
          <c:if test="${sessionScope.username != null}">
             <li class="nav-item">
@@ -63,7 +65,7 @@
             <li class="nav-item dropdown">
                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${username}  &nbsp; <i class="fas fa-user"> </i></a>
                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" id="logout_btn" href="<%=request.getContextPath()%>/logout" onclick="return logout();" class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</a>
+                  <a class="dropdown-item" id="logout_btn" href="<%=request.getContextPath()%>/logout" onclick="return logoutuser();" class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</a>
                </div>
             </li>
          </c:if>

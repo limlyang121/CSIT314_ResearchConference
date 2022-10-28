@@ -7,9 +7,8 @@
 <title>FUCK</title>
 </head>
 <body>
-	<a href="<%=request.getContextPath()%>/HomePageAdmin.jsp" >
-			<button  >Home</button>
-	</a>
+	<%@include file = "include/navbar.jsp" %>
+
 	
 	<br/>
 

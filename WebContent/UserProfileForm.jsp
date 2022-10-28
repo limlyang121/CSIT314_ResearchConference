@@ -5,6 +5,7 @@
 
 </head>
 <body>
+	<%@include file = "include/navbar.jsp" %>
 
 	<c:if test="${userProfile == null}">
 		<form id="newUserProfileForm" action = "newUserProfile" method="post"/>	

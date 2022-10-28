@@ -37,6 +37,7 @@ public class LoginController extends HttpServlet{
 		    session.setAttribute("username", username);
 		    session.setAttribute("profileName", profileName);
             
+//		    response.sendRedirect("HomePage.jsp");
             if (profileName.equalsIgnoreCase("systemadmin")) {
                 response.sendRedirect("HomePageAdmin.jsp");
                 

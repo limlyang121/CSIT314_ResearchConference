@@ -8,6 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%@include file = "include/navbar.jsp" %>
+
         <h1>File Upload to Database Demo</h1>
         <form method="post" action="SubmissionPaper" enctype="multipart/form-data">
             <table border="0">

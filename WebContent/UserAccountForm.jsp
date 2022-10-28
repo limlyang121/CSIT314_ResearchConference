@@ -5,11 +5,7 @@
 
 </head>
 <body>
-<a href="<%=request.getContextPath()%>/HomePageAdmin.jsp" >
-		<button  >Home</button>
-</a>
-
-	<br/>
+	<%@include file = "include/navbar.jsp" %>
 
 	<c:if test="${userAccount != null}">
 	<%
