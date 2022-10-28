@@ -63,7 +63,7 @@ public class BidDAO{
                 User tempReviewer = new Reviewer().getInfoByID(rs.getInt("reviewer.id"), "reviewer");
                 User tempAuthor = new Author().getInfoByID(rs.getInt("author.id"), "author");
                 
-                Paper paper = new Paper().getpaperInfoNew(paperIDFK, tempAuthor.getUsername());
+                Paper paper = new Paper().getPaperInfoBySpecificAuthor(paperIDFK, tempAuthor.getUsername());
                 Bid temp = new Bid(bidID, paperIDFK, reviewerID, allocatedStatus, tempReviewer, paper);
                 
                 allBid.add(temp);

@@ -232,7 +232,7 @@ public class PaperDAO{
         return true;
     }
     
-    public Paper getPaperInfoNew (int id, String username) {
+    public Paper getPaperInfoBySpecificAuthor (int id, String username) {
         Paper temp = new Paper();
         String getPaperInfoWithAuthor = ""
                 + "select * from paperinfo inner join author on paperinfo.Author = "

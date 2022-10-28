@@ -97,8 +97,8 @@ public class Paper{
         return paperDao.getpaperInfo(id, username);
     }
     
-    public Paper getpaperInfoNew(int id, String username){
-        return paperDao.getPaperInfoNew(id, username);
+    public Paper getPaperInfoBySpecificAuthor(int id, String username){
+        return paperDao.getPaperInfoBySpecificAuthor(id, username);
     }
     
     public String getPapername() {
