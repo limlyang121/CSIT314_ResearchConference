@@ -9,6 +9,8 @@
 <title>ShowMyPaper</title>
 </head>
 <body>
+	<%@include file = "include/navbar.jsp" %>
+
         <h1>Your Papers</h1>
          <div align="center">
         <table border="1" cellpadding="5">

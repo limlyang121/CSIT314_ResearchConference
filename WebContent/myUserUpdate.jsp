@@ -5,6 +5,8 @@
 
 </head>
 <body>
+	<%@include file = "include/navbar.jsp" %>
+
 	<form action= "selfUpdate?id=<c:out value ='${sessionScope.id }'/>&profileName=
 	<c:out value='${sessionScope.profileName}'/>" method = "post">
 	

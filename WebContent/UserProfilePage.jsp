@@ -6,6 +6,7 @@
 <%@include file= "include/header.jsp" %>
 </head>
 <body>
+	<%@include file = "include/navbar.jsp" %>
 
 	<h1>All User Profile</h1>
 	<br/>

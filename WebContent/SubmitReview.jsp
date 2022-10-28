@@ -9,6 +9,8 @@
 <title>Review Paper</title>
 </head>
 <body>
+	<%@include file = "include/navbar.jsp" %>
+
          <form method="post" action="submitReview">
           <table border="0">
           <tr>

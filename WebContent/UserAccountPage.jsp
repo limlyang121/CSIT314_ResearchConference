@@ -4,10 +4,7 @@
 <%@include file= "include/header.jsp" %>
 </head>
 <body>
-
-	<a href="<%=request.getContextPath()%>/HomePageAdmin.jsp" >
-			<button  >Back Button</button>
-	</a>
+	<%@include file = "include/navbar.jsp" %>
 
 	<br/>
 	<h1>All User Account</h1>
