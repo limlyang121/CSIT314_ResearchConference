@@ -36,21 +36,22 @@
 						<c:out value="${bidInfo.reviewer_id}" />
 					</td>
 					<td>
+					<c:if test = "${bidInfo.allocateStatus == 'unallocated'}">
 						<a href="editUserAccountForm?cusername=<c:out value = '${ user.username}'  />&cprofilename=<c:out value = '${user.profileName }'/> " >
-						Update
+						Allocate
 						</a>
-					</td>
-					<td>
-						<a href="readAccountForm?username=<c:out value = '${user.username}'  />&profilename=<c:out value = '${user.profileName}'/> " >
-						View
+						<a href="editUserAccountForm?cusername=<c:out value = '${ user.username}'  />&cprofilename=<c:out value = '${user.profileName }'/> " >
+						Reject
 						</a>
+					 </c:if>
+					<c:if test = "${bidInfo.allocateStatus == 'allocated'}">
+						<a href="editUserAccountForm?cusername=<c:out value = '${ user.username}'  />&cprofilename=<c:out value = '${user.profileName }'/> " >
+						Unallocated
+						</a>
+					 </c:if>
 						
 					</td>
-					
-
-						
-					
-					
+	
 				</tr>
 			</c:forEach>
 		</tbody>

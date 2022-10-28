@@ -37,6 +37,7 @@ public class BidDAO{
     
     
     public  List<Bid> getAllBid() {
+        
         String getBid = "select * from bid;";
         List<Bid> allBid = new ArrayList<Bid>();
         
@@ -50,8 +51,9 @@ public class BidDAO{
                 int bidID = rs.getInt("bid_id");
                 int reviewerID = rs.getInt("reviewName");
                 int paperIDFK = rs.getInt("paperidfk");
+                String allocatedStatus = rs.getString("allocateStatus");
                 
-                Bid temp = new Bid(bidID, reviewerID, paperIDFK);
+                Bid temp = new Bid(bidID, reviewerID, paperIDFK, allocatedStatus);
                 
                 allBid.add(temp);
             }

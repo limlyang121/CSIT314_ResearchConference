@@ -3,6 +3,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 import Bid.DAO.*;
+import Paper.Entity.Paper;
+import Reviewer.Entity.Reviewer;
 
 
 public class Bid{
@@ -10,6 +12,8 @@ public class Bid{
     private int paper_id;
     private int reviewer_id;
     private String allocateStatus;
+    private Reviewer reviewer;
+    private Paper paper;
     private BidDAO dao;
     
     
@@ -42,10 +46,16 @@ public class Bid{
         dao = new BidDAO();
     }
     
-    
-    
 
-
+    public Bid(int bid_id, int paper_id, int reviewer_id, String allocateStatus, Reviewer reviewer, Paper paper) {
+        super();
+        this.bid_id = bid_id;
+        this.paper_id = paper_id;
+        this.reviewer_id = reviewer_id;
+        this.allocateStatus = allocateStatus;
+        this.reviewer = reviewer;
+        this.paper = paper;
+    }
 
 
     public String getAllocateStatus() {
@@ -101,6 +111,28 @@ public class Bid{
     public void setDao(BidDAO dao) {
         this.dao = dao;
     }
+
+
+    public Reviewer getReviewer() {
+        return reviewer;
+    }
+
+
+    public void setReviewer(Reviewer reviewer) {
+        this.reviewer = reviewer;
+    }
+
+
+    public Paper getPaper() {
+        return paper;
+    }
+
+
+    public void setPaper(Paper paper) {
+        this.paper = paper;
+    }
+    
+    
     
     
     
