@@ -68,13 +68,15 @@ public class UpdateMyAccountController extends HttpServlet {
         if (success) {
             session.setAttribute("username", username);            
             session.setAttribute("message", "Successfully Updated");
-            if (profileName.equalsIgnoreCase("conference")) {
-                response.sendRedirect("HomePageConference.jsp");
-            }else if (profileName.equalsIgnoreCase("Author"))
-                response.sendRedirect("HomePageAuthor.jsp");
-            else if (profileName.equalsIgnoreCase("Reviewer")){
-                response.sendRedirect("HomePageReviewer.jsp");
-            }
+            
+            response.sendRedirect("HomePage.jsp");
+//            if (profileName.equalsIgnoreCase("conference")) {
+//                response.sendRedirect("HomePageConference.jsp");
+//            }else if (profileName.equalsIgnoreCase("Author"))
+//                response.sendRedirect("HomePageAuthor.jsp");
+//            else if (profileName.equalsIgnoreCase("Reviewer")){
+//                response.sendRedirect("HomePageReviewer.jsp");
+//            }
                 
         }else {
             session.setAttribute("message", "Fail to Update");

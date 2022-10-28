@@ -63,10 +63,10 @@ public class EditUserAccountFormController extends HttpServlet{
         
         if (temp.updateUser(username, password, name, email, profilename, oldUserName, oldprofilename)) {
             session.setAttribute("message", "Successfully Update User Account");
-            response.sendRedirect("HomePageAdmin.jsp");
+            response.sendRedirect("HomePage.jsp");
         }else {
             session.setAttribute("message", "Fail to Update User ");
-            response.sendRedirect("HomePageAdmin.jsp");
+            response.sendRedirect("HomePage.jsp");
         }
 //      if (userAccount.checkUserNameExist()) {
 //          session.setAttribute("message", "Fail to create User ");

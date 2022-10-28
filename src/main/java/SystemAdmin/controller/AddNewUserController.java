@@ -56,7 +56,7 @@ public class AddNewUserController extends HttpServlet{
 		
 		if (temp.InsertNewUser(username, password, name, email, profilename)) {
 		    session.setAttribute("message", "Successfully create a User");
-            response.sendRedirect("HomePageAdmin.jsp");
+            response.sendRedirect("HomePage.jsp");
 		}else {
             session.setAttribute("message", "Fail to create User ");
             response.sendRedirect("UserAccountForm.jsp");

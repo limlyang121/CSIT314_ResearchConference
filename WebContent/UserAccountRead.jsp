@@ -3,8 +3,6 @@
 <html>
 <head>
 <%@include file= "include/header.jsp" %>
-<meta charset="ISO-8859-1">
-<title>FUCK</title>
 </head>
 <body>
 	<%@include file = "include/navbar.jsp" %>

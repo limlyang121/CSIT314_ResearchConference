@@ -37,17 +37,17 @@ public class LoginController extends HttpServlet{
 		    session.setAttribute("username", username);
 		    session.setAttribute("profileName", profileName);
             
-//		    response.sendRedirect("HomePage.jsp");
-            if (profileName.equalsIgnoreCase("systemadmin")) {
-                response.sendRedirect("HomePageAdmin.jsp");
-                
-            }else if (profileName.equalsIgnoreCase("reviewer")) {
-                response.sendRedirect("HomePageReviewer.jsp");
-            }else if (profileName.equalsIgnoreCase("Conference")) {
-                response.sendRedirect("HomePageConference.jsp");
-            }else if (profileName.equalsIgnoreCase("Author")) {
-                response.sendRedirect("HomePageAuthor.jsp");
-            }
+		    response.sendRedirect("HomePage.jsp");
+//            if (profileName.equalsIgnoreCase("systemadmin")) {
+//                response.sendRedirect("HomePageAdmin.jsp");
+//                
+//            }else if (profileName.equalsIgnoreCase("reviewer")) {
+//                response.sendRedirect("HomePageReviewer.jsp");
+//            }else if (profileName.equalsIgnoreCase("Conference")) {
+//                response.sendRedirect("HomePageConference.jsp");
+//            }else if (profileName.equalsIgnoreCase("Author")) {
+//                response.sendRedirect("HomePageAuthor.jsp");
+//            }
 		}else {
             session.setAttribute("message", "Login failed. Incorrect username or password.");
             response.sendRedirect("index.jsp");

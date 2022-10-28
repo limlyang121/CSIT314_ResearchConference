@@ -49,10 +49,10 @@ public class EditUserProfileController extends HttpServlet{
         
         if (temp.updateProfile(profileID, profileName, description)) {
             session.setAttribute("message", "Successfully Update User Account");
-            response.sendRedirect("HomePageAdmin.jsp");
+            response.sendRedirect("HomePage.jsp");
         }else {
             session.setAttribute("message", "Fail to Update User ");
-            response.sendRedirect("HomePageAdmin.jsp");
+            response.sendRedirect("HomePage.jsp");
         }
     }
     

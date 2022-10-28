@@ -24,20 +24,32 @@
                </li>
                
             </c:if>
-            <c:if test="${sessionScope.profile == 'Restaurant Manager'}">
+            <c:if test="${sessionScope.profileName == 'conference'}">
                <li>
-                  <a class="nav-link" href="<%=request.getContextPath()%>/viewMenuItem">Menu Items</a>
+                  <a class="nav-link" href="<%=request.getContextPath()%>/conferenceBidPage">>View Current Bid</a>
                </li>
+               
                <li>
-                  <a class="nav-link" href="<%=request.getContextPath()%>/viewCoupons">Coupons</a>
-               </li>
+               	    <a class="nav-link" href="<%=request.getContextPath()%>/selfUpdateForm?username=
+					<c:out value ='${sessionScope.username}'/>&profileName=<c:out value = '${sessionScope.profileName}'/>" > Update my Profile </a>
+             	</li>
             </c:if>
-            <c:if test="${sessionScope.profile == 'Restaurant Staff'}">
+            
+            <c:if test="${sessionScope.profileName == 'reviewer'}">
                <li>
-                  <a class="nav-link" href="<%=request.getContextPath()%>/viewOrder">Orders</a>
+                  <a class="nav-link" href="PaperstoReview?userid=<c:out value = '${sessionScope.id}'/>">Papers to be Reviewed</a>
                </li>
+               
+               <li>
+                  <a class="nav-link" href="ShowAllPaperstoBid?userid=<c:out value = '${sessionScope.id}'/>">Bid Papers</a>
+               </li>
+               
+               <li>
+               	    <a class="nav-link" href="<%=request.getContextPath()%>/selfUpdateForm?username=
+					<c:out value ='${sessionScope.username}'/>&profileName=<c:out value = '${sessionScope.profileName}'/>" > Update my Profile </a>
+             	</li>
             </c:if>
-            <c:if test="${sessionScope.profile == 'author'}">
+            <c:if test="${sessionScope.profileName == 'author'}">
                <li>
                   <a class="nav-link" href="SubmissionPaper?username=<c:out value = '${sessionScope.username}'/>">Create Submissions</a>
                </li>
