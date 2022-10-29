@@ -25,6 +25,7 @@
 		</thead>
 		<tbody>
 			<c:forEach var ="bidInfo" items = "${bidInfo}">
+			<c:if test= "${bidInfo.allocateStatus != 'completed' }"> 
 				<tr>
 					
 					<td>
@@ -54,22 +55,25 @@
 					
 					<td>
 					<c:if test = "${bidInfo.allocateStatus == 'unallocated'}">
-						<a href="editUserAccountForm?cusername=<c:out value = '${ user.username}'  />&cprofilename=<c:out value = '${user.profileName }'/> " >
+						<a href="allocatePaper?bidID=<c:out value = '${bidInfo.bid_id}'  />&cprofilename=<c:out value = '${user.profileName }'/> " >
 						Allocate
 						</a>
 						<a href="editUserAccountForm?cusername=<c:out value = '${ user.username}'  />&cprofilename=<c:out value = '${user.profileName }'/> " >
 						Reject
 						</a>
 					 </c:if>
-					<c:if test = "${bidInfo.allocateStatus == 'allocated'}">
+					 
+					 <c:if test = "${bidInfo.allocateStatus == 'allocated'}">
 						<a href="editUserAccountForm?cusername=<c:out value = '${ user.username}'  />&cprofilename=<c:out value = '${user.profileName }'/> " >
 						Unallocated
 						</a>
 					 </c:if>
+					
 						
 					</td>
 	
 				</tr>
+			</c:if>
 			</c:forEach>
 		</tbody>
 	</table>

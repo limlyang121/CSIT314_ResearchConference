@@ -108,36 +108,29 @@ CREATE TABLE `paperinfo` (
 	 FOREIGN KEY fk_paper(`paperidfk`) REFERENCES paper(paper_id)
 );
 
-DROP TABLE IF EXISTS `reviews`;
-CREATE TABLE `reviews` (
-	 review_id int not null auto_increment primary key,
-	`reviewContent` varchar(50) null,
-	`paperidfk` int(11) not null,
-	`reviewer` int(11) not null,
-    `rating` int null,
-	 FOREIGN KEY fk_reviewername(`reviewer`) REFERENCES reviewer(id),
-	 FOREIGN KEY fk_papername(`paperidfk`) REFERENCES paper(paper_id)
-);
 
 DROP TABLE IF EXISTS `bid`;
 CREATE TABLE `bid` (
 	 bid_id int not null auto_increment primary key,
 	`reviewName` int(11) not null,
 	`paperidfk` int(11) not null,
+	`allocateStatus` varchar(50) default 'unallocated',
 	 FOREIGN KEY fk_reviewbidname(`reviewName`) REFERENCES reviewer(id),
 	 FOREIGN KEY fk_paperbidname(`paperidfk`) REFERENCES paper(paper_id)
 );
 
-DROP TABLE IF EXISTS `allocation`;
-CREATE TABLE `allocation` (
-	 allocation_id int not null auto_increment primary key,
-	`reviewName` int(11) not null,
+DROP TABLE IF EXISTS `reviews`;
+CREATE TABLE `reviews` (
+	 review_id int not null auto_increment primary key,
+	`bid_id` int (11) not null,
+	`reviewContent` varchar(50) null,
 	`paperidfk` int(11) not null,
-	 FOREIGN KEY fk_reviewallocatename(`reviewName`) REFERENCES reviewer(id),
-	 FOREIGN KEY fk_paperallocatename(`paperidfk`) REFERENCES paper(paper_id)
+	`reviewer` int(11) not null,
+    `rating` int null,
+	 FOREIGN KEY fk_reviewername(`reviewer`) REFERENCES reviewer(id),
+	 FOREIGN KEY fk_papername(`paperidfk`) REFERENCES paper(paper_id),
+	 FOREIGN KEY fk_bidid(`bid_id`) REFERENCES bid(bid_id)
 );
-
-
 
 
 

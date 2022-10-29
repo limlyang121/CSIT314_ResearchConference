@@ -77,6 +77,57 @@ public class BidDAO{
         return allBid;
     }
     
+    public void updateBidStatus(int bidID, String status) {
+        String updateBidStatus = "update bid "
+                + "set allocateStatus = ?  where bid_id = ?;";
+        try(Connection connection = DbConnection.init();
+                
+                PreparedStatement preparedStatement = connection.prepareStatement(updateBidStatus))
+        {
+            preparedStatement.setString(1, status);
+            preparedStatement.setInt(2, bidID);
+            preparedStatement.executeUpdate();
+            
+            
+        }catch (SQLException e ) {
+            e.printStackTrace();
+        }
+        
+    }
+    
+    public Bid getBidInfoByID(int bidID) {
+        Bid temp = new Bid();
+        String getBidInfoByID = "select * from bid where bid_id = ?;";
+        try(Connection connection = DbConnection.init();
+                
+                PreparedStatement preparedStatement = connection.prepareStatement(getBidInfoByID))
+        {
+
+            preparedStatement.setInt(1, bidID);
+            
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            while (rs.next()) {
+                int bid_id = rs.getInt("bid_id");
+                int reviewerID = rs.getInt("reviewName");
+                int paperID = rs.getInt("paperidfk");
+                String allocateStatus = rs.getString("allocateStatus");
+                User tempU = new User().getInfoByID(reviewerID, "reviewer");
+                
+                temp = new Bid(bid_id, reviewerID, paperID, allocateStatus, tempU);
+                return temp;
+                
+            }
+        }
+        
+        catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }      
+        
+        return temp;
+    }
+    
     private void printSQLException(SQLException ex) 
     {
         for (Throwable e : ex) 

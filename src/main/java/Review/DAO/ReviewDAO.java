@@ -2,9 +2,13 @@ package Review.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import Bid.Entity.Bid;
+import Reviewer.Entity.Reviewer;
 import dbconnection.DbConnection;
+import general.Entity.User;
 
 public class ReviewDAO{
     
@@ -24,15 +28,16 @@ public class ReviewDAO{
         return true;
     }
     
-    public boolean allocatePaper(int paperID, int reviewerID) {
-        String allocate_paper = "insert into reviews (`paperidfk`, `reviewer`) values (?, ?);";
-        
+    public boolean allocatePaper(int bidID) {
+        String allocate_paper = "insert into reviews (`bid_id`, `paperidfk`, `reviewer`) values (?, ?, ?);";
+        Bid myBid = new Bid().getBidInfoByID(bidID);
         try(Connection connection = DbConnection.init();
                 
                 PreparedStatement preparedStatement = connection.prepareStatement(allocate_paper))
         {
-            preparedStatement.setInt(1, paperID);
-            preparedStatement.setInt(2, reviewerID);
+            preparedStatement.setInt(1, bidID);
+            preparedStatement.setInt(2, myBid.getPaper_id());
+            preparedStatement.setInt(3, myBid.getReviewer_id());
             preparedStatement.executeUpdate();
             return true;
         }catch (SQLException e) {
@@ -54,6 +59,31 @@ public class ReviewDAO{
             preparedStatement.executeUpdate();
             return true;
         }catch (SQLException e) {
+            return false;
+        }
+    }
+    
+    public boolean checkReviewerReachMaxPaper(int reviewerID) {
+        String checkReviewerMaxPaper = "select * from reviewer "
+                + "inner join reviews on reviewer.id = reviews.reviewer where reviewer.id = ?;";
+        try(Connection connection = DbConnection.init();
+                
+                PreparedStatement preparedStatement = connection.prepareStatement(checkReviewerMaxPaper))
+        {
+            User temp = new User().getInfoByID(reviewerID, "reviewer");
+            preparedStatement.setInt(1, reviewerID);
+            int currentPaper = 0;
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                currentPaper++;
+            }
+            
+            if (currentPaper >= ((Reviewer)temp).getMax_no_papers()) {
+                return false;
+            }else
+                return true;
+        }catch (SQLException e) {
+            e.printStackTrace();
             return false;
         }
     }

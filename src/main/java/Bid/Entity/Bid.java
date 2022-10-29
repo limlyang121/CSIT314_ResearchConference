@@ -23,11 +23,6 @@ public class Bid{
     }
     
     
-    public List<Bid> getAllBid(){
-        return dao.getAllBid();
-    }
-    
-    
     
     public Bid(int bid_id, int paper_id, int reviewer_id) {
         super();
@@ -56,7 +51,19 @@ public class Bid{
         this.allocateStatus = allocateStatus;
         this.reviewer = reviewer;
         this.paper = paper;
+        dao = new BidDAO();
     }
+
+    public Bid(int bid_id, int paper_id, int reviewer_id, String allocateStatus, User reviewer) {
+        super();
+        this.bid_id = bid_id;
+        this.paper_id = paper_id;
+        this.reviewer_id = reviewer_id;
+        this.allocateStatus = allocateStatus;
+        this.reviewer = reviewer;
+        dao = new BidDAO();
+    }
+
 
 
     public String getAllocateStatus() {
@@ -67,10 +74,23 @@ public class Bid{
     public void setAllocateStatus(String allocateStatus) {
         this.allocateStatus = allocateStatus;
     }
+    
+    public List<Bid> getAllBid(){
+        return dao.getAllBid();
+    }
+    
+    public void updateBidStatus(int bidID, String status) {
+        dao.updateBidStatus(bidID, status);
+    }
+    
 
 
     public boolean bidPaper(int paper_id, int reviewer_id)throws SQLException {
         return dao.bidPaper(paper_id, reviewer_id);
+    }
+    
+    public Bid getBidInfoByID(int bidID) {
+        return dao.getBidInfoByID(bidID);
     }
 
 

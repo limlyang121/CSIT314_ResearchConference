@@ -23,9 +23,9 @@
     <%@taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
     <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    
+    
     <!-- External -->
-
-	
 	
     <c:if test = "${sessionScope.message != null}">
 		<script>
