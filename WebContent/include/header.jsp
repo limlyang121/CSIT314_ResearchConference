@@ -27,7 +27,9 @@
     
     <!-- External -->
 	
-    <c:if test = "${sessionScope.message != null}">
+	<script src = "static/script.js" ></script>
+	
+    <c:if test = "${message != null}">
 		<script>
 			alert("<c:out value = '${message}'/> ");
 		</script>

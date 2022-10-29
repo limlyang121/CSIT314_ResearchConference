@@ -4,7 +4,7 @@
 </head>
 <body>
 	<%@include file= "include/navbar.jsp" %>
-	<form id="loginForm" action="login" method="post"  onsubmit="return loginValidation();">
+	<form id="loginForm" action="login" method="post"  onsubmit="return loginValidationCheck();">
 	     <h2>Login</h2>
 	     <fieldset class="form-group">
 	        <label>Username</label>
