@@ -1,5 +1,5 @@
 
-function loginValidation() {
+function loginValidationCheck() {
     var username = document.getElementById("username");
     var password = document.getElementById("password");
     var usernameVal = username.value.trim();

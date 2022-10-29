@@ -5,7 +5,6 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <%@include file = "include/header.jsp" %>
-<%@include file = "include/script.jsp" %>
 </head>
 <body>
 <%@include file = "include/navbar.jsp" %>
