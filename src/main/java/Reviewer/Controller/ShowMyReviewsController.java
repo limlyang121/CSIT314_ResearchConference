@@ -12,11 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Paper.Entity.Paper;
-import Reviewer.Entity.Reviewer;
+import Review.Entity.*;
 
 
-@WebServlet(urlPatterns="/PaperstoReview")
-public class PaperstoReviewController extends HttpServlet{
+@WebServlet(urlPatterns="/ShowmyReviews")
+public class ShowMyReviewsController extends HttpServlet{
     
     int reviewer_id;
     @Override
@@ -29,13 +29,13 @@ public class PaperstoReviewController extends HttpServlet{
     
     private void listPaper(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Reviewer rev = new Reviewer();
+        Review rev = new Review();
  
         try {
            
-            ArrayList<Paper> listPaper = rev.papersToReview(reviewer_id);
+            ArrayList<Review> listPaper = rev.showMyReviews(reviewer_id);
             request.setAttribute("listPaper", listPaper);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("PaperstoReview.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("ShowMyReviews.jsp");
             dispatcher.forward(request, response);
  
         } catch (SQLException e) {

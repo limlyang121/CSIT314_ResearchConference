@@ -40,7 +40,9 @@
                <li>
                   <a class="nav-link" href="PaperstoReview?userid=<c:out value = '${sessionScope.id}'/>">Papers to be Reviewed</a>
                </li>
-               
+               <li>
+               	   <a class="nav-link" href="ShowmyReviews?userid=<c:out value = '${sessionScope.id}'/>"> Show my Reviews</a> 
+               </li>
                <li>
                   <a class="nav-link" href="ShowAllPaperstoBid?userid=<c:out value = '${sessionScope.id}'/>">Bid Papers</a>
                </li>

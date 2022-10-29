@@ -160,25 +160,23 @@ public class PaperDAO{
         int rs4 = 0;
         int rs5 = 0;
     
-        String deleteAllocation = "Delete from allocation where paperidfk = ?;";
         String deletebid = "Delete from bid where paperidfk = ?;";
         String deletereviews = "Delete from reviews where paperidfk = ?;";
         String paperinfo = "Delete from paperinfo where paperidfk = ?;";
         String paper = "Delete from paper where paper_id = ?;";
         
         try (Connection connection = DbConnection.init();
-                PreparedStatement preparedStatement1 = connection.prepareStatement(deleteAllocation);
                 PreparedStatement preparedStatement2 = connection.prepareStatement(deletebid);
                 PreparedStatement preparedStatement3 = connection.prepareStatement(deletereviews);
                 PreparedStatement preparedStatement4 = connection.prepareStatement(paperinfo);
                 PreparedStatement preparedStatement5 = connection.prepareStatement(paper);){
              
-            preparedStatement1.setInt(1, id);
+        
             preparedStatement2.setInt(1, id);
             preparedStatement3.setInt(1, id);
             preparedStatement4.setInt(1, id);
             preparedStatement5.setInt(1, id);
-            rs1 = preparedStatement1.executeUpdate();
+           
             rs2 = preparedStatement2.executeUpdate();
             rs3 = preparedStatement3.executeUpdate();
             rs4 = preparedStatement4.executeUpdate();

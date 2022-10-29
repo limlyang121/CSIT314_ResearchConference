@@ -1,9 +1,11 @@
 package Review.DAO;
 
 import java.sql.Connection;
+import Review.Entity.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import Bid.Entity.Bid;
 import Reviewer.Entity.Reviewer;
@@ -89,8 +91,28 @@ public class ReviewDAO{
     }
     
     
-    
-    
+    public ArrayList<Review> showMyReviews(int userid)throws SQLException{
+        ArrayList<Review> rev = new ArrayList<>();
+        String getreview = "Select review_id, reviewContent, paperidfk, rating from reviews where reviewer = ? and reviewContent is not null;";
+        String getpapername = "Select paperName from paper where paper_id = ?;";
+        
+  try(Connection connection = DbConnection.init();
+                
+                PreparedStatement preparedStatement1 = connection.prepareStatement(getreview);
+                PreparedStatement preparedStatement2 = connection.prepareStatement(getpapername))
+        {
+                preparedStatement1.setInt(1, userid);
+                ResultSet rs = preparedStatement1.executeQuery();
+                
+                while(rs.next()) {
+                    preparedStatement2.setInt(1, rs.getInt("paperidfk"));
+                    ResultSet rs2 = preparedStatement2.executeQuery();
+                    rs2.next();
+                    rev.add(new Review(rs.getInt("review_id"), rs.getInt("rating"), rs2.getString("paperName"), rs.getString("reviewContent")));
+                }
+        }
+        return rev;
+    }
     
     
     
