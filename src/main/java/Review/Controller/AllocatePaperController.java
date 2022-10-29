@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Bid.Entity.Bid;
 import Review.Entity.Review;
@@ -20,6 +21,7 @@ public class AllocatePaperController extends HttpServlet {
     
     protected void AllocatePaper(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
         Review tempReview = new Review();
         int bidID = Integer.parseInt(request.getParameter("bidID"));
         
@@ -28,11 +30,11 @@ public class AllocatePaperController extends HttpServlet {
         if (tempReview.checkReviewerReachMaxPaper(temp.getReviewer_id())) {
             tempReview.AllocatePaper(bidID);
             temp.updateBidStatus(bidID, "allocated");
-            request.setAttribute("message", "Successfully Allocated");
-            response.sendRedirect("HomePage.jsp");
+            session.setAttribute("message", "Successfully Allocated");
+            response.sendRedirect("conferenceBidPage");
         }else {
-            request.setAttribute("message", "Reviewer have max paper already");
-            response.sendRedirect("ConferenceBidPage.jsp");
+            session.setAttribute("message", "Reviewer have max paper already");
+            response.sendRedirect("conferenceBidPage");
         }
         
         

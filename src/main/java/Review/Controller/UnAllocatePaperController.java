@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Bid.Entity.Bid;
 import Review.Entity.Review;
@@ -21,6 +22,7 @@ public class UnAllocatePaperController extends HttpServlet {
     
     protected void AllocatePaper(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
         Review tempReview = new Review();
         int bidID = Integer.parseInt(request.getParameter("bidID"));
         
@@ -28,11 +30,11 @@ public class UnAllocatePaperController extends HttpServlet {
 
         if (tempReview.UnAllocatePaper(bidID)) {
             temp.updateBidStatus(bidID, "unallocated");
-            request.setAttribute("message", "Successfully UnAllocate");
-            response.sendRedirect("HomePage.jsp");
+            session.setAttribute("message", "Successfully UnAllocate");
+            response.sendRedirect("conferenceBidPage");
         }else {
-            request.setAttribute("message", "Fail to Allocate");
-            response.sendRedirect("ConferenceBidPage.jsp");
+            session.setAttribute("message", "Fail to Allocate");
+            response.sendRedirect("conferenceBidPage");
         }
         
         
