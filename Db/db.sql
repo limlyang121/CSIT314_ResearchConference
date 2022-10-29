@@ -123,13 +123,14 @@ DROP TABLE IF EXISTS `reviews`;
 CREATE TABLE `reviews` (
 	 review_id int not null auto_increment primary key,
 	`bid_id` int (11) not null,
-	`reviewContent` varchar(50) null,
+	`reviewContent` varchar(50) ,
 	`paperidfk` int(11) not null,
 	`reviewer` int(11) not null,
     `rating` int null,
+	 FOREIGN KEY fk_bidid(`bid_id`) REFERENCES bid(bid_id),
 	 FOREIGN KEY fk_reviewername(`reviewer`) REFERENCES reviewer(id),
-	 FOREIGN KEY fk_papername(`paperidfk`) REFERENCES paper(paper_id),
-	 FOREIGN KEY fk_bidid(`bid_id`) REFERENCES bid(bid_id)
+	 FOREIGN KEY fk_papername(`paperidfk`) REFERENCES paper(paper_id)
+	 
 );
 
 

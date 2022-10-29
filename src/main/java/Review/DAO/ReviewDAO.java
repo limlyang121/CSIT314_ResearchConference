@@ -43,24 +43,25 @@ public class ReviewDAO{
             preparedStatement.executeUpdate();
             return true;
         }catch (SQLException e) {
+            e.printStackTrace();
             return false;
         }
         
         
     }
     
-    public boolean unAllocatePaper(int paperID, int reviewerID) {
-        String unallocate_paper = "delete from reviews where paperidfk = ? and reviewer = ?;";
+    public boolean UnAllocatePaper(int bidID) {
+        String unallocate_paper = "delete from reviews where bid_id = ?;";
         
         try(Connection connection = DbConnection.init();
                 
                 PreparedStatement preparedStatement = connection.prepareStatement(unallocate_paper))
         {
-            preparedStatement.setInt(1, paperID);
-            preparedStatement.setInt(2, reviewerID);
+            preparedStatement.setInt(1, bidID);
             preparedStatement.executeUpdate();
             return true;
         }catch (SQLException e) {
+            e.printStackTrace();
             return false;
         }
     }

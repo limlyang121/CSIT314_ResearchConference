@@ -64,8 +64,8 @@
 					 </c:if>
 					 
 					 <c:if test = "${bidInfo.allocateStatus == 'allocated'}">
-						<a href="editUserAccountForm?cusername=<c:out value = '${ user.username}'  />&cprofilename=<c:out value = '${user.profileName }'/> " >
-						Unallocated
+						<a href="unallocatePaper?bidID=<c:out value = '${bidInfo.bid_id}'  />&cprofilename=<c:out value = '${user.profileName }'/> " >
+						UnAllocate
 						</a>
 					 </c:if>
 					

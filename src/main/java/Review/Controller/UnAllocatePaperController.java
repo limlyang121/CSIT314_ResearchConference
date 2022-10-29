@@ -10,9 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import Bid.Entity.Bid;
 import Review.Entity.Review;
+import Reviewer.Entity.Reviewer;
 
-@WebServlet("/allocatePaper")
-public class AllocatePaperController extends HttpServlet {
+@WebServlet("/unallocatePaper")
+public class UnAllocatePaperController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         AllocatePaper (request, response);
@@ -25,13 +26,12 @@ public class AllocatePaperController extends HttpServlet {
         
         Bid temp = new Bid().getBidInfoByID(bidID);
 
-        if (tempReview.checkReviewerReachMaxPaper(temp.getReviewer_id())) {
-            tempReview.AllocatePaper(bidID);
-            temp.updateBidStatus(bidID, "allocated");
-            request.setAttribute("message", "Successfully Allocated");
+        if (tempReview.UnAllocatePaper(bidID)) {
+            temp.updateBidStatus(bidID, "unallocated");
+            request.setAttribute("message", "Successfully UnAllocate");
             response.sendRedirect("HomePage.jsp");
         }else {
-            request.setAttribute("message", "Reviewer have max paper already");
+            request.setAttribute("message", "Fail to Allocate");
             response.sendRedirect("ConferenceBidPage.jsp");
         }
         

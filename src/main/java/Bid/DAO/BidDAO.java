@@ -114,7 +114,7 @@ public class BidDAO{
                 String allocateStatus = rs.getString("allocateStatus");
                 User tempU = new User().getInfoByID(reviewerID, "reviewer");
                 
-                temp = new Bid(bid_id, reviewerID, paperID, allocateStatus, tempU);
+                temp = new Bid(bid_id, paperID, reviewerID, allocateStatus, tempU);
                 return temp;
                 
             }

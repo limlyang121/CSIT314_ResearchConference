@@ -38,6 +38,10 @@ public class Review{
         return revDAO.allocatePaper(bidID);
     }
     
+    public boolean UnAllocatePaper(int bidID) {
+        return revDAO.UnAllocatePaper(bidID);
+    }
+    
     public boolean checkReviewerReachMaxPaper(int reviewerID) {
         return revDAO.checkReviewerReachMaxPaper(reviewerID);
     }
