@@ -27,7 +27,7 @@
     
     <!-- External -->
 	
-	<script src = "static/script.js" ></script>
+	<script src = "static/script.js" type="text/javascript" ></script>
 	
     <c:if test = "${message != null}">
 		<script>

@@ -55,7 +55,7 @@
 					
 					<td>
 					<c:if test = "${bidInfo.allocateStatus == 'unallocated'}">
-						<a href="allocatePaper?bidID=<c:out value = '${bidInfo.bid_id}'  />&cprofilename=<c:out value = '${user.profileName }'/> " >
+						<a href="allocatePaper?bidID=<c:out value = '${bidInfo.bid_id}'  />" >
 						Allocate
 						</a>
 						<a href="editUserAccountForm?cusername=<c:out value = '${ user.username}'  />&cprofilename=<c:out value = '${user.profileName }'/> " >
@@ -63,8 +63,8 @@
 						</a>
 					 </c:if>
 					 
-					 <c:if test = "${bidInfo.allocateStatus == 'allocated'}">
-						<a href="unallocatePaper?bidID=<c:out value = '${bidInfo.bid_id}'  />&cprofilename=<c:out value = '${user.profileName }'/> " >
+					 <c:if test = "${bidInfo.allocateStatus == 'allocated'}" >
+						<a id = "confirmation" type= "submit" onclick = "return confirmUserAction('Are you Sure');" href="unallocatePaper?bidID=<c:out value = '${bidInfo.bid_id}'  />" >
 						UnAllocate
 						</a>
 					 </c:if>

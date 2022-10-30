@@ -1,4 +1,10 @@
 
+
+$(document).ready(function() {
+	document.getElementById ("confirmation").addEventListener ("click", confirmUserAction, true);
+})
+
+
 function loginValidationCheck() {
     var username = document.getElementById("username");
     var password = document.getElementById("password");
@@ -39,3 +45,6 @@ function logout2() {
 	return confirm("Are you sure want to log out?");
 }  
 
+function confirmUserAction (message){
+	return confirm(message);
+}
