@@ -59,6 +59,9 @@
                   <a class="nav-link" href="ShowMyPapers?username=<c:out value = '${sessionScope.username}'/>">View My Papers</a>
                </li>
                <li>
+                  <a class="nav-link" href="ShowReviewsforAuthor?userid=<c:out value = '${sessionScope.id}'/>">Show Reviews</a>
+               </li>
+               <li>
                	    <a class="nav-link" href="<%=request.getContextPath()%>/selfUpdateForm?username=
 					<c:out value ='${sessionScope.username}'/>&profileName=<c:out value = '${sessionScope.profileName}'/>" > Update my Profile </a>
              	</li>

@@ -12,6 +12,7 @@ public class Review{
     int authorid;
     String papername;
     String review;
+    String reviewername;
     ReviewDAO revDAO;
     
     public Review() {
@@ -31,12 +32,24 @@ public class Review{
         
     }
     
+    public Review(int paperid, String papername, String review, int rating, String reviewername) {
+        this.paperid = paperid;
+        this.papername = papername;
+        this.review = review;
+        this.rating = rating;
+        this.reviewername = reviewername;
+    }
+    
     public boolean submitReview(String review, int rating, int paperid, int reviewerid) throws SQLException {
         return revDAO.submitReview(review, rating, paperid, reviewerid);
     }
     
     public ArrayList<Review> showMyReviews(int userid)throws SQLException{
         return revDAO.showMyReviews(userid);
+    }
+    
+    public ArrayList<Review> showReviewsforAuthor(int userid){
+        return revDAO.showReviewsforAuthor(userid);
     }
     
     public boolean editReview(int reviewid, String reviewcontent, int rating) {
@@ -85,5 +98,9 @@ public class Review{
     
     public String getReview() {
         return review;
+    }
+    
+    public String getReviewername() {
+        return reviewername;
     }
 }

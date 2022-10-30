@@ -89,7 +89,7 @@ public class Paper{
         return paperDao.deletePaper(id);
     }
     
-    public boolean editPaper(int id, String papername, ArrayList<String> authors) throws SQLException{
+    public boolean editPaper(int id, String papername, ArrayList<String> authors){
         return paperDao.editPaper(id, papername, authors);
     }
     

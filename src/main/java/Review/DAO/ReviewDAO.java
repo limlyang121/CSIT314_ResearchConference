@@ -180,6 +180,45 @@ public class ReviewDAO{
  
     }
     
+    public ArrayList<Review> showReviewsforAuthor(int authorid){
+        ArrayList<Review> rev = new ArrayList<>();
+        String getpaperid = "Select paperidfk from paperinfo where Author = ? or Coauthor = ?;";
+        String getreviewinfo = "Select * from reviews where paperidfk = ?;";
+        String getreviewername = "Select fullname from reviewer where id = ? ;";
+        String getpapername = "Select paperName from paper where paper_id = ?;";
+        
+  try(Connection connection = DbConnection.init();
+                
+                PreparedStatement preparedStatement1 = connection.prepareStatement(getpaperid);
+                PreparedStatement preparedStatement2 = connection.prepareStatement(getreviewinfo);
+                PreparedStatement preparedStatement3 = connection.prepareStatement(getreviewername);
+                PreparedStatement preparedStatement4 = connection.prepareStatement(getpapername);)
+        {
+                preparedStatement1.setInt(1, authorid);
+                preparedStatement1.setInt(2, authorid);
+                ResultSet rs = preparedStatement1.executeQuery();
+                
+                while(rs.next()) {
+                    preparedStatement4.setInt(1, rs.getInt("paperidfk"));
+                    ResultSet rs4 = preparedStatement4.executeQuery();
+                    rs4.next();
+                    String papername = rs4.getString("paperName");
+                    
+                    preparedStatement2.setInt(1, rs.getInt("paperidfk"));
+                    ResultSet rs2 = preparedStatement2.executeQuery();
+                    rs2.next();
+                    preparedStatement3.setInt(1, rs2.getInt("reviewer"));
+                    ResultSet rs3 = preparedStatement3.executeQuery();
+                    rs3.next();
+                    rev.add(new Review(rs2.getInt("paperidfk"), papername, rs2.getString("reviewContent"), rs2.getInt("rating"), rs3.getString("fullname")));
+                }
+        }catch (SQLException e) {
+            e.printStackTrace();
+           
+        }
+        return rev;
+    }
+    
 }
 
 

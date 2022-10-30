@@ -193,7 +193,7 @@ public class PaperDAO{
         
     }
     
-    public boolean editPaper(int id, String papername, ArrayList<String> authors) throws SQLException{
+    public boolean editPaper(int id, String papername, ArrayList<String> authors) {
         String changepapername = "Update paper set paperName = ? where paper_id = ?;";
         String authorid = "Select id from author where username = '"+authors.get(1)+"';";
         String coauthorid = "Select id from author where username = '"+authors.get(0)+"';";
@@ -226,6 +226,10 @@ public class PaperDAO{
             preparedStatement2.setInt(3, getauthorid.getInt("id"));
             rs2 = preparedStatement2.executeUpdate();
             
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+           
         }
         return true;
     }

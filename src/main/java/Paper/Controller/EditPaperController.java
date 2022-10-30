@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Author.Entity.Author;
 import Paper.Entity.*;
@@ -51,22 +52,26 @@ public class EditPaperController extends HttpServlet{
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Paper paper = new Paper();
+        HttpSession session = request.getSession();
         // gets values of text fields
         String filename = request.getParameter("fileName");
         String co_author = request.getParameter("authors");
         ArrayList<String> authors = new ArrayList<String>();
         authors.add(co_author);
         authors.add(username);
- 
-        try {
+        
+        boolean result = paper.editPaper(id, filename, authors);
+        if(result){
             
-            boolean result = paper.editPaper(id, filename, authors);
-            if(result){response.sendRedirect("ShowMyPapers?username="+username);}
-            return;
- 
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new ServletException(e);
+            session.setAttribute("message", "Successfully Edited");
+            response.sendRedirect("ShowMyPapers?username="+username);
         }
+        
+        else {
+            session.setAttribute("message", "Problem Editing");
+            response.sendRedirect("ShowMyPapers?username="+username);
+            
+        }
+ 
     }
 }
