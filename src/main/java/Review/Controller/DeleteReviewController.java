@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
+import Bid.Entity.Bid;
 import Review.Entity.Review;
 
 
@@ -35,7 +35,8 @@ public class DeleteReviewController extends HttpServlet{
         
         boolean result = rev.deleteReview(revid);
         if(result){
-       
+            rev = rev.getReviewInfoByID(revid);
+            new Bid().updateBidStatus(rev.getBidid(), "allocated");
             session.setAttribute("message", "Successfully Deleted");
             response.sendRedirect("ShowmyReviews?userid="+userid);
         }

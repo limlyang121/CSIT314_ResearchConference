@@ -22,14 +22,10 @@ public class Review{
     
     
     
-    public Review(int reviewid, int bidid, int paperid, int rating, int authorid, String review) {
+    public Review(int reviewid, int bidid) {
         super();
         this.reviewid = reviewid;
         this.bidid = bidid;
-        this.paperid = paperid;
-        this.rating = rating;
-        this.authorid = authorid;
-        this.review = review;
         revDAO = new ReviewDAO();
     }
 
@@ -79,6 +75,13 @@ public class Review{
     public Review getInfoforEdit(int revid) {
         return revDAO.getInfoforEdit(revid);
     }
+    
+    
+    public Review getReviewInfoByID(int revID) {
+        return revDAO.getReviewInfoByID(revID);
+    }
+    
+    
     
     public boolean AllocatePaper(int bidID) {
         return revDAO.allocatePaper(bidID);

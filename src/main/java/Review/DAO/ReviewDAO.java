@@ -60,6 +60,35 @@ public class ReviewDAO{
         
     }
     
+    public Review getReviewInfoByID(int reviewID) {
+        Review temp = new Review();
+        String getBidInfoByID = "select * from reviews where review_id = ?;";
+        try(Connection connection = DbConnection.init();
+                
+                PreparedStatement preparedStatement = connection.prepareStatement(getBidInfoByID))
+        {
+
+            preparedStatement.setInt(1, reviewID);
+            
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            while (rs.next()) {
+                int reviewid = rs.getInt("review_id");
+                int bid_id = rs.getInt("bid_id");
+                
+                temp = new Review(reviewid, bid_id);
+                
+                
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+        
+        return temp;
+        
+    }
+    
     public boolean UnAllocatePaper(int bidID) {
         String unallocate_paper = "delete from reviews where bid_id = ?;";
         
