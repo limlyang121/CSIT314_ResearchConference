@@ -7,6 +7,7 @@ import Review.DAO.ReviewDAO;
 
 public class Review{
     int reviewid;
+    int bidid;
     int paperid;
     int rating;
     int authorid;
@@ -19,6 +20,21 @@ public class Review{
         revDAO = new ReviewDAO();
     }
     
+    
+    
+    public Review(int reviewid, int bidid, int paperid, int rating, int authorid, String review) {
+        super();
+        this.reviewid = reviewid;
+        this.bidid = bidid;
+        this.paperid = paperid;
+        this.rating = rating;
+        this.authorid = authorid;
+        this.review = review;
+        revDAO = new ReviewDAO();
+    }
+
+
+
     public Review(String review, int rating) {
         this.review = review;
         this.rating = rating;
@@ -103,4 +119,14 @@ public class Review{
     public String getReviewername() {
         return reviewername;
     }
+
+    public int getBidid() {
+        return bidid;
+    }
+
+    public void setBidid(int bidid) {
+        this.bidid = bidid;
+    }
+    
+    
 }
