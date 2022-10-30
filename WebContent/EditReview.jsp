@@ -7,14 +7,15 @@
 <body>
 	<%@include file = "include/navbar.jsp" %>
 
-         <form method="post" action="submitReview">
+         <form method="post" action="editReview">
           <table border="0">
           <tr>
                <td>Your Review </td>
-                  <td><textarea id="review" name="review" rows="4" cols="50"></textarea></td>
+                  <td><textarea id="review" name="review" rows="4" cols="50" >${reviewinfo.review}</textarea></td>
                  </tr>
                  <tr>
                     <td>Rating </td>
+                    <td><input type="text" value="<c:out value='${reviewinfo.rating}'/>"></td>
                     <td><select name="rating" id="rating">
   				<option value="1">1</option>
   				<option value="2">2</option>

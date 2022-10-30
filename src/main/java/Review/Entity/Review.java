@@ -18,6 +18,11 @@ public class Review{
         revDAO = new ReviewDAO();
     }
     
+    public Review(String review, int rating) {
+        this.review = review;
+        this.rating = rating;
+    }
+    
     public Review(int reviewid, int rating, String papername, String review) {
         this.reviewid = reviewid;
         this.rating = rating;
@@ -32,6 +37,18 @@ public class Review{
     
     public ArrayList<Review> showMyReviews(int userid)throws SQLException{
         return revDAO.showMyReviews(userid);
+    }
+    
+    public boolean editReview(int reviewid, String reviewcontent, int rating) {
+        return revDAO.editReview(reviewid, reviewcontent, rating);
+    }
+    
+    public boolean deleteReview(int id) {
+        return revDAO.deleteReview(id);
+    }
+    
+    public Review getInfoforEdit(int revid) {
+        return revDAO.getInfoforEdit(revid);
     }
     
     public boolean AllocatePaper(int bidID) {

@@ -15,19 +15,29 @@ import general.Entity.User;
 public class ReviewDAO{
     
     public boolean submitReview(String review, int rating, int paperid, int reviewerid)throws SQLException{
-        int rs = 0;
+        
         String insertreview = "Update reviews set reviewContent = ? , rating = ? where paperidfk = ? and reviewer = ?;";
+        String updatebid = "Update bid set allocateStatus = ? where reviewName = ? and paperidfk = ?;";
  try(Connection connection = DbConnection.init();
                 
-                PreparedStatement preparedStatement = connection.prepareStatement(insertreview);)
+                PreparedStatement preparedStatement = connection.prepareStatement(insertreview);
+                PreparedStatement preparedStatement2 = connection.prepareStatement(updatebid);)
         {
                  preparedStatement.setString(1, review);
                  preparedStatement.setInt(2, rating);
                  preparedStatement.setInt(3, paperid);
                  preparedStatement.setInt(4, reviewerid);
-                 rs = preparedStatement.executeUpdate();
+                 preparedStatement.executeUpdate();
+                 preparedStatement2.setString(1, "complete");
+                 preparedStatement2.setInt(2, reviewerid);
+                 preparedStatement2.setInt(3, paperid);
+                 preparedStatement2.executeUpdate();
+                 return true;
+        }catch (SQLException e) {
+            e.printStackTrace();
+            return false;
         }
-        return true;
+        
     }
     
     public boolean allocatePaper(int bidID) {
@@ -115,6 +125,62 @@ public class ReviewDAO{
         return rev;
     }
     
+    public boolean deleteReview(int id) {
+        String deletereview = "Update reviews set reviewContent = null , rating = null where review_id = ?;";
+        
+        try(Connection connection = DbConnection.init();
+                
+                PreparedStatement preparedStatement = connection.prepareStatement(deletereview))
+        {
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+            return true;
+        }catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
     
+    public boolean editReview(int id, String content, int rating) {
+        String editReview = "Update reviews set reviewContent = ? , rating = ? where review_id = ?;";
+        
+        try(Connection connection = DbConnection.init();
+                
+                PreparedStatement preparedStatement = connection.prepareStatement(editReview))
+        {
+            preparedStatement.setString(1, content);
+            preparedStatement.setInt(2, rating);
+            preparedStatement.setInt(3, id);
+            preparedStatement.executeUpdate();
+            return true;
+        }catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    public Review getInfoforEdit(int id) {
+        String getinfo = "Select reviewContent, rating from reviews where review_id = ?;";
+        Review rev = null;
+ try(Connection connection = DbConnection.init();
+                
+                PreparedStatement preparedStatement = connection.prepareStatement(getinfo))
+        {
+         
+            preparedStatement.setInt(1, id);
+            ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
+             rev =  new Review(rs.getString("reviewContent"), rs.getInt("rating"));
+           
+        }catch (SQLException e) {
+            e.printStackTrace();
+           
+        }
+       return rev;
+ 
+    }
     
 }
+
+
+
