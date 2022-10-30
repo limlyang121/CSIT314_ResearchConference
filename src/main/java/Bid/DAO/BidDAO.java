@@ -77,6 +77,23 @@ public class BidDAO{
         return allBid;
     }
     
+    public boolean RejectBid(int bidID) {
+        String REJECTBID = "delete from bid where bid_id = ?";
+        try(Connection connection = DbConnection.init();
+                    
+                    PreparedStatement preparedStatement = connection.prepareStatement(REJECTBID))
+        {
+            preparedStatement.setInt(1, bidID);
+            preparedStatement.executeUpdate();
+            return true;
+            
+        }catch (SQLException e ) {
+            e.printStackTrace();
+            return false;
+        }
+        
+    }
+    
     public void updateBidStatus(int bidID, String status) {
         String updateBidStatus = "update bid "
                 + "set allocateStatus = ?  where bid_id = ?;";

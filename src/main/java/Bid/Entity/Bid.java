@@ -83,6 +83,10 @@ public class Bid{
         dao.updateBidStatus(bidID, status);
     }
     
+    public boolean RejectBid(int bidID) {
+        return dao.RejectBid(bidID);
+    }
+    
 
 
     public boolean bidPaper(int paper_id, int reviewer_id)throws SQLException {
