@@ -16,12 +16,17 @@ public class Paper{
     private String author;
     private String authorusername;
     private String coauthor;
-    private FileInputStream inputstream;
+    private InputStream inputstream;
     private String status;
     private PaperDAO paperDao;
     
     public Paper(){
         paperDao = new PaperDAO();
+    }
+    
+    public Paper(String filename, InputStream stream) {
+        this.papername = filename;
+        this.inputstream = stream;
     }
     
     public Paper(int id,String papername, String status, String author, String coauthor, String authorusername) {
@@ -85,11 +90,11 @@ public class Paper{
         return paperDao.showAllPaperstoBid(reviewer_id);
     }
     
-    public boolean deletePaper(int id) throws SQLException{
+    public boolean deletePaper(int id){
         return paperDao.deletePaper(id);
     }
     
-    public boolean editPaper(int id, String papername, ArrayList<String> authors) throws SQLException{
+    public boolean editPaper(int id, String papername, ArrayList<String> authors){
         return paperDao.editPaper(id, papername, authors);
     }
     
@@ -99,6 +104,10 @@ public class Paper{
     
     public Paper getPaperInfoBySpecificAuthor(int id, String username){
         return paperDao.getPaperInfoBySpecificAuthor(id, username);
+    }
+    
+    public Paper downloadPaper(int paperid) {
+        return paperDao.downloadPaper(paperid);
     }
     
     public String getPapername() {
@@ -125,5 +134,8 @@ public class Paper{
         return authorusername;
     }
     
+    public InputStream getInputstream() {
+        return inputstream;
+    }
     
 }

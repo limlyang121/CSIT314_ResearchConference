@@ -11,7 +11,7 @@
         <h1>Your Papers</h1>
          <div align="center">
         <table border="1" cellpadding="5">
-            <caption><h2>List of papers</h2></caption>
+            <caption><h2>List of reviews</h2></caption>
             <tr>
             	<th>Review ID</th>
                 <th>PaperName</th>
@@ -22,19 +22,19 @@
                 <tr>
                 	<td><c:out value="${paper.reviewid}" /></td>
                     <td><c:out value="${paper.papername}" /></td>
-                    <td><c:out value="${paper.review}" /></td>
+                    <td><textarea id="review" name="review" rows="4" cols="50">${paper.review}</textarea></td>
                     <td><c:out value="${paper.rating}" /></td>
    
             		
                     <td style="width:10%">
-                      <a href="EditPaper?paperid=<c:out value = '${paper.reviewid}'/>&username=<c:out value = '${sessionScope.username}'/>">
+                      <a href="editReview?reviewid=<c:out value = '${paper.reviewid}'/>&userid=<c:out value = '${sessionScope.id}'/>">
 						Edit
 						</a>
         
 					</td>
 					<td style="width:10%">
 
-						<a href="deletePaper?paperid=<c:out value = '${paper.reviewid}'/>&username=<c:out value = '${sessionScope.username}'/> " >
+						<a href="deleteReview?reviewid=<c:out value = '${paper.reviewid}'/>&userid=<c:out value = '${sessionScope.id}'/> " >
 						Delete
 						</a>
 					</td>

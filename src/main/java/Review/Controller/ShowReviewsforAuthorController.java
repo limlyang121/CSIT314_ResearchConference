@@ -1,4 +1,4 @@
-package Reviewer.controller;
+package Review.Controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -11,37 +11,32 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Paper.Entity.Paper;
 import Review.Entity.*;
 
 
-@WebServlet(urlPatterns="/ShowmyReviews")
-public class ShowMyReviewsController extends HttpServlet{
+@WebServlet(urlPatterns="/ShowReviewsforAuthor")
+public class ShowReviewsforAuthorController extends HttpServlet{
     
     int reviewer_id;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         reviewer_id = Integer.parseInt(request.getParameter("userid"));
-        listPaper(request,response);
+        listReview(request,response);
     }
     
     
-    private void listPaper(HttpServletRequest request, HttpServletResponse response)
+    private void listReview(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Review rev = new Review();
  
-        try {
+       
            
-            ArrayList<Review> listPaper = rev.showMyReviews(reviewer_id);
-            request.setAttribute("listPaper", listPaper);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("ShowMyReviews.jsp");
+            ArrayList<Review> listReview = rev.showReviewsforAuthor(reviewer_id);
+            request.setAttribute("listReview", listReview);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("ShowReviewsforAuthor.jsp");
             dispatcher.forward(request, response);
  
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new ServletException(e);
-        }
     }
     
     

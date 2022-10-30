@@ -93,7 +93,7 @@ DROP TABLE IF EXISTS `paper`;
 CREATE TABLE `paper` (
 	`paper_id` int not null auto_increment primary key,
 	 paperName varchar(50) not null,
-	`fileContent` blob not null,
+	`fileContent` longblob not null,
 	`Status` varchar(50)not null
 );
 

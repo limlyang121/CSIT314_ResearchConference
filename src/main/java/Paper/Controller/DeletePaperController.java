@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Paper.Entity.*;
 
@@ -28,16 +29,23 @@ public class DeletePaperController extends HttpServlet{
     private void deletePaper(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Paper paper = new Paper();
+        HttpSession session = request.getSession();
  
-        try {
+       
             
             boolean result = paper.deletePaper(id);
-            if(result){response.sendRedirect("ShowMyPapers?username="+username);}
-            return;
+            if(result){
+                
+                session.setAttribute("message", "Successfully Deleted");
+                response.sendRedirect("ShowMyPapers?username="+username);
+            }
+            
+            else {
+                session.setAttribute("message", "Problem deleting");
+                response.sendRedirect("ShowMyPapers?username="+username);
+                
+            }
  
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new ServletException(e);
-        }
+        
     }
 }

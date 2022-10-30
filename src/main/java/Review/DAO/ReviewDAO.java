@@ -15,19 +15,29 @@ import general.Entity.User;
 public class ReviewDAO{
     
     public boolean submitReview(String review, int rating, int paperid, int reviewerid)throws SQLException{
-        int rs = 0;
+        
         String insertreview = "Update reviews set reviewContent = ? , rating = ? where paperidfk = ? and reviewer = ?;";
+        String updatebid = "Update bid set allocateStatus = ? where reviewName = ? and paperidfk = ?;";
  try(Connection connection = DbConnection.init();
                 
-                PreparedStatement preparedStatement = connection.prepareStatement(insertreview);)
+                PreparedStatement preparedStatement = connection.prepareStatement(insertreview);
+                PreparedStatement preparedStatement2 = connection.prepareStatement(updatebid);)
         {
                  preparedStatement.setString(1, review);
                  preparedStatement.setInt(2, rating);
                  preparedStatement.setInt(3, paperid);
                  preparedStatement.setInt(4, reviewerid);
-                 rs = preparedStatement.executeUpdate();
+                 preparedStatement.executeUpdate();
+                 preparedStatement2.setString(1, "complete");
+                 preparedStatement2.setInt(2, reviewerid);
+                 preparedStatement2.setInt(3, paperid);
+                 preparedStatement2.executeUpdate();
+                 return true;
+        }catch (SQLException e) {
+            e.printStackTrace();
+            return false;
         }
-        return true;
+        
     }
     
     public boolean allocatePaper(int bidID) {
@@ -115,6 +125,101 @@ public class ReviewDAO{
         return rev;
     }
     
+    public boolean deleteReview(int id) {
+        String deletereview = "Update reviews set reviewContent = null , rating = null where review_id = ?;";
+        
+        try(Connection connection = DbConnection.init();
+                
+                PreparedStatement preparedStatement = connection.prepareStatement(deletereview))
+        {
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+            return true;
+        }catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
     
+    public boolean editReview(int id, String content, int rating) {
+        String editReview = "Update reviews set reviewContent = ? , rating = ? where review_id = ?;";
+        
+        try(Connection connection = DbConnection.init();
+                
+                PreparedStatement preparedStatement = connection.prepareStatement(editReview))
+        {
+            preparedStatement.setString(1, content);
+            preparedStatement.setInt(2, rating);
+            preparedStatement.setInt(3, id);
+            preparedStatement.executeUpdate();
+            return true;
+        }catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    public Review getInfoforEdit(int id) {
+        String getinfo = "Select reviewContent, rating from reviews where review_id = ?;";
+        Review rev = null;
+ try(Connection connection = DbConnection.init();
+                
+                PreparedStatement preparedStatement = connection.prepareStatement(getinfo))
+        {
+         
+            preparedStatement.setInt(1, id);
+            ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
+             rev =  new Review(rs.getString("reviewContent"), rs.getInt("rating"));
+           
+        }catch (SQLException e) {
+            e.printStackTrace();
+           
+        }
+       return rev;
+ 
+    }
+    
+    public ArrayList<Review> showReviewsforAuthor(int authorid){
+        ArrayList<Review> rev = new ArrayList<>();
+        String getpaperid = "Select paperidfk from paperinfo where Author = ? or Coauthor = ?;";
+        String getreviewinfo = "Select * from reviews where paperidfk = ?;";
+        String getreviewername = "Select fullname from reviewer where id = ? ;";
+        String getpapername = "Select paperName from paper where paper_id = ?;";
+        
+  try(Connection connection = DbConnection.init();
+                
+                PreparedStatement preparedStatement1 = connection.prepareStatement(getpaperid);
+                PreparedStatement preparedStatement2 = connection.prepareStatement(getreviewinfo);
+                PreparedStatement preparedStatement3 = connection.prepareStatement(getreviewername);
+                PreparedStatement preparedStatement4 = connection.prepareStatement(getpapername);)
+        {
+                preparedStatement1.setInt(1, authorid);
+                preparedStatement1.setInt(2, authorid);
+                ResultSet rs = preparedStatement1.executeQuery();
+                
+                while(rs.next()) {
+                    preparedStatement4.setInt(1, rs.getInt("paperidfk"));
+                    ResultSet rs4 = preparedStatement4.executeQuery();
+                    rs4.next();
+                    String papername = rs4.getString("paperName");
+                    
+                    preparedStatement2.setInt(1, rs.getInt("paperidfk"));
+                    ResultSet rs2 = preparedStatement2.executeQuery();
+                    rs2.next();
+                    preparedStatement3.setInt(1, rs2.getInt("reviewer"));
+                    ResultSet rs3 = preparedStatement3.executeQuery();
+                    rs3.next();
+                    rev.add(new Review(rs2.getInt("paperidfk"), papername, rs2.getString("reviewContent"), rs2.getInt("rating"), rs3.getString("fullname")));
+                }
+        }catch (SQLException e) {
+            e.printStackTrace();
+           
+        }
+        return rev;
+    }
     
 }
+
+
+
