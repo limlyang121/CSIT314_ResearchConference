@@ -1,6 +1,7 @@
 package Paper.DAO;
 
 import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -153,7 +154,7 @@ public class PaperDAO{
         }
     
     
-    public boolean deletePaper(int id) throws SQLException{
+    public boolean deletePaper(int id){
         int rs1 = 0;
         int rs2 = 0;
         int rs3 = 0;
@@ -184,7 +185,7 @@ public class PaperDAO{
             
         }catch (SQLException ex) {
             ex.printStackTrace();
-            throw ex;
+          return false;
         }      
         
    
@@ -313,6 +314,30 @@ public class PaperDAO{
                 return paper;
         
         
+    }
+    
+ public Paper downloadPaper(int paperid) {
+     Paper paper = null;
+        String getpaper = "SELECT paperName, fileContent FROM paper WHERE paper_id = ?;";
+        try(Connection connection = DbConnection.init();
+                
+                PreparedStatement preparedStatement = connection.prepareStatement(getpaper);)
+        {
+            preparedStatement.setInt(1, paperid);
+            ResultSet result = preparedStatement.executeQuery();
+            if (result.next()) {
+                String fileName = result.getString("paperName");
+                Blob blob = result.getBlob("fileContent");
+                InputStream inputStream = blob.getBinaryStream();
+                paper = new Paper(fileName, inputStream);
+            }
+                    
+        }catch (SQLException ex) {
+             ex.printStackTrace();
+                  
+        }      
+        
+        return paper;
     }
     
     private void printSQLException(SQLException ex) 

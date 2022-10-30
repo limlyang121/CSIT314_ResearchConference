@@ -31,7 +31,7 @@ public class DeletePaperController extends HttpServlet{
         Paper paper = new Paper();
         HttpSession session = request.getSession();
  
-        try {
+       
             
             boolean result = paper.deletePaper(id);
             if(result){
@@ -46,9 +46,6 @@ public class DeletePaperController extends HttpServlet{
                 
             }
  
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new ServletException(e);
-        }
+        
     }
 }

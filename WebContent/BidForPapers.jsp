@@ -36,7 +36,7 @@
 					</td>
 					
                     <td style="width:10%">
-                     <a href="EditPaper?paperid=<c:out value = '${paper.id}'/>&username=<c:out value = '${sessionScope.username}'/>">
+                     <a href="downloadPaper?paperid=<c:out value = '${paper.id}'/>&userid=<c:out value = '${sessionScope.id}'/>">
 						Download
 						</a>
 					</td>
