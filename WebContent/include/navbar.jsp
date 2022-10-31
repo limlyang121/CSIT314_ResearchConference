@@ -61,9 +61,7 @@
       </c:if>
       <ul class="navbar-nav ml-auto">
          <c:if test="${sessionScope.username == null}">
-            <li class="nav-item">
-               <a class="nav-link" href="<%=request.getContextPath()%>/welcome">Main Menu <i class="fas fa-home"> </i></a>
-            </li>
+            
 
          </c:if>
          <c:if test="${sessionScope.username != null}">
