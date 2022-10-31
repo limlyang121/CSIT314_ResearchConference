@@ -21,6 +21,12 @@ public class Review{
         revDAO = new ReviewDAO();
     }
     
+    public Review(String reviewername, String review, int rating) {
+        this.reviewername = reviewername;
+        this.review = review;
+        this.rating = rating;
+    }
+    
     
     
     public Review(int reviewid, Bid bidfk) {
@@ -69,6 +75,10 @@ public class Review{
     
     public ArrayList<Review> showReviewsforAuthor(int userid){
         return revDAO.showReviewsforAuthor(userid);
+    }
+    
+    public ArrayList<Review> showOtherReviews(int paperid, int userid){
+        return revDAO.showOtherReviews(paperid, userid);
     }
     
     public ArrayList<Review> getAllPaperReview(int paperID){

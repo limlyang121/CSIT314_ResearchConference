@@ -39,7 +39,7 @@ public class SubmitReviewController extends HttpServlet{
        Review rev = new Review();
        boolean success = rev.submitReview(content, rating, paperid, userid);
        
-       if(success){response.sendRedirect("PaperstoReview?userid="+String.valueOf(userid));}
+       if(success){response.sendRedirect("ShowOtherReviews?paperid="+String.valueOf(paperid)+"&"+"userid="+String.valueOf(userid));}
        return;
         
         } catch (SQLException e) {

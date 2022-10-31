@@ -248,10 +248,42 @@ public class ReviewDAO{
  
     }
     
+    public ArrayList<Review> showOtherReviews(int paperid, int userid){
+        ArrayList<Review> rev = new ArrayList<>();
+        
+        String getreviews = "Select reviewContent, rating, reviewer from reviews where paperidfk = ? and not reviewer = ? and reviewContent is not null;";
+        String getreviewername = "Select fullname from reviewer where id = ?;";
+        
+        try(Connection connection = DbConnection.init();
+                
+                PreparedStatement preparedStatement1 = connection.prepareStatement(getreviews);
+                PreparedStatement preparedStatement2 = connection.prepareStatement(getreviewername);)
+        {
+            preparedStatement1.setInt(1, paperid);
+            preparedStatement1.setInt(2, userid);
+            ResultSet rs = preparedStatement1.executeQuery();
+            while(rs.next()) {
+                preparedStatement2.setInt(1, rs.getInt("reviewer"));
+                ResultSet rs4 = preparedStatement2.executeQuery();
+                rs4.next();
+                
+                rev.add(new Review(rs4.getString("fullname"), rs.getString("reviewContent"), rs.getInt("rating")));
+            }
+    
+        }catch (SQLException e) {
+            e.printStackTrace();
+    
+        }
+        
+        return rev;
+        
+        
+    }
+    
     public ArrayList<Review> showReviewsforAuthor(int authorid){
         ArrayList<Review> rev = new ArrayList<>();
         String getpaperid = "Select paperidfk from paperinfo where Author = ? or Coauthor = ?;";
-        String getreviewinfo = "Select * from reviews where paperidfk = ?;";
+        String getreviewinfo = "Select * from reviews where paperidfk = ? and reviewContent is not null;";
         String getreviewername = "Select fullname from reviewer where id = ? ;";
         String getpapername = "Select paperName from paper where paper_id = ?;";
         
@@ -274,11 +306,14 @@ public class ReviewDAO{
                     
                     preparedStatement2.setInt(1, rs.getInt("paperidfk"));
                     ResultSet rs2 = preparedStatement2.executeQuery();
-                    rs2.next();
-                    preparedStatement3.setInt(1, rs2.getInt("reviewer"));
-                    ResultSet rs3 = preparedStatement3.executeQuery();
-                    rs3.next();
-                    rev.add(new Review(rs2.getInt("paperidfk"), papername, rs2.getString("reviewContent"), rs2.getInt("rating"), rs3.getString("fullname")));
+                    
+                    while(rs2.next()) {
+                        preparedStatement3.setInt(1, rs2.getInt("reviewer"));
+                        ResultSet rs3 = preparedStatement3.executeQuery();
+                        rs3.next();
+                        rev.add(new Review(rs2.getInt("paperidfk"), papername, rs2.getString("reviewContent"), rs2.getInt("rating"), rs3.getString("fullname")));
+                    }
+                
                 }
         }catch (SQLException e) {
             e.printStackTrace();
