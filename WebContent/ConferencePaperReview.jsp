@@ -24,8 +24,12 @@
 			
 			<br>
 			
-			<label >Reviewer Comment </label>
-			<input style="height:200px;font-size:14pt;" type= "text" id = "reviewerComment" value ="<c:out value="${PaperReview.review}"/>" readonly>
+			<label for="reviewerComment">Reviewer Comment</label>
+			<br>
+			<textarea class="form-control" rows="1" name="reviewerComment" id="reviewerComment"  readonly>
+<c:out value="${PaperReview.review}"/>
+			</textarea>
+			<br/>
 			
 			<hr/>
 		

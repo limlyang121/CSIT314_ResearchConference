@@ -21,9 +21,12 @@
 
 		<br>
 		
-		<label>description</label>
+		<label for="description">description</label>
 		<br>
-		<input style="height:200px;font-size:14pt;" type="text" name="description" id="description" value="<c:out value='${userProfile.description}' />">
+		<textarea class="form-control" rows="5" name="description" id="description" >
+<c:out value='${userProfile.description}' />
+		
+		</textarea>
 		<br/>
 		<button type= "submit">Submit</button>
 		
