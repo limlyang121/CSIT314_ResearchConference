@@ -7,7 +7,7 @@
 	<form id="loginForm" action="login" method="post"  onsubmit="return loginValidationCheck();">
 	     <h2>Login</h2>
 	     <fieldset class="form-group">
-	        <label>Username</label>
+	        <label>username</label>
 	        <input type="text" class="form-control" name="username" id="username">
 	        <i class="fa-solid fa-circle-check symbol valid"></i>
 	        <i class="fa-solid fa-circle-exclamation symbol invalid"></i>

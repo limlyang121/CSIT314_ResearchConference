@@ -3,13 +3,17 @@
 <html>
 <head>
 
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<%@include file = "include/header.jsp" %>
-	
+   <style>
+  		body {background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url("img/background.jpg");
+	   		height: 100vh;
+	   		-webkit-background-size: cover;
+	   		background-size: cover;
+	   		background-position: center center;}
+   </style>
 </head>
 <body>
-
-	<%@include file = "include/navbar.jsp" %>
+	<%@include file="include/navbar.jsp" %>
 
 </body>
 </html>

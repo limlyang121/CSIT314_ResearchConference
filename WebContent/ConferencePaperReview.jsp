@@ -26,7 +26,7 @@
 			
 			<label for="reviewerComment">Reviewer Comment</label>
 			<br>
-			<textarea class="form-control" rows="1" name="reviewerComment" id="reviewerComment"  readonly>
+			<textarea class="form-control" rows="3" name="reviewerComment" id="reviewerComment"  readonly>
 <c:out value="${PaperReview.review}"/>
 			</textarea>
 			<br/>
