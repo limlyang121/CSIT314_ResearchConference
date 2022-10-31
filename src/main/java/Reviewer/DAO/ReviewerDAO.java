@@ -66,30 +66,37 @@ public class ReviewerDAO {
     
     public ArrayList<Paper> papersToReview(int reviewer_id) throws SQLException{
         ArrayList<Paper> rev = new ArrayList<Paper>();
-        
- String paperinfo = "Select paperidfk, Author, Coauthor from paperinfo where paperidfk = (Select paperidfk from reviews where rating is null and reviewer ='"+String.valueOf(reviewer_id)+"');";
+ String getPaperid =  "Select paperidfk from reviews where rating is null and reviewer ='"+String.valueOf(reviewer_id)+"';";     
+ String paperinfo = "Select paperidfk, Author, Coauthor from paperinfo where paperidfk = ?;";
         
         try (Connection connection = DbConnection.init();
-                Statement statement1 = connection.createStatement();){
+                Statement statement2 = connection.createStatement();){
             
-            ResultSet paper = statement1.executeQuery(paperinfo);
-            while(paper.next()) {
-                String papername = "Select paperName from paper where paper_id = '"+paper.getInt("paperidfk")+"';";
-                String authorname = "Select fullname from author where id = '"+paper.getInt("Author")+"';";
-                String coauthorname = "Select fullname from author where id = '"+paper.getInt("Coauthor")+"';";
-                
-                Statement statement2 = connection.createStatement();
-                Statement statement3 = connection.createStatement();
-                Statement statement4 = connection.createStatement();
-                
-                ResultSet paper_name = statement2.executeQuery(papername);
-                paper_name.next();
-                ResultSet author_name = statement3.executeQuery(authorname);
-                author_name.next();
-                ResultSet coauthor_name = statement4.executeQuery(coauthorname);
-                coauthor_name.next();
-                
-                rev.add(new Paper(paper.getInt("paperidfk"),  paper_name.getString("paperName"), author_name.getString("fullname"),  coauthor_name.getString("fullname")));
+            ResultSet paperid = statement2.executeQuery(getPaperid);
+            
+            while(paperid.next()) {
+                PreparedStatement preparedStatement = connection.prepareStatement(paperinfo);
+                preparedStatement.setInt(1, paperid.getInt("paperidfk"));
+                ResultSet paper = preparedStatement.executeQuery();
+                while(paper.next()) {
+                    String papername = "Select paperName from paper where paper_id = '"+paper.getInt("paperidfk")+"';";
+                    String authorname = "Select fullname from author where id = '"+paper.getInt("Author")+"';";
+                    String coauthorname = "Select fullname from author where id = '"+paper.getInt("Coauthor")+"';";
+                    
+                    Statement statement3 = connection.createStatement();
+                    Statement statement4 = connection.createStatement();
+                    Statement statement5 = connection.createStatement();
+                    
+                    ResultSet paper_name = statement3.executeQuery(papername);
+                    paper_name.next();
+                    ResultSet author_name = statement4.executeQuery(authorname);
+                    author_name.next();
+                    ResultSet coauthor_name = statement5.executeQuery(coauthorname);
+                    coauthor_name.next();
+                    
+                    rev.add(new Paper(paper.getInt("paperidfk"),  paper_name.getString("paperName"), author_name.getString("fullname"),  coauthor_name.getString("fullname")));
+            }
+           
                 
             }
         }
