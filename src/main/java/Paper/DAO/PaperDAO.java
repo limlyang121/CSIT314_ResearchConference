@@ -16,6 +16,42 @@ import Paper.Entity.*;
 
 public class PaperDAO{
     
+    public ArrayList<Paper> getAllPapers(){
+        ArrayList<Paper> temp = new ArrayList<Paper>();
+        String getAllPapers = "select * from paper inner join paperinfo on paper.paper_id = paperinfo.paperidfk "
+                + "inner join author on paperinfo.Author = author.id ;";
+        
+        try(Connection connection = DbConnection.init();
+                
+                PreparedStatement preparedStatement = connection.prepareStatement(getAllPapers))
+        {
+            
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            
+            while (rs.next()) {
+                int authorID = rs.getInt("paperinfo.Author");
+                User tempAuthor = new User().getInfoByID(authorID, "author");
+                
+                int paperID = rs.getInt("paperinfo.paper_id");
+                String papername = rs.getString("papername");
+                String authorName = rs.getString("author.fullname");
+                String paperStatus = rs.getString("paper.status"); 
+                
+                Paper tempPaper = new Paper(papername ,paperID, authorName, paperStatus);
+                temp.add(tempPaper);
+                
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+        
+        return temp;
+        
+        
+    }
+    
     public boolean createSubmission(String filename, ArrayList<String>authors, InputStream inputStream ) {
         int rs = 0;
         int result = 0;
@@ -266,12 +302,9 @@ public class PaperDAO{
                 
                 temp = new Paper(paperID, papername,status, authorName, coAuthorName, authorUserName);
                 
-                
-                
-                
-                
             }
         }catch (SQLException e) {
+            e.printStackTrace();
             return null;
         }
         

@@ -3,11 +3,12 @@ package Review.Entity;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import Bid.Entity.Bid;
 import Review.DAO.ReviewDAO;
 
 public class Review{
     int reviewid;
-    int bidid;
+    Bid bidfk;
     int paperid;
     int rating;
     int authorid;
@@ -22,14 +23,20 @@ public class Review{
     
     
     
-    public Review(int reviewid, int bidid) {
+    public Review(int reviewid, Bid bidfk) {
         super();
         this.reviewid = reviewid;
-        this.bidid = bidid;
+        this.bidfk = bidfk;
         revDAO = new ReviewDAO();
     }
 
-
+    public Review(int reviewid, Bid bidfk, int rating, String review) {
+        this.reviewid = reviewid;
+        this.bidfk = bidfk;
+        this.rating = rating;
+        this.review = review;
+        revDAO = new ReviewDAO();
+    }
 
     public Review(String review, int rating) {
         this.review = review;
@@ -62,6 +69,10 @@ public class Review{
     
     public ArrayList<Review> showReviewsforAuthor(int userid){
         return revDAO.showReviewsforAuthor(userid);
+    }
+    
+    public ArrayList<Review> getAllPaperReview(int paperID){
+        return revDAO.getAllPaperReview(paperID);
     }
     
     public boolean editReview(int reviewid, String reviewcontent, int rating) {
@@ -123,13 +134,18 @@ public class Review{
         return reviewername;
     }
 
-    public int getBidid() {
-        return bidid;
+
+
+    public Bid getBidfk() {
+        return bidfk;
     }
 
-    public void setBidid(int bidid) {
-        this.bidid = bidid;
+
+
+    public void setBidfk(Bid bidfk) {
+        this.bidfk = bidfk;
     }
     
     
+
 }

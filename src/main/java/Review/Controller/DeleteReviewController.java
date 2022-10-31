@@ -36,7 +36,7 @@ public class DeleteReviewController extends HttpServlet{
         boolean result = rev.deleteReview(revid);
         if(result){
             rev = rev.getReviewInfoByID(revid);
-            new Bid().updateBidStatus(rev.getBidid(), "allocated");
+            new Bid().updateBidStatus(rev.getBidfk().getBid_id(), "allocated");
             session.setAttribute("message", "Successfully Deleted");
             response.sendRedirect("ShowmyReviews?userid="+userid);
         }

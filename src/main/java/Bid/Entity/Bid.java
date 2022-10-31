@@ -22,8 +22,12 @@ public class Bid{
         dao = new BidDAO();
     }
     
-    
-    
+    public Bid(int bid_id) {
+        super();
+        this.bid_id = bid_id;
+        dao = new BidDAO();
+    }
+
     public Bid(int bid_id, int paper_id, int reviewer_id) {
         super();
         this.bid_id = bid_id;
