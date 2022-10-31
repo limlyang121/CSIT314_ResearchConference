@@ -49,11 +49,17 @@
 							
 					</td>
 					<td>
-						
-						<a href="<%=request.getContextPath()%>/PaperReview?paperID=<c:out value = '${paperInfo.id}'  />" >
+						<c:if test="${paperInfo.status == 'Pending'}"> 
+							<a href="<%=request.getContextPath()%>/PaperReview?paperID=<c:out value = '${paperInfo.id}'  />" >
 							Rate Paper
 						</a>
-						
+						</c:if>
+						<c:if test="${paperInfo.status != 'Pending'}"> 
+							<a href="<%=request.getContextPath()%>/PaperReview?paperID=<c:out value = '${paperInfo.id}'  />" >
+							Update Paper Status
+						</a>
+						</c:if>
+					
 					</td>
 				
 				</tr>

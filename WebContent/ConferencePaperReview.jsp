@@ -39,7 +39,6 @@
 			<br>
 			<select id ="ratePaper"  name ="ratePaper">
 				<option value = "Accept" >Accept</option>
-				<option value = "Pending" >Pending</option>
 				<option value = "Reject" >Reject</option>
 			
 			</select>
