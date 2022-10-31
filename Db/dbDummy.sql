@@ -270,7 +270,7 @@ INSERT INTO `reviewer` (`username`,`fullname`, `password`, `email` , `profileID`
 ('reviewer96', 'Reviewer96', 'reviewer96', 'reviewer96@asda.com', 2, 2),
 ('reviewer97', 'Reviewer97', 'reviewer97', 'reviewer97@asda.com', 2, 1),
 ('reviewer98', 'Reviewer98', 'reviewer98', 'reviewer98@asda.com', 2, 2),
-('reviewer99', 'Reviewer99', 'reviewer99', 'reviewer99@asda.com', 2  3);
+('reviewer99', 'Reviewer99', 'reviewer99', 'reviewer99@asda.com', 2, 3);
 
 INSERT INTO `conference` (`username`,`fullname`, `password`, `email` , `profileID`) VALUES
 ('conference', 'Conference', 'conference', 'conference3@asda.com', 3),
