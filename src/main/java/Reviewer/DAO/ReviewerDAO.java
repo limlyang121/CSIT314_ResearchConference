@@ -16,7 +16,9 @@ public class ReviewerDAO {
     
     public boolean checkReviewerReachMaxPaper(int reviewerID) {
         String checkReviewerMaxPaper = "select * from reviewer "
-                + "inner join reviews on reviewer.id = reviews.reviewer where reviewer.id = ?;";
+                + "inner join reviews on reviewer.id = reviews.reviewer "
+                + "inner join bid on bid.bid_id = reviews.bid_id "
+                + "where reviewer.id = ? and bid.allocateStatus = 'allocated' ;";
         try(Connection connection = DbConnection.init();
                 
                 PreparedStatement preparedStatement = connection.prepareStatement(checkReviewerMaxPaper))

@@ -23,8 +23,9 @@ public class AllocatePaperController extends HttpServlet {
     protected void AllocatePaper(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Review tempReview = new Review();
+        
         Reviewer tempReviewer = new Reviewer();
+        Review tempReview = new Review();
         int bidID = Integer.parseInt(request.getParameter("bidID"));
         
         Bid temp = new Bid().getBidInfoByID(bidID);
