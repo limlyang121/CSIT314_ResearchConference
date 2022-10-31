@@ -22,19 +22,18 @@ public class LoginController extends HttpServlet{
 		loginUser(request, response);
 	}
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
-        
-	    
-	}
-	
+//	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
+//	    loginProfile(request, response);
+//	    
+//	}
+//	
 //	protected void loginProfile(HttpServletRequest request, HttpServletResponse response)
 //            throws ServletException, IOException {
 //        
 //        try {
-//            SystemAdmin temp = new SystemAdmin();
-//            List<User> userProf = temp.viewAllProfile();
+//            List<User> userProf = SystemAdmin.getAllProfile();
 //            request.setAttribute("userProfileList", userProf);
-//            RequestDispatcher dis = request.getRequestDispatcher("/UserProfilePage.jsp");
+//            RequestDispatcher dis = request.getRequestDispatcher("/index.jsp");
 //            dis.forward(request, response);
 //        }catch (Exception ex) {
 //            log(ex.toString());

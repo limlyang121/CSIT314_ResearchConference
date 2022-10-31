@@ -52,7 +52,7 @@ public class AddNewUserProfileController extends HttpServlet{
         
         if (temp.insertNewProfile(profilename, description)) {
             session.setAttribute("message", "Successfully create a Profile");
-            response.sendRedirect("HomePage.jsp");
+            response.sendRedirect("viewUserProfile");
         }else {
             session.setAttribute("message", "Failed to create a Profile");
             response.sendRedirect("HomePageAdmin.jsp");

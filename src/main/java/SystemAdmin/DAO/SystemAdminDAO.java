@@ -18,6 +18,46 @@ import dbconnection.DbConnection;
 
 public class SystemAdminDAO {  
     
+    public ArrayList<User> searchUserByUserName(String userName){
+        ArrayList<User> tempUser = new ArrayList<User>();
+        List<User> tempProfile = getAllProfile();
+        for (int i = 0 ; i < tempProfile.size(); i++) {
+            String searchUserByUserName = "select * from " + tempProfile.get(i).getProfileName() + ""
+                    + " inner join userprofile on " + tempProfile.get(i).getProfileName() + ".profileID =  userprofile.profileID "
+                            + "where username = ?";
+            
+            try(Connection connection = DbConnection.init();
+                    PreparedStatement preparedStatement = connection.prepareStatement(searchUserByUserName))
+            {
+                preparedStatement.setString(1, userName);
+                ResultSet rs = preparedStatement.executeQuery();
+                while (rs.next()) {
+                    User temp ;
+                    int id = rs.getInt("id");
+                    String username = rs.getString("username");
+                    String password = rs.getString("password");
+                    String email = rs.getString("email");
+                    String name = rs.getString("fullname");
+                    int profileID = Integer.parseInt(rs.getString("profileID"));
+                    String profileName = rs.getString("profileName");
+                    String desc = rs.getString("description");
+                            
+                    temp = new User(id,username, name, password, email, profileID, profileName, desc);
+                    
+                    tempUser.add(temp);
+                }
+            }catch (SQLException e) {
+                printSQLException (e);
+                
+                return null;
+            }
+    
+        
+        }
+        return tempUser;
+        
+    }
+    
     public void insertNewProfile(String profileName, String description)throws SQLException   {
            String insert_new_profile = "insert into userprofile (`profilename`, `description`) VALUES"
                    + " (?, ?)";

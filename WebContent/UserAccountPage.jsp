@@ -12,7 +12,7 @@
 
 	<form action = "searchUserAccount" method = "post">
 		<label>Search </label>
-		<input name = "searchbox" id = "searchbox" type = "text" placeholder = "search by name" > 
+		<input name = "searchbox" id = "searchbox" type = "text" placeholder = "search by username" > 
 		<button type="submit">Find</button>
 	</form>
 

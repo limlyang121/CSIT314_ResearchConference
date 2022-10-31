@@ -3,6 +3,7 @@ package SystemAdmin.entity;
 import general.Entity.*;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import SystemAdmin.DAO.SystemAdminDAO;;
@@ -56,6 +57,15 @@ public class SystemAdmin extends User {
         }else {
             return false;
         }
+    }
+    
+    public ArrayList<User> searchUserByUserName(String userName){
+        return myDAO.searchUserByUserName(userName);
+    }
+    
+    public static List<User> getAllProfile(){
+        SystemAdminDAO temp = new SystemAdminDAO();
+        return temp.getAllProfile();
     }
     
 
