@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import Paper.DAO.PaperDAO;
 
@@ -78,6 +79,16 @@ public class Paper{
         
     }
     
+    
+    
+    public Paper(String papername, int id, String author, String status) {
+        this.papername = papername;
+        this.id = id;
+        this.author = author;
+        this.status = status;
+        paperDao = new PaperDAO();
+    }
+
     public boolean createSubmission(String filename, ArrayList<String>authors, InputStream inputStream ) {
         return paperDao.createSubmission(filename, authors, inputStream);
     }
@@ -88,6 +99,14 @@ public class Paper{
     
     public ArrayList<Paper> showAllPaperstoBid(int reviewer_id)throws SQLException{
         return paperDao.showAllPaperstoBid(reviewer_id);
+    }
+    
+    public boolean RatePaper(int paperID, String paperStatus) {
+        return paperDao.RatePaper(paperID, paperStatus);
+    }
+    
+    public ArrayList<Paper> getAllPapers(){
+        return paperDao.getAllPapers();
     }
     
     public boolean deletePaper(int id){

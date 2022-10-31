@@ -8,9 +8,38 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import Paper.Entity.Paper;
+import Reviewer.Entity.Reviewer;
 import dbconnection.DbConnection;
+import general.Entity.User;
 
 public class ReviewerDAO {
+    
+    public boolean checkReviewerReachMaxPaper(int reviewerID) {
+        String checkReviewerMaxPaper = "select * from reviewer "
+                + "inner join reviews on reviewer.id = reviews.reviewer where reviewer.id = ?;";
+        try(Connection connection = DbConnection.init();
+                
+                PreparedStatement preparedStatement = connection.prepareStatement(checkReviewerMaxPaper))
+        {
+            User temp = new User().getInfoByID(reviewerID, "reviewer");
+            preparedStatement.setInt(1, reviewerID);
+            int currentPaper = 0;
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                currentPaper++;
+            }
+            
+            if (currentPaper >= ((Reviewer)temp).getMax_no_papers()) {
+                return false;
+            }else
+                return true;
+        }catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    
     public boolean updateReviewer(int myID, String username, String password, String name ,String email,int maxPapers ,String profileName) {
         String updateMyAccount = "update "+ profileName +" set username = ?, fullname = ?, password = ?, email = ?,max_no_paper = ? where id = ?;";
         

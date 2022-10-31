@@ -3,10 +3,12 @@ package Review.Entity;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import Bid.Entity.Bid;
 import Review.DAO.ReviewDAO;
 
 public class Review{
     int reviewid;
+    Bid bidfk;
     int paperid;
     int rating;
     int authorid;
@@ -19,6 +21,23 @@ public class Review{
         revDAO = new ReviewDAO();
     }
     
+    
+    
+    public Review(int reviewid, Bid bidfk) {
+        super();
+        this.reviewid = reviewid;
+        this.bidfk = bidfk;
+        revDAO = new ReviewDAO();
+    }
+
+    public Review(int reviewid, Bid bidfk, int rating, String review) {
+        this.reviewid = reviewid;
+        this.bidfk = bidfk;
+        this.rating = rating;
+        this.review = review;
+        revDAO = new ReviewDAO();
+    }
+
     public Review(String review, int rating) {
         this.review = review;
         this.rating = rating;
@@ -52,6 +71,10 @@ public class Review{
         return revDAO.showReviewsforAuthor(userid);
     }
     
+    public ArrayList<Review> getAllPaperReview(int paperID){
+        return revDAO.getAllPaperReview(paperID);
+    }
+    
     public boolean editReview(int reviewid, String reviewcontent, int rating) {
         return revDAO.editReview(reviewid, reviewcontent, rating);
     }
@@ -64,6 +87,13 @@ public class Review{
         return revDAO.getInfoforEdit(revid);
     }
     
+    
+    public Review getReviewInfoByID(int revID) {
+        return revDAO.getReviewInfoByID(revID);
+    }
+    
+    
+    
     public boolean AllocatePaper(int bidID) {
         return revDAO.allocatePaper(bidID);
     }
@@ -72,9 +102,9 @@ public class Review{
         return revDAO.UnAllocatePaper(bidID);
     }
     
-    public boolean checkReviewerReachMaxPaper(int reviewerID) {
-        return revDAO.checkReviewerReachMaxPaper(reviewerID);
-    }
+//    public boolean checkReviewerReachMaxPaper(int reviewerID) {
+//        return revDAO.checkReviewerReachMaxPaper(reviewerID);
+//    }
     
     public int getReviewid() {
         return reviewid;
@@ -103,4 +133,19 @@ public class Review{
     public String getReviewername() {
         return reviewername;
     }
+
+
+
+    public Bid getBidfk() {
+        return bidfk;
+    }
+
+
+
+    public void setBidfk(Bid bidfk) {
+        this.bidfk = bidfk;
+    }
+    
+    
+
 }

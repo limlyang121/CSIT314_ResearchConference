@@ -19,8 +19,10 @@
 		<label>Profile Name</label>
 		<input type="text" name="profilename" id="profilename" value="<c:out value='${userProfile.profileName}' />">
 
+		<br>
 		
 		<label>description</label>
+		<br>
 		<input style="height:200px;font-size:14pt;" type="text" name="description" id="description" value="<c:out value='${userProfile.description}' />">
 		<br/>
 		<button type= "submit">Submit</button>

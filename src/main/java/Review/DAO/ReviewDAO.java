@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import Bid.Entity.Bid;
 import Reviewer.Entity.Reviewer;
@@ -60,6 +61,73 @@ public class ReviewDAO{
         
     }
     
+    public ArrayList<Review> getAllPaperReview(int paperID){
+        ArrayList<Review> allReview = new ArrayList<Review>();
+        
+        String getPaperReview = "select * from paperinfo inner join bid on paperinfo.paperidfk = bid.paperidfk "
+                + "inner join reviews on reviews.bid_id = bid.bid_id where paperinfo.paper_id = ? "
+                + "and bid.allocateStatus = 'complete' ;";
+        
+        try(Connection connection = DbConnection.init();
+                
+                PreparedStatement preparedStatement = connection.prepareStatement(getPaperReview))
+        {
+            preparedStatement.setInt(1, paperID);
+            
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            while (rs.next()) {
+                int reviewID = rs.getInt("reviews.review_id");
+                Bid tempBid = new Bid().getBidInfoByID(rs.getInt("bid.bid_id"));
+                String reviewerComment = rs.getString("reviews.reviewContent");
+                int rating = rs.getInt("reviews.rating");
+                
+                Review tempReviw = new Review(reviewID, tempBid, rating, reviewerComment);
+                
+                allReview.add(tempReviw);
+                
+                
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+        
+        if (allReview.size() != 0 )
+            return allReview;
+        else
+            return null;
+    }
+    
+    public Review getReviewInfoByID(int reviewID) {
+        Review temp = new Review();
+        String getBidInfoByID = "select * from reviews where review_id = ?;";
+        try(Connection connection = DbConnection.init();
+                
+                PreparedStatement preparedStatement = connection.prepareStatement(getBidInfoByID))
+        {
+
+            preparedStatement.setInt(1, reviewID);
+            
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            while (rs.next()) {
+                int reviewid = rs.getInt("review_id");
+                Bid tempBid = new Bid(rs.getInt("bid_id"));
+                
+                temp = new Review(reviewid, tempBid);
+                
+                
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+        
+        return temp;
+        
+    }
+    
     public boolean UnAllocatePaper(int bidID) {
         String unallocate_paper = "delete from reviews where bid_id = ?;";
         
@@ -76,30 +144,30 @@ public class ReviewDAO{
         }
     }
     
-    public boolean checkReviewerReachMaxPaper(int reviewerID) {
-        String checkReviewerMaxPaper = "select * from reviewer "
-                + "inner join reviews on reviewer.id = reviews.reviewer where reviewer.id = ?;";
-        try(Connection connection = DbConnection.init();
-                
-                PreparedStatement preparedStatement = connection.prepareStatement(checkReviewerMaxPaper))
-        {
-            User temp = new User().getInfoByID(reviewerID, "reviewer");
-            preparedStatement.setInt(1, reviewerID);
-            int currentPaper = 0;
-            ResultSet rs = preparedStatement.executeQuery();
-            while (rs.next()) {
-                currentPaper++;
-            }
-            
-            if (currentPaper >= ((Reviewer)temp).getMax_no_papers()) {
-                return false;
-            }else
-                return true;
-        }catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
+//    public boolean checkReviewerReachMaxPaper(int reviewerID) {
+//        String checkReviewerMaxPaper = "select * from reviewer "
+//                + "inner join reviews on reviewer.id = reviews.reviewer where reviewer.id = ?;";
+//        try(Connection connection = DbConnection.init();
+//                
+//                PreparedStatement preparedStatement = connection.prepareStatement(checkReviewerMaxPaper))
+//        {
+//            User temp = new User().getInfoByID(reviewerID, "reviewer");
+//            preparedStatement.setInt(1, reviewerID);
+//            int currentPaper = 0;
+//            ResultSet rs = preparedStatement.executeQuery();
+//            while (rs.next()) {
+//                currentPaper++;
+//            }
+//            
+//            if (currentPaper >= ((Reviewer)temp).getMax_no_papers()) {
+//                return false;
+//            }else
+//                return true;
+//        }catch (SQLException e) {
+//            e.printStackTrace();
+//            return false;
+//        }
+//    }
     
     
     public ArrayList<Review> showMyReviews(int userid)throws SQLException{
@@ -218,6 +286,7 @@ public class ReviewDAO{
         }
         return rev;
     }
+    
     
 }
 

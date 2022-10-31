@@ -39,3 +39,6 @@ function logout2() {
 	return confirm("Are you sure want to log out?");
 }  
 
+function confirmUserAction (message){
+	return confirm(message);
+}

@@ -9,6 +9,12 @@
 	
 	<h1>Current Bid from reviewer</h1>
 	
+	<a href = "<%=request.getContextPath()%>/autoAllocatePaper" onclick = "return confirmUserAction('Auto Allocate?');">
+		<button >
+			Auto Allocate
+		</button>
+	</a>
+	
 	<table>
 		<thead>
 			<tr>
@@ -25,7 +31,7 @@
 		</thead>
 		<tbody>
 			<c:forEach var ="bidInfo" items = "${bidInfo}">
-			<c:if test= "${bidInfo.allocateStatus != 'completed' }"> 
+			<c:if test= "${bidInfo.allocateStatus != 'complete' }"> 
 				<tr>
 					
 					<td>
@@ -55,16 +61,16 @@
 					
 					<td>
 					<c:if test = "${bidInfo.allocateStatus == 'unallocated'}">
-						<a href="allocatePaper?bidID=<c:out value = '${bidInfo.bid_id}'  />&cprofilename=<c:out value = '${user.profileName }'/> " >
+						<a href="allocatePaper?bidID=<c:out value = '${bidInfo.bid_id}'  />" >
 						Allocate
 						</a>
-						<a href="editUserAccountForm?cusername=<c:out value = '${ user.username}'  />&cprofilename=<c:out value = '${user.profileName }'/> " >
+						<a onclick = "return confirmUserAction('Are you Sure');" href="RejectBid?bidID=<c:out value = '${bidInfo.bid_id}'  />" >
 						Reject
 						</a>
 					 </c:if>
 					 
-					 <c:if test = "${bidInfo.allocateStatus == 'allocated'}">
-						<a href="unallocatePaper?bidID=<c:out value = '${bidInfo.bid_id}'  />&cprofilename=<c:out value = '${user.profileName }'/> " >
+					 <c:if test = "${bidInfo.allocateStatus == 'allocated'}" >
+						<a type= "submit" onclick = "return confirmUserAction('Are you Sure');" href="unallocatePaper?bidID=<c:out value = '${bidInfo.bid_id}'  />" >
 						UnAllocate
 						</a>
 					 </c:if>

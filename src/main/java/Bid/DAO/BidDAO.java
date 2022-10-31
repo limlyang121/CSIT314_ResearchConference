@@ -39,13 +39,50 @@ public class BidDAO{
         return true;
     }
     
+    public ArrayList<Bid> getBidThatUnallocated(){
+        String getBid = "select * from bid inner join reviewer on reviewer.id = bid.reviewName "
+                + "inner join paperinfo on paperinfo.paper_id = bid.paperidfk "
+                + "inner join author on paperinfo.Author = author.id "
+                + "where bid.allocateStatus = 'unallocated' ;";
+        ArrayList<Bid> allBid = new ArrayList<Bid>();
+        
+        try(Connection connection = DbConnection.init();
+                
+                PreparedStatement preparedStatement = connection.prepareStatement(getBid);)
+        {
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            while (rs.next()) {
+                int bidID = rs.getInt("bid_id");
+                int reviewerID = rs.getInt("reviewName");
+                int paperIDFK = rs.getInt("paperidfk");
+                String allocatedStatus = rs.getString("allocateStatus");
+                
+                //Reviewer
+                User tempReviewer = new Reviewer().getInfoByID(rs.getInt("reviewer.id"), "reviewer");
+                User tempAuthor = new Author().getInfoByID(rs.getInt("author.id"), "author");
+                
+                Paper paper = new Paper().getPaperInfoBySpecificAuthor(paperIDFK, tempAuthor.getUsername());
+                Bid temp = new Bid(bidID, paperIDFK, reviewerID, allocatedStatus, tempReviewer, paper);
+                
+                allBid.add(temp);
+            }
+            
+        }catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+        
+        
+        return allBid;
+    }
     
-    public  List<Bid> getAllBid() {
+    public  ArrayList<Bid> getAllBid() {
         
         String getBid = "select * from bid inner join reviewer on reviewer.id = bid.reviewName "
                 + "inner join paperinfo on paperinfo.paper_id = bid.paperidfk "
                 + "inner join author on paperinfo.Author = author.id ;";
-        List<Bid> allBid = new ArrayList<Bid>();
+        ArrayList<Bid> allBid = new ArrayList<Bid>();
         
         try(Connection connection = DbConnection.init();
                 
@@ -75,6 +112,23 @@ public class BidDAO{
         
         
         return allBid;
+    }
+    
+    public boolean RejectBid(int bidID) {
+        String REJECTBID = "delete from bid where bid_id = ?";
+        try(Connection connection = DbConnection.init();
+                    
+                    PreparedStatement preparedStatement = connection.prepareStatement(REJECTBID))
+        {
+            preparedStatement.setInt(1, bidID);
+            preparedStatement.executeUpdate();
+            return true;
+            
+        }catch (SQLException e ) {
+            e.printStackTrace();
+            return false;
+        }
+        
     }
     
     public void updateBidStatus(int bidID, String status) {

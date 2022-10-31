@@ -1,6 +1,7 @@
 package Review.Controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,34 +14,31 @@ import Bid.Entity.Bid;
 import Review.Entity.Review;
 import Reviewer.Entity.Reviewer;
 
-@WebServlet("/allocatePaper")
-public class AllocatePaperController extends HttpServlet {
+
+@WebServlet("/autoAllocatePaper")
+public class AutoAllocatePaperController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        AllocatePaper (request, response);
+        AutoAllocatePaper (request, response);
     }
     
-    protected void AllocatePaper(HttpServletRequest request, HttpServletResponse response)
+    
+    protected void AutoAllocatePaper(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         Review tempReview = new Review();
-        Reviewer tempReviewer = new Reviewer();
-        int bidID = Integer.parseInt(request.getParameter("bidID"));
         
-        Bid temp = new Bid().getBidInfoByID(bidID);
-
-        if (tempReviewer.checkReviewerReachMaxPaper(temp.getReviewer_id())) {
-            tempReview.AllocatePaper(bidID);
-            temp.updateBidStatus(bidID, "allocated");
-            session.setAttribute("message", "Successfully Allocated");
-            
-        }else {
-            session.setAttribute("message", "Reviewer have max paper already");
-            
+        ArrayList<Bid> temp = new Bid().getBidThatUnallocated();
+        for (int i = 0 ; i < temp.size(); i++) {
+            if (new Reviewer().checkReviewerReachMaxPaper(temp.get(i).getReviewer_id()) ) {
+                tempReview.AllocatePaper(temp.get(i).getBid_id());
+                new Bid().updateBidStatus(temp.get(i).getBid_id(), "allocated");
+            }
         }
         
+        session.setAttribute("message", "Successfully Auto Allocated");
         response.sendRedirect("conferenceBidPage");
         
-        
+
     }
 }
