@@ -29,6 +29,7 @@
     <!-- External -->
 	
 	<script src = "static/script.js" type="text/javascript" ></script>
+	<link rel="stylesheet" href="static/CSS.css" type="text/css">
 	
     <c:if test = "${message != null}">
 		<script>

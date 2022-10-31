@@ -16,6 +16,30 @@ import Paper.Entity.*;
 
 public class PaperDAO{
     
+    public boolean RatePaper(int paperID, String paperStatus) {
+        String RatePaper = "update paper set Status = ? where paper_id = ?";
+        
+        try(Connection connection = DbConnection.init();
+                
+                PreparedStatement preparedStatement = connection.prepareStatement(RatePaper))
+        {
+            
+            preparedStatement.setString(1, paperStatus);
+            preparedStatement.setInt(2, paperID);
+            
+            preparedStatement.executeUpdate();
+            
+            return true;
+            
+            
+        }catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        
+        
+    }
+    
     public ArrayList<Paper> getAllPapers(){
         ArrayList<Paper> temp = new ArrayList<Paper>();
         String getAllPapers = "select * from paper inner join paperinfo on paper.paper_id = paperinfo.paperidfk "

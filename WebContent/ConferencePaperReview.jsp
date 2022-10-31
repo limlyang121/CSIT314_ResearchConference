@@ -31,6 +31,24 @@
 		
 		</c:forEach>
 		
+		
+		<hr/>
+		
+		<form method = "post" action = "RatePaper?paperID=<c:out value = '${paperID}'/>">
+			<label>Rate Paper </label>
+			<br>
+			<select id ="ratePaper"  name ="ratePaper">
+				<option value = "Accept" >Accept</option>
+				<option value = "Pending" >Pending</option>
+				<option value = "Reject" >Reject</option>
+			
+			</select>
+			
+			<br/> <br/> <br/>
+			
+			<button id = "submitButton" type= "submit"> Rate Paper</button>
+		
+		</form>
 				
 	</c:if>
 	

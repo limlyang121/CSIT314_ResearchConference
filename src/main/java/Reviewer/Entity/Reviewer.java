@@ -29,6 +29,10 @@ public class Reviewer extends User {
         return revDAO.papersToReview(reviewer_id);
     }
     
+    public boolean checkReviewerReachMaxPaper(int reviewerID) {
+        return revDAO.checkReviewerReachMaxPaper(reviewerID);
+    }
+    
 
     public Reviewer() {
         super();

@@ -1,10 +1,4 @@
 
-
-$(document).ready(function() {
-	document.getElementById ("confirmation").addEventListener ("click", confirmUserAction, true);
-})
-
-
 function loginValidationCheck() {
     var username = document.getElementById("username");
     var password = document.getElementById("password");

@@ -1,5 +1,6 @@
 package Bid.Entity;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import Bid.DAO.*;
@@ -79,8 +80,12 @@ public class Bid{
         this.allocateStatus = allocateStatus;
     }
     
-    public List<Bid> getAllBid(){
+    public ArrayList<Bid> getAllBid(){
         return dao.getAllBid();
+    }
+    
+    public ArrayList<Bid> getBidThatUnallocated(){
+        return dao.getBidThatUnallocated();
     }
     
     public void updateBidStatus(int bidID, String status) {

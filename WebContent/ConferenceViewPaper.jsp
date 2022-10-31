@@ -37,11 +37,21 @@
 					</td>
 					
 					<td>
-						<c:out value="${paperInfo.status}" />
+						<c:if test="${paperInfo.status == 'Accept' }" > 
+							<p class="text-success"> <c:out value="${paperInfo.status}" /> </p> 
+						</c:if>
+						<c:if test="${paperInfo.status == 'Reject' }" > 
+							<p class="text-danger"> <c:out value="${paperInfo.status}" /> </p> 
+						</c:if>
+						<c:if test="${paperInfo.status == 'Pending' }" > 
+							<p class="text-dark"> <c:out value="${paperInfo.status}" /> </p> 
+						</c:if>
+							
 					</td>
 					<td>
+						
 						<a href="<%=request.getContextPath()%>/PaperReview?paperID=<c:out value = '${paperInfo.id}'  />" >
-							More Information
+							Rate Paper
 						</a>
 						
 					</td>

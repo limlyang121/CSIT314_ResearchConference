@@ -12,6 +12,7 @@ import SystemAdmin.entity.SystemAdmin;
 import general.Entity.User;
 
 import java.io.IOException;
+import java.util.List;
 
 
 @WebServlet ("/login")
@@ -20,6 +21,26 @@ public class LoginController extends HttpServlet{
 	protected void doPost (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
 		loginUser(request, response);
 	}
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
+        
+	    
+	}
+	
+//	protected void loginProfile(HttpServletRequest request, HttpServletResponse response)
+//            throws ServletException, IOException {
+//        
+//        try {
+//            SystemAdmin temp = new SystemAdmin();
+//            List<User> userProf = temp.viewAllProfile();
+//            request.setAttribute("userProfileList", userProf);
+//            RequestDispatcher dis = request.getRequestDispatcher("/UserProfilePage.jsp");
+//            dis.forward(request, response);
+//        }catch (Exception ex) {
+//            log(ex.toString());
+//        }
+//        
+//    }
 	
 	protected void loginUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		String username = request.getParameter("username");
@@ -38,19 +59,12 @@ public class LoginController extends HttpServlet{
 		    session.setAttribute("profileName", profileName);
             
 		    response.sendRedirect("HomePage.jsp");
-//            if (profileName.equalsIgnoreCase("systemadmin")) {
-//                response.sendRedirect("HomePageAdmin.jsp");
-//                
-//            }else if (profileName.equalsIgnoreCase("reviewer")) {
-//                response.sendRedirect("HomePageReviewer.jsp");
-//            }else if (profileName.equalsIgnoreCase("Conference")) {
-//                response.sendRedirect("HomePageConference.jsp");
-//            }else if (profileName.equalsIgnoreCase("Author")) {
-//                response.sendRedirect("HomePageAuthor.jsp");
-//            }
+
 		}else {
             session.setAttribute("message", "Login failed. Incorrect username or password.");
             response.sendRedirect("index.jsp");
         }	
 	}
+	
+	
 }

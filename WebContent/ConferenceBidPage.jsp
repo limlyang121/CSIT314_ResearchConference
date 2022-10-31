@@ -9,6 +9,12 @@
 	
 	<h1>Current Bid from reviewer</h1>
 	
+	<a href = "<%=request.getContextPath()%>/autoAllocatePaper" onclick = "return confirmUserAction('Auto Allocate?');">
+		<button >
+			Auto Allocate
+		</button>
+	</a>
+	
 	<table>
 		<thead>
 			<tr>
@@ -58,7 +64,7 @@
 						<a href="allocatePaper?bidID=<c:out value = '${bidInfo.bid_id}'  />" >
 						Allocate
 						</a>
-						<a href="RejectBid?bidID=<c:out value = '${bidInfo.bid_id}'  />" >
+						<a onclick = "return confirmUserAction('Are you Sure');" href="RejectBid?bidID=<c:out value = '${bidInfo.bid_id}'  />" >
 						Reject
 						</a>
 					 </c:if>
