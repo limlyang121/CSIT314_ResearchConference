@@ -3,15 +3,35 @@
 <head>
 <%@include file= "include/header.jsp" %>
 
+
 </head>
-</head>
+<style>
+
+body{
+background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url("img/background.jpg");
+height: 100vh;
+-webkit-background-size: cover;
+background-size: cover;
+background-position: center center;
+background-opacity: 0.1;
+}
+
+.main{
+	align: center;
+	width: 60%;
+	background-color: white;
+	margin: auto;
+	min-height: 100%;
+	opacity: 0.9;
+	padding: 30px;
+}
+
+</style>
 <body>
 	<%@include file = "include/navbar.jsp" %>
-
-        <h1>Your Papers</h1>
-         <div align="center">
+        <div align="center" class="main">
+   		<h1>Your Papers</h1>
         <table border="1" cellpadding="5">
-            <caption><h2>List of reviews</h2></caption>
             <tr>
             	<th>Paper ID</th>
                 <th>PaperName</th>
