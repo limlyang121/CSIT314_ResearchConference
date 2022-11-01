@@ -14,22 +14,22 @@ import javax.servlet.http.HttpSession;
 import SystemAdmin.entity.*;
 import general.Entity.User;
 
-@WebServlet (urlPatterns="/editUserProfileForm")
-public class EditUserProfileController extends HttpServlet{
+@WebServlet (urlPatterns="/updateUserProfile")
+public class UpdateProfileController extends HttpServlet{
     protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
-        editUserProfileForm(request, response);
+        updateProfileForm(request, response);
     }
     
     protected void doPost (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
         try {
-            editUserProfile(request, response);
+            updateUserProfile(request, response);
         } catch (SQLException | IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
     
-    protected void editUserProfileForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void updateProfileForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String profileName = request.getParameter("profilename");
         
         User temp = new SystemAdmin().getProfile(profileName);
@@ -38,7 +38,7 @@ public class EditUserProfileController extends HttpServlet{
         dis.forward(request, response);
     }
     
-    protected void editUserProfile(HttpServletRequest request, HttpServletResponse response)  throws SQLException, IOException {
+    protected void updateUserProfile(HttpServletRequest request, HttpServletResponse response)  throws SQLException, IOException {
         int profileID = Integer.parseInt(request.getParameter("id"));
         String profileName = request.getParameter("profilename");
         String description = request.getParameter("description");   

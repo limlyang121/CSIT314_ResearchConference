@@ -19,22 +19,22 @@ import SystemAdmin.entity.SystemAdmin;
 import general.Entity.User;
 import SystemAdmin.entity.*;
 
-@WebServlet (urlPatterns = {"/newUserForm", "/newUserAccount"})
-public class AddNewUserController extends HttpServlet{
+@WebServlet (urlPatterns = {"/createNewUserForm", "/createNewUser"})
+public class CreateNewUserController extends HttpServlet{
 	protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
-		addNewUserLoginForm(request, response);
+	    createNewUserForm(request, response);
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
 		try {
-			submitNewUser(request, response);
+		    createNewUser(request, response);
 			
 		}catch (SQLException ex) {
 			throw new ServletException(ex);
 		}
 	}
 	
-	protected void addNewUserLoginForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
+	protected void createNewUserForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
 		SystemAdmin temp = new SystemAdmin();
 	    List<User> userProf = temp.viewAllProfile();
 		request.setAttribute("userProfileList", userProf);
@@ -42,7 +42,7 @@ public class AddNewUserController extends HttpServlet{
 		dis.forward(request, response);
 	}
 	
-	protected void submitNewUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException{
+	protected void createNewUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException{
 	    String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String name = request.getParameter("name");
@@ -54,12 +54,12 @@ public class AddNewUserController extends HttpServlet{
 //		
 		HttpSession session = request.getSession();
 		
-		if (temp.InsertNewUser(username, password, name, email, profilename)) {
+		if (temp.createNewUser(username, password, name, email, profilename)) {
 		    session.setAttribute("message", "Successfully create a User");
             response.sendRedirect("viewUserAccount");
 		}else {
             session.setAttribute("message", "Fail to create User ");
-            response.sendRedirect("newUserProfileForm");
+            response.sendRedirect("createNewUserForm");
 		}
 		
 	}

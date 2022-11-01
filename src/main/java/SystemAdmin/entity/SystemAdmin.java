@@ -21,9 +21,9 @@ public class SystemAdmin extends User {
         return myDAO.updateProfile(profileID, profileName, description);
     }
     
-    public boolean insertNewProfile(String profileName, String description)throws SQLException  {
+    public boolean createNewProfile(String profileName, String description)throws SQLException  {
         if (!myDAO.userProfileExist(profileName)){
-            myDAO.insertNewProfile(profileName, description);
+            myDAO.createNewProfile(profileName, description);
             return true;
         }else {
             return false;
@@ -50,9 +50,9 @@ public class SystemAdmin extends User {
         return myDAO.readUser(userName ,profileName);
     }
     
-    public boolean InsertNewUser(String username, String passowrd, String name, String email, String profileName )throws SQLException {
+    public boolean createNewUser(String username, String passowrd, String name, String email, String profileName )throws SQLException {
         if (!myDAO.usernameExist(username, profileName)) {
-            myDAO.insertNewUser(username, passowrd, name, email, profileName);
+            myDAO.createNewUser(username, passowrd, name, email, profileName);
             return true;
         }else {
             return false;
@@ -73,12 +73,7 @@ public class SystemAdmin extends User {
         super();
         myDAO = new SystemAdminDAO();
     }
-    
-    
-    
-    
 
-    
     public SystemAdmin(int id, String username, String fullname, String password, String email, int profileID) {
         super(id, username, fullname, password, email, profileID);
         myDAO = new SystemAdminDAO();
@@ -97,15 +92,6 @@ public class SystemAdmin extends User {
         super(id, username, fullname, password, email, profileID, profileName);
         myDAO = new SystemAdminDAO();
     }
-
-    
-    
-
-    
-    
-    
-    
-
 
     
 }

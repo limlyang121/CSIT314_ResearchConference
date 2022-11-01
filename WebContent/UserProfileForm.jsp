@@ -8,10 +8,10 @@
 	<%@include file = "include/navbar.jsp" %>
 
 	<c:if test="${userProfile == null}">
-		<form id="newUserProfileForm" action = "newUserProfile" method="post"/>	
+		<form id="createNewUserProfileForm" action = "createNewUserProfileForm" method="post"/>	
 	</c:if>
 	<c:if test="${userProfile != null}">
-		<form id="editUserProfileForm" action = "editUserProfileForm" method="post"/>	
+		<form id="updateUserProfile" action = "updateUserProfile" method="post"/>	
 	</c:if>
 	
 		<input type="text" id ="id" name ="id" value="<c:out value='${userProfile.profileID}' />" hidden >
@@ -23,7 +23,7 @@
 		
 		<label for="description">description</label>
 		<br>
-		<textarea class="form-control" rows="5" name="description" id="description" >
+		<textarea class="form-control" rows="3" name="description" id="description" >
 <c:out value='${userProfile.description}' />
 		
 		</textarea>

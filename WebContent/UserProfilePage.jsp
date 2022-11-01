@@ -34,7 +34,7 @@
 					</td>
 					
 					<td>
-						<a href="<%=request.getContextPath()%>/editUserProfileForm?profilename=<c:out value = '${ user.profileName}'  />" >
+						<a href="<%=request.getContextPath()%>/updateUserProfile?profilename=<c:out value = '${ user.profileName}'  />" >
 						Edit
 						</a>
 					</td>

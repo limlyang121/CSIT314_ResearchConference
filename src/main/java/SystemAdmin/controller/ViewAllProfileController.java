@@ -8,31 +8,31 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import SystemAdmin.entity.SystemAdmin;
 import general.Entity.User;
 import SystemAdmin.entity.*;
-
 import java.io.IOException;
+
 import java.util.List;
 
 
-@WebServlet("/viewUserAccount")
+@WebServlet("/viewUserProfile")
 
-public class ViewAllUserAccountC extends HttpServlet{
+public class ViewAllProfileController extends HttpServlet{
 	protected void doGet (HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		viewAllUserController(request, response);
+		viewAllProfileController(request, response);
 	}
 	
 	
-	protected void viewAllUserController(HttpServletRequest request, HttpServletResponse response)
+	protected void viewAllProfileController(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
 		try {
-		    
 		    SystemAdmin temp = new SystemAdmin();
-			List<User> userAcc = temp.viewAllUser();
-			request.setAttribute("userAccountList", userAcc);
-			RequestDispatcher dis = request.getRequestDispatcher("/UserAccountPage.jsp");
+			List<User> userProf = temp.viewAllProfile();
+			request.setAttribute("userProfileList", userProf);
+			RequestDispatcher dis = request.getRequestDispatcher("/UserProfilePage.jsp");
 			dis.forward(request, response);
 		}catch (Exception ex) {
 			log(ex.toString());

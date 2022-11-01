@@ -17,10 +17,10 @@
                   <a class="nav-link" href="<%=request.getContextPath()%>/viewUserProfile">User Profiles</a>
                </li>
                <li>
-                  <a class="nav-link" href="<%=request.getContextPath()%>/newUserForm">Add User Accounts</a>
+                  <a class="nav-link" href="<%=request.getContextPath()%>/createNewUserForm">Add User Accounts</a>
                </li>
                <li>
-                  <a class="nav-link" href="<%=request.getContextPath()%>/newUserProfileForm" >Add New User Profile</a>
+                  <a class="nav-link" href="<%=request.getContextPath()%>/createNewUserProfileForm" >Add New User Profile</a>
                </li>
                
             </c:if>

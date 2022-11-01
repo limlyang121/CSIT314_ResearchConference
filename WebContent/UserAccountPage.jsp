@@ -44,7 +44,7 @@
 						<c:out value="${user.profileName}" />
 					</td>
 					<td>
-						<a href="editUserAccountForm?cusername=<c:out value = '${ user.username}'  />&cprofilename=<c:out value = '${user.profileName }'/> " >
+						<a href="updateUserAccount?cusername=<c:out value = '${ user.username}'  />&cprofilename=<c:out value = '${user.profileName }'/> " >
 						Update
 						</a>
 					</td>

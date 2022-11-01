@@ -27,7 +27,7 @@ public class SysAdminTest {
     public void createNewUserTest() throws SQLException {
         temp = new SystemAdmin();
         //Since already in Database
-        assertFalse("Test Create New User", temp.InsertNewUser("admin", "admin", "YAY", "admin@gmail.com", "systemadmin"));
+        assertFalse("Test Create New User", temp.createNewUser("admin", "admin", "YAY", "admin@gmail.com", "systemadmin"));
         //assertTrue("Test Create New User", temp.InsertNewUser("ONORE", "Onore", "YY", "ONORE@gmail.com", "systemadmin"));        
         
     }

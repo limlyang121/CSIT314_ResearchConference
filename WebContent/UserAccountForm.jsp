@@ -13,10 +13,10 @@
 		String clientprofilename = request.getParameter("cprofilename").toString();
 		
 	%>
-		<form id = "editUserForm" action = "editUserAccountForm?cusername=<%=clientusername %>&cprofilename=<%=clientprofilename %>" method ="post" >
+		<form id = "updateUserAccount" action = "updateUserAccount?cusername=<%=clientusername %>&cprofilename=<%=clientprofilename %>" method ="post" >
 	</c:if>
 	<c:if test="${userAccount == null}">
-		<form id="newUserForm" action = "newUserAccount" method="post"  >	
+		<form id="createNewUser" action = "createNewUser" method="post"  >	
 	</c:if>
 
 	

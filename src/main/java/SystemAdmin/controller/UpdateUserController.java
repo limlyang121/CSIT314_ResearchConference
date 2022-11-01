@@ -17,23 +17,23 @@ import general.Entity.User;
 import SystemAdmin.entity.*;
 
 
-@WebServlet (urlPatterns="/editUserAccountForm")
-public class EditUserAccountFormController extends HttpServlet{
+@WebServlet (urlPatterns="/updateUserAccount")
+public class UpdateUserController extends HttpServlet{
 	
     protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
-        editUserAccount(request, response);
+        updateUserAccountForm(request, response);
     }
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
         try {
-            updateNewUser(request, response);
+            updateUserAccount(request, response);
             
         }catch (SQLException ex) {
             throw new ServletException(ex);
         }
     }
     
-    protected void editUserAccount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
+    protected void updateUserAccountForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
         String username = request.getParameter("cusername");
         String profileName = request.getParameter("cprofilename");
         SystemAdmin tempAdmin = new SystemAdmin();
@@ -46,7 +46,7 @@ public class EditUserAccountFormController extends HttpServlet{
         
     }
     
-    protected void updateNewUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException{
+    protected void updateUserAccount(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException{
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String name = request.getParameter("name");
@@ -57,8 +57,7 @@ public class EditUserAccountFormController extends HttpServlet{
         
         
         SystemAdmin temp = new SystemAdmin();
-        
-//      
+       
         HttpSession session = request.getSession();
         
         if (temp.updateUser(username, password, name, email, profilename, oldUserName, oldprofilename)) {
@@ -68,15 +67,7 @@ public class EditUserAccountFormController extends HttpServlet{
             session.setAttribute("message", "Fail to Update User ");
             response.sendRedirect("HomePage.jsp");
         }
-//      if (userAccount.checkUserNameExist()) {
-//          session.setAttribute("message", "Fail to create User ");
-//          response.sendRedirect("newUserAccount");
-//          
-//      }else {
-//          userAccount.submitNewUser();
-//          session.setAttribute("message", "Successfully create a User");
-//          response.sendRedirect("HomePageAdmin.jsp");
-//      }
+
         
         
     }

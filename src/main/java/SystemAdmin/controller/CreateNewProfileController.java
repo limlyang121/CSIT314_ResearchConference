@@ -19,11 +19,11 @@ import SystemAdmin.entity.SystemAdmin;
 import general.Entity.User;
 import SystemAdmin.entity.*;
 
-@WebServlet (urlPatterns = {"/newUserProfileForm", "/newUserProfile"})
-public class AddNewUserProfileController extends HttpServlet{
+@WebServlet (urlPatterns = {"/createNewUserProfileForm", "/createNewUserProfile"})
+public class CreateNewProfileController extends HttpServlet{
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         try {
-            newUserProfile(request, response);
+            createNewProfile(request, response);
         } catch (SQLException | IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -32,17 +32,17 @@ public class AddNewUserProfileController extends HttpServlet{
     
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        newUserProfileForm(request,response);
+        createNewProfileForm(request,response);
     }
     
     
     
-    protected void newUserProfileForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    protected void createNewProfileForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         RequestDispatcher dis = request.getRequestDispatcher("UserProfileForm.jsp");
         dis.forward(request, response);
     }
     
-    protected void newUserProfile(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException{
+    protected void createNewProfile(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException{
         String profilename = request.getParameter("profilename");
         String description = request.getParameter("description");
         
@@ -50,12 +50,12 @@ public class AddNewUserProfileController extends HttpServlet{
         
         HttpSession session = request.getSession();
         
-        if (temp.insertNewProfile(profilename, description)) {
+        if (temp.createNewProfile(profilename, description)) {
             session.setAttribute("message", "Successfully create a Profile");
             response.sendRedirect("viewUserProfile");
         }else {
             session.setAttribute("message", "Failed to create a Profile");
-            response.sendRedirect("HomePageAdmin.jsp");
+            response.sendRedirect("viewUserProfile");
         }
         
         

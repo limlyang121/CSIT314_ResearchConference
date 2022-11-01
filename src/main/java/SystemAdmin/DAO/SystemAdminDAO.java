@@ -58,7 +58,7 @@ public class SystemAdminDAO {
         
     }
     
-    public void insertNewProfile(String profileName, String description)throws SQLException   {
+    public void createNewProfile(String profileName, String description)throws SQLException   {
            String insert_new_profile = "insert into userprofile (`profilename`, `description`) VALUES"
                    + " (?, ?)";
            try(Connection connection = DbConnection.init();
@@ -102,7 +102,7 @@ public class SystemAdminDAO {
             {
                 preparedStatement.setString(1, oldUserName);
                 preparedStatement.executeUpdate();
-                insertNewUser (username, password, name, email, profileName);
+                createNewUser (username, password, name, email, profileName);
                 return true;
             }
         }else {
@@ -257,7 +257,7 @@ public class SystemAdminDAO {
         return tempUser;
     }
     
-    public void insertNewUser(String username, String password, String name, String email, String profileName) throws SQLException {
+    public void createNewUser(String username, String password, String name, String email, String profileName) throws SQLException {
         
         final String INSERT_USEERACCOUNT = "INSERT INTO " + profileName + "(`username`,`fullname`, `password`, email , `profileID`) VALUES"
                 + "(?, ?, ?, ?, ?)";
