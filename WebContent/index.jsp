@@ -2,24 +2,27 @@
 <head>
 	<%@include file= "include/header.jsp" %>
 </head>
+<style>
+
+.main{
+	padding: 25px;
+}
+
+
+</style>
 <body>
 
 	<%@include file= "include/navbar.jsp" %>
+	<div class="main">
 	<form id="loginForm" action="login" method="post"  onsubmit="return loginValidationCheck();">
 	     <h2>Login</h2>
 	     <fieldset class="form-group">
-	        <label>username</label>
+	        <label>Username</label>
 	        <input type="text" class="form-control" name="username" id="username">
-	        <i class="fa-solid fa-circle-check symbol valid"></i>
-	        <i class="fa-solid fa-circle-exclamation symbol invalid"></i>
-	        <small>Error</small>
 	     </fieldset>
 	     <fieldset class="form-group">
 	        <label>Password</label>
 	        <input type="password" class="form-control" name="password" id="password">
-	        <i class="fa-solid fa-circle-check symbol valid"></i>
-	        <i class="fa-solid fa-circle-exclamation symbol invalid"></i>
-	        <small>Error</small>
 	     </fieldset>
 	     <label for = "profile">Choose Profile: </label>
 		 <select name = "profile" id = "profile" >
@@ -33,5 +36,6 @@
 	        <button type="submit" class="btn btn-outline-success my-2 my-sm-0 mr-3">Login</button>
 	     </div>
 	  </form>
+	  </div>
 </body>
 </html>

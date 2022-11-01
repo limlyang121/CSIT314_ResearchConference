@@ -3,10 +3,42 @@
 <head>
 <%@include file= "include/header.jsp" %>
 </head>
+
+<style>
+table, td, th, tr{
+	border: 2px solid black;
+}
+
+table{
+	margin-left: auto;
+	margin-right: auto;
+	background-color: white;
+}
+
+.main{
+	align: center;
+	width: 60%;
+	background-color: white;
+	margin: auto;
+	min-height: 100%;
+	opacity: 0.9;
+}
+
+body{
+background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url("img/background.jpg");
+height: 100vh;
+-webkit-background-size: cover;
+background-size: cover;
+background-position: center center;
+}
+
+</style>
 <body>
 	<%@include file = "include/navbar.jsp" %>
 
+	<div class="main">
 	<br/>
+	<div align="center">
 	<h1>All User Account</h1>
 	<br/>
 
@@ -15,6 +47,7 @@
 		<input name = "searchbox" id = "searchbox" type = "text" placeholder = "search by username" > 
 		<button type="submit">Find</button>
 	</form>
+	</div>
 
 
 	<table>
@@ -52,17 +85,12 @@
 						<a href="readAccountForm?username=<c:out value = '${user.username}'  />&profilename=<c:out value = '${user.profileName}'/> " >
 						View
 						</a>
-						
 					</td>
-					
-
-						
-					
-					
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
+	</div>
 	
 </body>
 </html>

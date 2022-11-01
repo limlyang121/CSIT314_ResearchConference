@@ -2,7 +2,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
    <div class="container">
-      <p class="navbar-brand" >SemiColon</p>
+      <p class="navbar-brand"></p>
       <c:if test="${sessionScope.username != null}">
          <ul class="navbar-nav">
          	<li>

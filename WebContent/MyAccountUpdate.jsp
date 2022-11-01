@@ -4,9 +4,32 @@
 	<%@include file= "include/header.jsp" %>
 
 </head>
+<style>
+
+.main{
+	align: center;
+	width: 60%;
+	background-color: white;
+	margin: auto;
+	min-height: 100%;
+	opacity: 0.9;
+	padding: 30px;
+}
+
+body{
+background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url("img/background.jpg");
+height: 100vh;
+-webkit-background-size: cover;
+background-size: cover;
+background-position: center center;
+background-opacity: 0.1;
+}
+
+</style>
 <body>
 	<%@include file = "include/navbar.jsp" %>
 
+	<div class="main">
 	<form action= "updateMyAccount?id=<c:out value ='${sessionScope.id }'/>&profileName=
 	<c:out value='${sessionScope.profileName}'/>" method = "post">
 	
@@ -37,8 +60,7 @@
 		
 		<br>
 		<button type = "submit">Submit</button>
-			
-	
 	</form>
+	</div>
 </body>
 </html>
