@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-class bidTest {
+public class bidTest {
     private Bid myBid ;
 
     @Before
@@ -26,16 +26,17 @@ class bidTest {
     public void BidPaperTest() throws SQLException {
         
         assertTrue("Bid Paper Success", myBid.bidPaper(1, 99));
-        
     }
     
     @Test
     public void RejectBidTest() throws SQLException {
         
-        
         assertTrue("Bid Paper Success", myBid.RejectBid(1));
-        
     }
+    
+    
+    
+    
     
     
 
