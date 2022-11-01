@@ -2,16 +2,35 @@
 <html>
 <head>
 <%@include file= "include/header.jsp" %>
+</head>
+<style>
 
-</head>
-</head>
+body{
+background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url("img/background.jpg");
+height: 100vh;
+-webkit-background-size: cover;
+background-size: cover;
+background-position: center center;
+background-opacity: 0.1;
+}
+
+.main{
+	align: center;
+	width: 60%;
+	background-color: white;
+	margin: auto;
+	min-height: 100%;
+	opacity: 0.9;
+	padding: 30px;
+}
+
+</style>
 <body>
 	<%@include file = "include/navbar.jsp" %>
 
-        <h1>Your Papers</h1>
-         <div align="center">
-        <table border="1" cellpadding="5">
-            <caption><h2>List of papers</h2></caption>
+         <div class="main">
+         <h1 align="center">Your Papers</h1>
+        <table border="1" cellpadding="5" align="center">
             <tr>
             	<th>ID</th>
                 <th>PaperName</th>
@@ -23,9 +42,9 @@
                 <tr>
                 	<td><c:out value="${paper.id}" /></td>
                     <td><c:out value="${paper.papername}" /></td>
-                    <td><c:out value="${paper.status}" /></td>
-                    <td><c:out value="${paper.author}" /></td>
-                    <td><c:out value="${paper.coauthor}" /></td>
+                    <td><c:out value="${paper.status}"/></td>
+                    <td><c:out value="${paper.author}"/></td>
+                    <td><c:out value="${paper.coauthor}"/></td>
             		
                     <td style="width:10%">
                     <c:choose>
