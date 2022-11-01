@@ -1,20 +1,15 @@
 package SystemAdmin.DAO;
 import java.sql.Connection;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.List;
 
-import SystemAdmin.entity.*;
-import Author.Entity.*;
-import Reviewer.Entity.*;
-import ConferenceChair.Entity.*;
-import general.Entity.*;
+import Reviewer.Entity.Reviewer;
+import SystemAdmin.entity.SystemAdmin;
 import dbconnection.DbConnection;
-
+import general.Entity.User;
 
 public class SystemAdminDAO {  
     

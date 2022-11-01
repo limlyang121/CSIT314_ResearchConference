@@ -45,6 +45,42 @@ public class SysAdminTest {
         
     }
     
+    @Test
+    public void readUser() throws SQLException {
+        User myAcc = new User(1,"admin", "AdminTest", "admin",  "adminTest@gmail.com", 1, "systemadmin");
+        User expected = temp.getMyInfo("admin", "systemadmin");
+        
+        
+        
+        assertEquals("Test if same account" , myAcc, expected);
+    }
+    
+    @Test
+    public void createNewProfile() throws SQLException {
+        
+        assertTrue("Test create new Profile", temp.createNewProfile("Test", "Test Build"));
+        
+        //Second this since profile exist
+        //assertFalse("Test create new Profile", temp.createNewProfile("Test", "Test Build"));
+        
+    }
+    
+    @Test
+    public void updateProfile() throws SQLException {
+        
+        assertTrue("Test create new Profile", temp.updateProfile(5, "TestUpdate", "Snap"));
+        
+        //Second this since profile exist
+        //assertFalse("Test create new Profile", temp.createNewProfile("Test", "Test Build"));
+        
+    }
+    
+    
+    
+    
+    
+    
+    
 
     
     

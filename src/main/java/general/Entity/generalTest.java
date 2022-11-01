@@ -41,4 +41,13 @@ public class generalTest {
         assertEquals("Test if same account" , myAcc, expected);
     }
     
+    @Test
+    public void updateMyAccountTest() {
+        
+        assertTrue ("Test Update my Account ", temp.updateMyAccount(99, "admin999", "AdminTest", "admin999", "adminTest@gmail.com", "systemadmin" ));
+
+    }
+    
+    
+    
 }

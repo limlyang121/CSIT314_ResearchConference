@@ -35,7 +35,7 @@ public class UpdateMyAccountController extends HttpServlet {
         
         request.setAttribute("myAccount", temp);
         
-        RequestDispatcher dis = request.getRequestDispatcher("myUserUpdate.jsp");
+        RequestDispatcher dis = request.getRequestDispatcher("MyAccountUpdate.jsp");
         dis.forward(request, response);
     }
     
