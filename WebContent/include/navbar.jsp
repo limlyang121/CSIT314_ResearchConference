@@ -71,7 +71,7 @@
             <li class="nav-item dropdown">
                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${username}  &nbsp; <i class="fas fa-user"> </i></a>
                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  	<a class="dropdown-item" href="<%=request.getContextPath()%>/selfUpdateForm?username=
+                  	<a class="dropdown-item" href="<%=request.getContextPath()%>/updateMyAccount?username=
 						<c:out value ='${sessionScope.username}'/>&profileName=<c:out value = '${sessionScope.profileName}'/>" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" class="btn btn-outline-success my-2 my-sm-0"> Update my Profile </a>
                		<a class="dropdown-item" id="logout_btn" href="<%=request.getContextPath()%>/logout" onclick="return logout2();" class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</a>
                   

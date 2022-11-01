@@ -15,18 +15,18 @@ import Reviewer.Entity.Reviewer;
 import SystemAdmin.entity.SystemAdmin;
 import general.Entity.User;
 
-@WebServlet (urlPatterns = {"/selfUpdateForm", "/selfUpdate"})
+@WebServlet (urlPatterns = {"/updateMyAccount"})
 public class UpdateMyAccountController extends HttpServlet {
     protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
-        selfUpdateForm (request, response);
+        updateMyAccountForm (request, response);
     }
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
-        selfUpdate(request,response);
+        updateMyAccount(request,response);
     }
     
     
-    protected void selfUpdateForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
+    protected void updateMyAccountForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
         String username = request.getParameter("username");
         String profileName = request.getParameter("profileName");
        
@@ -39,7 +39,7 @@ public class UpdateMyAccountController extends HttpServlet {
         dis.forward(request, response);
     }
     
-    protected void selfUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException   {
+    protected void updateMyAccount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException   {
         HttpSession session = request.getSession();
         String profileName = request.getParameter("profileName");
         int myID = Integer.parseInt(request.getParameter("id"));
@@ -57,7 +57,7 @@ public class UpdateMyAccountController extends HttpServlet {
             int maxPaper = Integer.parseInt(request.getParameter("maxPaper")) ;
             Reviewer tempA = new Reviewer();
             if (tempA.checkUserNameSame(username, oldUsername) || !(tempA.usernameExist(username, profileName)) )
-                success =tempA.updateMyAccountR(myID, username, password, name, email, maxPaper,profileName);
+                success = tempA.updateMyAccountR(myID, username, password, name, email, maxPaper,profileName);
 
         }else {
             temp = new User();
@@ -70,17 +70,11 @@ public class UpdateMyAccountController extends HttpServlet {
             session.setAttribute("message", "Successfully Updated");
             
             response.sendRedirect("HomePage.jsp");
-//            if (profileName.equalsIgnoreCase("conference")) {
-//                response.sendRedirect("HomePageConference.jsp");
-//            }else if (profileName.equalsIgnoreCase("Author"))
-//                response.sendRedirect("HomePageAuthor.jsp");
-//            else if (profileName.equalsIgnoreCase("Reviewer")){
-//                response.sendRedirect("HomePageReviewer.jsp");
-//            }
+
                 
         }else {
             session.setAttribute("message", "Fail to Update");
-            response.sendRedirect("selfUpdateForm?username="+oldUsername+"&profileName="+profileName);
+            response.sendRedirect("updateMyAccount?username="+oldUsername+"&profileName="+profileName);
         }
         
     }

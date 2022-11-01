@@ -1,14 +1,12 @@
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>ShowMyPaper</title>
+	<%@include file= "include/header.jsp" %>
+
 </head>
 <body>
+	<%@include file = "include/navbar.jsp" %>
+	
         <h1>Your Papers</h1>
          <div align="center">
         <table border="1" cellpadding="5">

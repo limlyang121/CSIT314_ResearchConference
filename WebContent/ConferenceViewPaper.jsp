@@ -50,12 +50,12 @@
 					</td>
 					<td>
 						<c:if test="${paperInfo.status == 'Pending'}"> 
-							<a href="<%=request.getContextPath()%>/PaperReview?paperID=<c:out value = '${paperInfo.id}'  />" >
-							Rate Paper
+							<a href="<%=request.getContextPath()%>/GetPaperReviewAndRating?paperID=<c:out value = '${paperInfo.id}'  />" >
+							Accept/Reject Paper
 						</a>
 						</c:if>
 						<c:if test="${paperInfo.status != 'Pending'}"> 
-							<a href="<%=request.getContextPath()%>/PaperReview?paperID=<c:out value = '${paperInfo.id}'  />" >
+							<a href="<%=request.getContextPath()%>/GetPaperReviewAndRating?paperID=<c:out value = '${paperInfo.id}'  />" >
 							Update Paper Status
 						</a>
 						</c:if>

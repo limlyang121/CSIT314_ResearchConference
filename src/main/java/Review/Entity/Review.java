@@ -112,10 +112,6 @@ public class Review{
         return revDAO.UnAllocatePaper(bidID);
     }
     
-//    public boolean checkReviewerReachMaxPaper(int reviewerID) {
-//        return revDAO.checkReviewerReachMaxPaper(reviewerID);
-//    }
-    
     public int getReviewid() {
         return reviewid;
     }

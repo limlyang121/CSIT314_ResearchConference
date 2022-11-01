@@ -28,7 +28,7 @@ public class RatePaperController extends HttpServlet {
         HttpSession session = request.getSession();
 
         
-        if (tempPaper.RatePaper(paperID, paperStatus)) 
+        if (tempPaper.AcceptRejectPaper(paperID, paperStatus)) 
             session.setAttribute("message", "Successfully Rate the Paper");
         else
             session.setAttribute("message", "Fail to Rate the Paper");

@@ -5,6 +5,8 @@
 
 </head>
 <body>
+	<%@include file = "include/navbar.jsp" %>
+	
         <h1>Edit Your Paper</h1>
         <form method="post" action="EditPaper">
             <table border="0">

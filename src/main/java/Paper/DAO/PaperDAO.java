@@ -16,7 +16,7 @@ import Paper.Entity.*;
 
 public class PaperDAO{
     
-    public boolean RatePaper(int paperID, String paperStatus) {
+    public boolean AcceptRejectPaper(int paperID, String paperStatus) {
         String RatePaper = "update paper set Status = ? where paper_id = ?";
         
         try(Connection connection = DbConnection.init();

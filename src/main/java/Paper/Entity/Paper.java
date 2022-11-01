@@ -101,8 +101,8 @@ public class Paper{
         return paperDao.showAllPaperstoBid(reviewer_id);
     }
     
-    public boolean RatePaper(int paperID, String paperStatus) {
-        return paperDao.RatePaper(paperID, paperStatus);
+    public boolean AcceptRejectPaper(int paperID, String paperStatus) {
+        return paperDao.AcceptRejectPaper(paperID, paperStatus);
     }
     
     public ArrayList<Paper> getAllPapers(){

@@ -12,14 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import Review.Entity.Review;
 
-@WebServlet("/PaperReview")
-public class RatePaperFromReviewController extends HttpServlet {
+@WebServlet("/GetPaperReviewAndRating")
+public class GetPaperReviewAndRatingController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RatePaperFromReview (request, response);
+        GetPaperReviewAndRating (request, response);
     }
     
-    protected void RatePaperFromReview(HttpServletRequest request, HttpServletResponse response)
+    protected void GetPaperReviewAndRating(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int paperID = Integer.parseInt(request.getParameter("paperID"));
         
