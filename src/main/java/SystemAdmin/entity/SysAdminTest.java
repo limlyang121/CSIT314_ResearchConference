@@ -58,10 +58,10 @@ public class SysAdminTest {
     @Test
     public void createNewProfile() throws SQLException {
         
-        assertTrue("Test create new Profile", temp.createNewProfile("Test", "Test Build"));
+//        assertTrue("Test create new Profile", temp.createNewProfile("Test", "Test Build"));
         
         //Second this since profile exist
-        //assertFalse("Test create new Profile", temp.createNewProfile("Test", "Test Build"));
+        assertFalse("Test create new Profile", temp.createNewProfile("Test", "Test Build"));
         
     }
     
