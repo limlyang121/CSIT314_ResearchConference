@@ -39,10 +39,11 @@ public class ReviewTest {
         assertTrue("Allocate Paper Success", myReview.UnAllocatePaper(101));
     }
     
+    
     @Test
-    public void UpdatePaper() throws SQLException {
-        
-        assertTrue("Allocate Paper Success", myReview.UnAllocatePaper(101));
+    public void SubmitReviewTest() throws SQLException {
+        myReview = new Review();
+        assertTrue("Success Submit review", myReview.submitReview("Test Review", 2, 1, 13) );
     }
 
 }
