@@ -31,7 +31,7 @@ public class bidTest {
     @Test
     public void RejectBidTest() throws SQLException {
         
-        assertTrue("Bid Paper Success", myBid.RejectBid(1));
+        assertTrue("Bid Paper Success", myBid.RejectBid(111));
     }
     
     
