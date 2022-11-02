@@ -40,7 +40,7 @@ public class SubmitPaperController extends HttpServlet{
  
             List<String> dropdown = dao.dropDownList();
             request.setAttribute("listAuthor", dropdown);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("SubmissionPaper.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("Author_SubmissionPaper.jsp");
             dispatcher.forward(request, response);
  
         } catch (SQLException e) {
@@ -57,19 +57,39 @@ public class SubmitPaperController extends HttpServlet{
         String filename = request.getParameter("fileName");
         String co_author = request.getParameter("authors");
         
-        InputStream inputStream = null; // input stream of the upload file
-         
+        HttpSession session = request.getSession();
+        
         // obtains the upload file part in this multipart request
         Part filePart = request.getPart("paper");
-        inputStream = filePart.getInputStream();
+        InputStream inputStream = filePart.getInputStream();// input stream of the upload file
+         
+        
+        /*
+        // check if filename/File is empty
+        if(filename.isEmpty()) {
+            session.setAttribute("haveEmptyField", "One of the field is empty");
+            return;
+        }
+        else {
+            
+        }
+        */
+       
+        
         ArrayList<String> authors = new ArrayList<String>();
         authors.add(co_author);
         authors.add(username);
         
         Paper paper = new Paper();
         boolean success = paper.createSubmission(filename, authors, inputStream);
+        
+        
+        
+        
        
         if(success){response.sendRedirect("ShowMyPapers?username="+username);}
+        
+       
         return;
     }
     

@@ -38,7 +38,7 @@ public class CreateNewProfileController extends HttpServlet{
     
     
     protected void createNewProfileForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        RequestDispatcher dis = request.getRequestDispatcher("UserProfileForm.jsp");
+        RequestDispatcher dis = request.getRequestDispatcher("SysAdmin_UserProfileForm.jsp");
         dis.forward(request, response);
     }
     

@@ -34,7 +34,7 @@ public class UpdateProfileController extends HttpServlet{
         
         User temp = new SystemAdmin().getProfile(profileName);
         request.setAttribute("userProfile", temp);
-        RequestDispatcher dis = request.getRequestDispatcher("UserProfileForm.jsp");
+        RequestDispatcher dis = request.getRequestDispatcher("SysAdmin_UserProfileForm.jsp");
         dis.forward(request, response);
     }
     
