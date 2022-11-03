@@ -24,8 +24,9 @@ public class viewAllBidController extends HttpServlet{
         Bid temp = new Bid();
         List<Bid> tempList = temp.getAllBid();
         request.setAttribute("bidInfo", tempList);
+        System.out.println(tempList.size());
         
-        RequestDispatcher dis = request.getRequestDispatcher("ConferenceBidPage.jsp");
+        RequestDispatcher dis = request.getRequestDispatcher("ConferenceChair_BidPage.jsp");
         dis.forward(request, response);
     }
 }

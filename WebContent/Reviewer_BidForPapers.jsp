@@ -4,9 +4,41 @@
 	<%@include file= "include/header.jsp" %>
 
 </head>
+<style>
+table, td, th, tr{
+	border: 2px solid black;
+}
+
+table{
+	margin-left: auto;
+	margin-right: auto;
+	background-color: white;
+	td  : {text-align: center;};
+
+}
+
+.main{
+	align: center;
+	width: 80%;
+	background-color: white;
+	margin: auto;
+	min-height: 100%;
+	opacity: 0.9;
+}
+
+body{
+background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url("img/background.jpg");
+height: 100vh;
+-webkit-background-size: cover;
+background-size: cover;
+background-position: center center;
+}
+
+</style>
 <body>
 	<%@include file = "include/navbar.jsp" %>
 	
+		<div class="main">
         <h1>Your Papers</h1>
          <div align="center">
         <table border="1" cellpadding="5">
@@ -41,6 +73,7 @@
                 </tr>
             </c:forEach>
         </table>
+    </div>
     </div>
 
 </body>

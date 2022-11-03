@@ -4,16 +4,54 @@
 	<%@include file= "include/header.jsp" %>
 
 </head>
+<style>
+
+body{
+background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url("img/background.jpg");
+height: 100vh;
+-webkit-background-size: cover;
+background-size: cover;
+background-position: center center;
+background-opacity: 0.1;
+}
+
+.main{
+	align: center;
+	width: 60%;
+	background-color: white;
+	margin: auto;
+	min-height: 100%;
+	opacity: 0.9;
+	padding: 30px;
+}
+
+table, td, th, tr{
+	border: 2px solid black;
+}
+
+table{
+	margin-left: auto;
+	margin-right: auto;
+	background-color: white;
+	td  : {text-align: center;};
+
+}
+
+
+</style>
 <body>
 	<%@include file = "include/navbar.jsp" %>
 	
-	<h1>Current Bid from reviewer</h1>
+	<div class="main">
+	<h1 align="center">Current Bid from reviewer</h1>
 	
+	<div align="center">
 	<a href = "<%=request.getContextPath()%>/autoAllocatePaper" onclick = "return confirmUserAction('Auto Allocate?');">
 		<button >
 			Auto Allocate
 		</button>
 	</a>
+	</div>
 	
 	<table>
 		<thead>
@@ -24,14 +62,12 @@
 				<th>AuthorName </th>
 				<th>CoAuthor </th>
 				<th> </th>
-				
-
 			</tr>
 
 		</thead>
 		<tbody>
 			<c:forEach var ="bidInfo" items = "${bidInfo}">
-			<c:if test= "${bidInfo.allocateStatus != 'complete' }"> 
+			<c:if test= "${bidInfo.allocateStatus != 'completed' }"> 
 				<tr>
 					
 					<td>
@@ -83,6 +119,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	</div>
 	
 </body>
 </html>
