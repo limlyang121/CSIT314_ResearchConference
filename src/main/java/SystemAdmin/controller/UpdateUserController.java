@@ -41,7 +41,7 @@ public class UpdateUserController extends HttpServlet{
         request.setAttribute("userAccount", temp);
         List<User> userProf = tempAdmin.viewAllProfile();
         request.setAttribute("userProfileList", userProf);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("UserAccountForm.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("SysAdmin_UserAccountForm.jsp");
         dispatcher.forward(request, response);
         
     }

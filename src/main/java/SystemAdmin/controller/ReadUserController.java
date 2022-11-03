@@ -31,7 +31,7 @@ public class ReadUserController extends HttpServlet{
             log("PROFILE " + profileName);
             User temp = new SystemAdmin().readUser(username, profileName);
             request.setAttribute("userAccount", temp);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("UserAccountRead.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("SysAdmin_UserAccountRead.jsp");
             dispatcher.forward(request, response);
         
         }catch (Exception e) {

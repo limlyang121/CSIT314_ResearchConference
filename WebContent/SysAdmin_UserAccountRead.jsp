@@ -4,13 +4,32 @@
 <head>
 <%@include file= "include/header.jsp" %>
 </head>
+<style>
+.main{
+	align: center;
+	width: 60%;
+	background-color: white;
+	margin: auto;
+	min-height: 100%;
+	opacity: 0.9;
+	padding: 30px;
+}
+
+body{
+background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url("img/background.jpg");
+height: 100vh;
+-webkit-background-size: cover;
+background-size: cover;
+background-position: center center;
+}
+
+</style>
 <body>
 	<%@include file = "include/navbar.jsp" %>
 
 	
+	<div class="main">
 	<br/>
-
-
 		<label>Fullname</label>
 		<input type="text" name="name" id="name" value="<c:out value='${userAccount.fullname}' />" readonly>
 		
@@ -23,13 +42,13 @@
 		<br/>
 		
 		
-		<label>email</label>
+		<label>E-mail</label>
 		<input type="text" name="email" id="email" value="<c:out value='${userAccount.email}' />" readonly>
 
 		<br/>
 		
 		<br/>
-		<label>password</label>
+		<label>Password</label>
 		<input type="password" name="password" id="password" value="<c:out value='${userAccount.password}' />" readonly >
 		
 		<br/>
@@ -41,6 +60,7 @@
 		
        
        <br/>
+       </div>
 		
 </body>
 </html>
