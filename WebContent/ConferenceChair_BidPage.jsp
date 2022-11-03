@@ -67,7 +67,7 @@ table{
 		</thead>
 		<tbody>
 			<c:forEach var ="bidInfo" items = "${bidInfo}">
-			<c:if test= "${bidInfo.allocateStatus != 'completed' }"> 
+			<c:if test= "${bidInfo.allocateStatus != 'complete' }"> 
 				<tr>
 					
 					<td>
