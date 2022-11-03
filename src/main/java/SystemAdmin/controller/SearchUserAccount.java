@@ -28,7 +28,7 @@ public class SearchUserAccount extends HttpServlet{
 //			
 			ArrayList<User> userAcc = new SystemAdmin().searchUserByUserName(name);
 			request.setAttribute("userAccountList", userAcc);
-			RequestDispatcher dis = request.getRequestDispatcher("/UserAccountPage.jsp");
+			RequestDispatcher dis = request.getRequestDispatcher("/SysAdmin_UserAccountPage.jsp");
 			dis.forward(request, response);
 		}catch (Exception ex) {
 			ex.printStackTrace();
