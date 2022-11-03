@@ -40,7 +40,7 @@ public class BidController extends HttpServlet{
         }
         
         else {
-            session.setAttribute("message", "Bid sent");
+            session.setAttribute("message", "Bid Failed to sent");
             response.sendRedirect("ShowAllPaperstoBid?userid="+String.valueOf(userid));
             
         }

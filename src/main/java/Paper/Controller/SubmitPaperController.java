@@ -76,16 +76,19 @@ public class SubmitPaperController extends HttpServlet{
         
         Paper paper = new Paper();
         boolean success = paper.createSubmission(filename, authors, inputStream);
-        
-        
-        
-        
        
-        if(success){response.sendRedirect("ShowMyPapers?username="+username);}
+        if(success){
+            
+            session.setAttribute("message", "Successfully submitted");
+            response.sendRedirect("ShowMyPapers?username="+username);
+        }
         
+        else {
+            session.setAttribute("message", "Submission Failed");
+            response.sendRedirect("ShowMyPapers?username="+username);
+            
+        }
        
-        return;
     }
-    
- 
+
 }

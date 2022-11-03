@@ -1,4 +1,4 @@
-package Reviewer.Controller;
+package Paper.Controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
