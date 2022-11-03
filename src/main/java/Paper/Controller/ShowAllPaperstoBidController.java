@@ -30,16 +30,11 @@ public class ShowAllPaperstoBidController extends HttpServlet{
             throws ServletException, IOException {
         Paper paper = new Paper();
  
-        try {
-           
-            ArrayList<Paper> listPaper = paper.showAllPaperstoBid(reviewer_id);
-            request.setAttribute("listPaper", listPaper);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("BidForPapers.jsp");
-            dispatcher.forward(request, response);
+        ArrayList<Paper> listPaper = paper.showAllPaperstoBid(reviewer_id);
+        request.setAttribute("listPaper", listPaper);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("BidForPapers.jsp");
+        dispatcher.forward(request, response);
  
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new ServletException(e);
-        }
+
     }
 }

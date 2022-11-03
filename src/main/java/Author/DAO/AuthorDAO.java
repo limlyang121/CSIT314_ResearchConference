@@ -13,7 +13,7 @@ import dbconnection.DbConnection;
 
 public class AuthorDAO{
     
-    public ArrayList<String> dropdownlist() throws SQLException {
+    public ArrayList<String> dropdownlist(){
             
             ArrayList<String> listAuthor = new ArrayList<>();
              
@@ -29,7 +29,7 @@ public class AuthorDAO{
                  
             } catch (SQLException ex) {
                 ex.printStackTrace();
-                throw ex;
+                return null;
             }      
              
             return listAuthor;

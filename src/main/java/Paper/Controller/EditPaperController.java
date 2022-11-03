@@ -31,22 +31,16 @@ public class EditPaperController extends HttpServlet{
     
     private void listAuthor(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Author dao = new Author();
+        Author author = new Author();
         Paper paper = new Paper();
  
-        try {
- 
-            List<String> dropdown = dao.dropDownList();
+            List<String> dropdown = author.dropDownList();
             Paper newpaper = paper.getpaperInfo(id, username);
             request.setAttribute("listAuthor", dropdown);
             request.setAttribute("paperinfo", newpaper);
             RequestDispatcher dispatcher = request.getRequestDispatcher("EditPaper.jsp");
             dispatcher.forward(request, response);
  
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new ServletException(e);
-        }
     }
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

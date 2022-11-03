@@ -92,11 +92,11 @@ public class Paper{
         return paperDao.createSubmission(filename, authors, inputStream);
     }
     
-    public ArrayList<Paper> showMyPapers(String username)throws SQLException {
+    public ArrayList<Paper> showMyPapers(String username){
         return paperDao.showMyPapers(username);
     }
     
-    public ArrayList<Paper> showAllPaperstoBid(int reviewer_id)throws SQLException{
+    public ArrayList<Paper> showAllPaperstoBid(int reviewer_id){
         return paperDao.showAllPaperstoBid(reviewer_id);
     }
     
@@ -116,7 +116,7 @@ public class Paper{
         return paperDao.editPaper(id, papername, authors);
     }
     
-    public Paper getpaperInfo(int id, String username) throws SQLException{
+    public Paper getpaperInfo(int id, String username){
         return paperDao.getpaperInfo(id, username);
     }
     

@@ -29,16 +29,11 @@ public class ShowMyPapersController extends HttpServlet{
             throws ServletException, IOException {
         Paper paper = new Paper();
  
-        try {
-            String user = request.getParameter("username");
-            ArrayList<Paper> listPaper = paper.showMyPapers(user);
-            request.setAttribute("listPaper", listPaper);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("ShowMyPapers.jsp");
-            dispatcher.forward(request, response);
+        String user = request.getParameter("username");
+        ArrayList<Paper> listPaper = paper.showMyPapers(user);
+        request.setAttribute("listPaper", listPaper);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("ShowMyPapers.jsp");
+        dispatcher.forward(request, response);
  
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new ServletException(e);
-        }
     }
 }

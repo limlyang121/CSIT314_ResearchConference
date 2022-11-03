@@ -15,7 +15,7 @@ import general.Entity.User;
 
 public class ReviewDAO{
     
-    public boolean submitReview(String review, int rating, int paperid, int reviewerid)throws SQLException{
+    public boolean submitReview(String review, int rating, int paperid, int reviewerid){
         
         String insertreview = "Update reviews set reviewContent = ? , rating = ? where paperidfk = ? and reviewer = ?;";
         String updatebid = "Update bid set allocateStatus = ? where reviewName = ? and paperidfk = ?;";
@@ -170,7 +170,7 @@ public class ReviewDAO{
 //    }
     
     
-    public ArrayList<Review> showMyReviews(int userid)throws SQLException{
+    public ArrayList<Review> showMyReviews(int userid){
         ArrayList<Review> rev = new ArrayList<>();
         String getreview = "Select review_id, reviewContent, paperidfk, rating from reviews where reviewer = ? and reviewContent is not null;";
         String getpapername = "Select paperName from paper where paper_id = ?;";
@@ -187,8 +187,11 @@ public class ReviewDAO{
                     preparedStatement2.setInt(1, rs.getInt("paperidfk"));
                     ResultSet rs2 = preparedStatement2.executeQuery();
                     rs2.next();
-                    rev.add(new Review(rs.getInt("review_id"), rs.getInt("rating"), rs2.getString("paperName"), rs.getString("reviewContent")));
+                    rev.add(new Review(rs.getInt("paperidfk"), rs.getInt("review_id"), rs.getInt("rating"), rs2.getString("paperName"), rs.getString("reviewContent")));
                 }
+        }catch (SQLException e) {
+            e.printStackTrace();
+            return null;
         }
         return rev;
     }

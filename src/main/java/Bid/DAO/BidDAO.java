@@ -16,7 +16,7 @@ import general.Entity.User;
 
 public class BidDAO{
     
-    public boolean bidPaper(int paper_id, int reviewer_id) throws SQLException{
+    public boolean bidPaper(int paper_id, int reviewer_id){
         String bid = "Insert into bid (reviewName, paperidfk) values  (?, ?);";
         int rs = 0;
         
@@ -28,15 +28,14 @@ public class BidDAO{
             preparedStatement.setInt(1, reviewer_id);
             preparedStatement.setInt(2, paper_id);
             rs = preparedStatement.executeUpdate();
+            return true;
         }
         
         catch (SQLException ex) {
             ex.printStackTrace();
-            throw ex;
+            return false;
         }      
      
-               
-        return true;
     }
     
     public ArrayList<Bid> getBidThatUnallocated(){

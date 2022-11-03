@@ -130,7 +130,7 @@ public class PaperDAO{
     }
     
     
-    public ArrayList<Paper> showAllPaperstoBid(int reviewer_id)throws SQLException{
+    public ArrayList<Paper> showAllPaperstoBid(int reviewer_id){
         ArrayList<Paper> listPaper = new ArrayList<>();
         String paperinfo = "Select paperidfk, Author, Coauthor from paperinfo where paperidfk not in (Select paperidfk from bid where reviewName ='"+String.valueOf(reviewer_id)+"');";
         
@@ -157,6 +157,10 @@ public class PaperDAO{
                 listPaper.add(new Paper(paper.getInt("paperidfk"),  paper_name.getString("paperName"), author_name.getString("fullname"),  coauthor_name.getString("fullname")));
                 
             }
+            
+        }catch (SQLException e) {
+            e.printStackTrace();
+            return null;
         }
         return listPaper;
         
@@ -165,7 +169,7 @@ public class PaperDAO{
     
     
     
-    public ArrayList<Paper> showMyPapers(String username) throws SQLException {
+    public ArrayList<Paper> showMyPapers(String username){
             
             ArrayList<Paper> listPaper = new ArrayList<>();
              
@@ -207,7 +211,7 @@ public class PaperDAO{
                  
             } catch (SQLException ex) {
                 ex.printStackTrace();
-                throw ex;
+                return null;
             }      
              
             return listPaper;
@@ -238,8 +242,8 @@ public class PaperDAO{
             preparedStatement4.setInt(1, id);
             preparedStatement5.setInt(1, id);
            
-            rs2 = preparedStatement2.executeUpdate();
-            rs3 = preparedStatement3.executeUpdate();
+            rs2 = preparedStatement3.executeUpdate();
+            rs3 = preparedStatement2.executeUpdate();
             rs4 = preparedStatement4.executeUpdate();
             rs5 = preparedStatement5.executeUpdate();
             
@@ -337,7 +341,7 @@ public class PaperDAO{
     }
  
     
-    public Paper getpaperInfo(int id, String username) throws SQLException{
+    public Paper getpaperInfo(int id, String username){
         int rs1 = 0;
         int rs2 = 0;
         Paper paper;
@@ -365,10 +369,10 @@ public class PaperDAO{
         
         catch (SQLException ex) {
             ex.printStackTrace();
-            throw ex;
+            return null;
         }      
      
-                return paper;
+        return paper;
         
         
     }

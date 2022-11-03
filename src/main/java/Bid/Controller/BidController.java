@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Bid.Entity.Bid;
 
@@ -29,19 +30,22 @@ public class BidController extends HttpServlet{
     private void bidPaper(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Bid bid = new Bid();
- 
-        try {
+        HttpSession session = request.getSession();
+        boolean result = bid.bidPaper(paperid, userid);
+        
+        if(result){
             
-            boolean result = bid.bidPaper(paperid, userid);
-            if(result){response.sendRedirect("ShowAllPaperstoBid?userid="+String.valueOf(userid));}
-            return;
- 
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new ServletException(e);
+            session.setAttribute("message", "Bid sent");
+            response.sendRedirect("ShowAllPaperstoBid?userid="+String.valueOf(userid));
         }
+        
+        else {
+            session.setAttribute("message", "Bid sent");
+            response.sendRedirect("ShowAllPaperstoBid?userid="+String.valueOf(userid));
+            
+        }
+ 
     }
-    
     
     
 }

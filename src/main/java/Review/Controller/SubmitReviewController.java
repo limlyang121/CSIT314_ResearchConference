@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Review.Entity.Review;
 
@@ -33,19 +34,23 @@ public class SubmitReviewController extends HttpServlet{
         // gets values of text fields
         String content = request.getParameter("review");
         int rating = Integer.parseInt(request.getParameter("rating"));
-        
-        try {
-        
+        HttpSession session = request.getSession();
+      
        Review rev = new Review();
        boolean success = rev.submitReview(content, rating, paperid, userid);
        
-       if(success){response.sendRedirect("ShowOtherReviews?paperid="+String.valueOf(paperid)+"&"+"userid="+String.valueOf(userid));}
-       return;
         
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new ServletException(e);
-        }
+       if(success){
+           
+           session.setAttribute("message", "Successfully submit review");
+           response.sendRedirect("ShowOtherReviews?paperid="+String.valueOf(paperid)+"&"+"userid="+String.valueOf(userid));
+       }
+       
+       else {
+           session.setAttribute("message", "Problem submitting review");
+           response.sendRedirect("submitReview");
+           
+       }
     }
     
 }

@@ -24,7 +24,7 @@ public class Author extends User {
         return new ArrayList<String>();
     }
     
-    public ArrayList<String> dropDownList() throws SQLException{
+    public ArrayList<String> dropDownList(){
         return authorDao.dropdownlist();
     }
     

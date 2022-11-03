@@ -36,17 +36,11 @@ public class SubmitPaperController extends HttpServlet{
             throws ServletException, IOException {
         Author dao = new Author();
  
-        try {
- 
-            List<String> dropdown = dao.dropDownList();
-            request.setAttribute("listAuthor", dropdown);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("Author_SubmissionPaper.jsp");
-            dispatcher.forward(request, response);
- 
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new ServletException(e);
-        }
+        List<String> dropdown = dao.dropDownList();
+        request.setAttribute("listAuthor", dropdown);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("Author_SubmissionPaper.jsp");
+        dispatcher.forward(request, response);
+
     }
     
     @Override

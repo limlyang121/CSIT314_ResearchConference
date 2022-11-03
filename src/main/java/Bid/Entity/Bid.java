@@ -98,7 +98,7 @@ public class Bid{
     
 
 
-    public boolean bidPaper(int paper_id, int reviewer_id)throws SQLException {
+    public boolean bidPaper(int paper_id, int reviewer_id) {
         return dao.bidPaper(paper_id, reviewer_id);
     }
     

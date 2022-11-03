@@ -30,7 +30,7 @@ background-opacity: 0.1;
 	<%@include file = "include/navbar.jsp" %>
 
      	<div align="center" class="main">
-       	<h1>Your Papers</h1>
+       	<h1>Your Reviews</h1>
         <table border="1" cellpadding="5">
             <caption><h2>List of reviews</h2></caption>
             <tr>
@@ -39,24 +39,30 @@ background-opacity: 0.1;
                 <th>Review</th>
                 <th>Rating</th>
             </tr>
-            <c:forEach var="paper" items="${listPaper}">
+            <c:forEach var="review" items="${listReview}">
                 <tr>
-                	<td><c:out value="${paper.reviewid}" /></td>
-                    <td><c:out value="${paper.papername}" /></td>
-                    <td><textarea id="review" name="review" rows="4" cols="50">${paper.review}</textarea></td>
-                    <td><c:out value="${paper.rating}" /></td>
+                	<td><c:out value="${review.reviewid}" /></td>
+                    <td><c:out value="${review.papername}" /></td>
+                    <td><textarea id="review" name="review" rows="4" cols="50">${review.review}</textarea></td>
+                    <td><c:out value="${review.rating}" /></td>
    
             		
                     <td style="width:10%">
-                      <a href="editReview?reviewid=<c:out value = '${paper.reviewid}'/>&userid=<c:out value = '${sessionScope.id}'/>">
+                      <a href="editReview?reviewid=<c:out value = '${review.reviewid}'/>&userid=<c:out value = '${sessionScope.id}'/>">
 						Edit
 						</a>
         
 					</td>
 					<td style="width:10%">
 
-						<a href="deleteReview?reviewid=<c:out value = '${paper.reviewid}'/>&userid=<c:out value = '${sessionScope.id}'/> " >
+						<a href="deleteReview?reviewid=<c:out value = '${review.reviewid}'/>&userid=<c:out value = '${sessionScope.id}'/> " >
 						Delete
+						</a>
+					</td>
+					<td style="width:10%">
+
+						<a href="ShowOtherReviews?paperid=<c:out value = '${review.paperid}'/>&userid=<c:out value = '${sessionScope.id}'/> " >
+						Show other reviews
 						</a>
 					</td>
                 </tr>

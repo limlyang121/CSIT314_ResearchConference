@@ -23,27 +23,20 @@ public class ShowMyReviewsController extends HttpServlet{
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         reviewer_id = Integer.parseInt(request.getParameter("userid"));
-        listPaper(request,response);
+        listReview(request,response);
     }
     
     
-    private void listPaper(HttpServletRequest request, HttpServletResponse response)
+    private void listReview(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Review rev = new Review();
  
-        try {
-           
-            ArrayList<Review> listPaper = rev.showMyReviews(reviewer_id);
-            request.setAttribute("listPaper", listPaper);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("ShowMyReviews.jsp");
-            dispatcher.forward(request, response);
+        ArrayList<Review> listReview = rev.showMyReviews(reviewer_id);
+        request.setAttribute("listReview", listReview);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("ShowMyReviews.jsp");
+        dispatcher.forward(request, response);
  
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new ServletException(e);
-        }
     }
     
     
-    
-}
+ }
