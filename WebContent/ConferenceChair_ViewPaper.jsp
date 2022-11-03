@@ -4,33 +4,54 @@
 	<%@include file= "include/header.jsp" %>
 
 </head>
+<style>
+
+body{
+background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url("img/background.jpg");
+height: 100vh;
+-webkit-background-size: cover;
+background-size: cover;
+background-position: center center;
+background-opacity: 0.1;
+}
+
+.main{
+	align: center;
+	width: 60%;
+	background-color: white;
+	margin: auto;
+	min-height: 100%;
+	opacity: 0.9;
+	padding: 30px;
+}
+</style>
 <body>
 	<%@include file = "include/navbar.jsp" %>
 	
+	<div class="main">
+	<h1 align="center">Current Bid from reviewer</h1>
 	
-	<h1>Current Bid from reviewer</h1>
-	
+	<div align="center">
+	<a href="<%=request.getContextPath()%>/viewAllPaper?status=Pending" > <button> View Pending </button> </a>
+	<a href="<%=request.getContextPath()%>/viewAllPaper?status=Accept"> <button> View Accept </button> </a>	
+	<a href="<%=request.getContextPath()%>/viewAllPaper?status=Reject"> <button> View Reject </button> </a>
+	</div>
+	<div align = center>
+		<table border = 1 cellpadding = "10">
+			<thead>
+				<tr>
+					<th>PaperID</th>
+					<th>Paper Name</th>
+					<th>Author Name </th>
+					<th>Status </th>
+					<th>Review Status </th>
+			
+				</tr>
 
-<a href="<%=request.getContextPath()%>/viewAllPaper?status=Pending" > <button> View Pending </button> </a>
-<a href="<%=request.getContextPath()%>/viewAllPaper?status=Accept"> <button> View Accept </button> </a>	
-<a href="<%=request.getContextPath()%>/viewAllPaper?status=Reject"> <button> View Reject </button> </a>
-<div align = center>
-	<table border = 1 cellpadding = "10">
-		<thead>
-			<tr>
-				<th>PaperID</th>
-				<th>Paper Name</th>
-				<th>Author Name </th>
-				<th>Status </th>
-				<th>Review Status </th>
-				
-
-			</tr>
-
-		</thead>
+			</thead>
 		
-		<tbody> 
-			<c:forEach var ="paperInfo" items = "${paperInfo}">
+			<tbody> 
+				<c:forEach var ="paperInfo" items = "${paperInfo}">
 				<c:if test = "${param.status == null || param.status == paperInfo.status}"> 
 				<tr>
 					<td>
@@ -78,6 +99,7 @@
 		
 		</tbody>
 	</table>
+</div>
 </div>
 </body>
 </html>

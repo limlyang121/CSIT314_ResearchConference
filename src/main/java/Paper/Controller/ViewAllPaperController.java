@@ -24,7 +24,7 @@ public class ViewAllPaperController extends HttpServlet {
         Paper temp = new Paper();
         ArrayList<Paper> allPaper = temp.getAllPapers();
         request.setAttribute("paperInfo", allPaper);
-        RequestDispatcher dis = request.getRequestDispatcher("/ConferenceViewPaper.jsp");
+        RequestDispatcher dis = request.getRequestDispatcher("/ConferenceChair_ViewPaper.jsp");
         dis.forward(request, response);
         
     }

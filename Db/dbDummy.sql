@@ -466,15 +466,15 @@ INSERT INTO `author` (`username`,`fullname`, `password`, `email` , `profileID`) 
 ('author88', 'Author88', 'author88', 'author88@asda.com', 4),
 ('author89', 'Author89', 'author89', 'author89@asda.com', 4),
 ('author90', 'Author90', 'author90', 'author90@asda.com', 4),
-('author91', 'Author1', 'author1', 'author1@asda.com', 4),
-('author92', 'Author2', 'author2', 'author2@asda.com', 4),
-('author93', 'Author3', 'author3', 'author3@asda.com', 4),
-('author94', 'Author4', 'author4', 'author4@asda.com', 4),
-('author95', 'Author5', 'author5', 'author5@asda.com', 4),
-('author96', 'Author6', 'author6', 'author6@asda.com', 4),
-('author97', 'Author7', 'author7', 'author7@asda.com', 4),
-('author98', 'Author8', 'author8', 'author8@asda.com', 4),
-('author99', 'Author9', 'author9', 'author9@asda.com', 4);
+('author91', 'Author91', 'author1', 'author1@asda.com', 4),
+('author92', 'Author92', 'author2', 'author2@asda.com', 4),
+('author93', 'Author93', 'author3', 'author3@asda.com', 4),
+('author94', 'Author94', 'author4', 'author4@asda.com', 4),
+('author95', 'Author95', 'author5', 'author5@asda.com', 4),
+('author96', 'Author96', 'author6', 'author6@asda.com', 4),
+('author97', 'Author97', 'author7', 'author7@asda.com', 4),
+('author98', 'Author98', 'author8', 'author8@asda.com', 4),
+('author99', 'Author99', 'author9', 'author9@asda.com', 4);
 
 DROP TABLE IF EXISTS `paper`;
 CREATE TABLE `paper` (
