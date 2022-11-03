@@ -29,16 +29,21 @@ public class ReviewTest {
 
     @Test
     public void AllocatePaperTest() throws SQLException {
-        new Bid().bidPaper(1, 99);
         
-        
-        assertTrue("Allocate Paper Success", myReview.AllocatePaper(1) );
+        assertTrue("Allocate Paper Success", myReview.AllocatePaper(101) );
     }
     
     @Test
     public void UnAllocatePaperTest() throws SQLException {
         
-        assertTrue("Allocate Paper Success", myReview.UnAllocatePaper(1));
+        assertTrue("Allocate Paper Success", myReview.UnAllocatePaper(101));
+    }
+    
+    
+    @Test
+    public void SubmitReviewTest() throws SQLException {
+        myReview = new Review();
+        assertTrue("Success Submit review", myReview.submitReview("Test Review", 2, 1, 13) );
     }
 
 }

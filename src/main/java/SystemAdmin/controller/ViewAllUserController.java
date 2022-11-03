@@ -32,7 +32,7 @@ public class ViewAllUserController extends HttpServlet{
 		    SystemAdmin temp = new SystemAdmin();
 			List<User> userAcc = temp.viewAllUser();
 			request.setAttribute("userAccountList", userAcc);
-			RequestDispatcher dis = request.getRequestDispatcher("/UserAccountPage.jsp");
+			RequestDispatcher dis = request.getRequestDispatcher("/SysAdmin_UserAccountPage.jsp");
 			dis.forward(request, response);
 		}catch (Exception ex) {
 			log(ex.toString());

@@ -38,7 +38,7 @@ public class CreateNewUserController extends HttpServlet{
 		SystemAdmin temp = new SystemAdmin();
 	    List<User> userProf = temp.viewAllProfile();
 		request.setAttribute("userProfileList", userProf);
-		RequestDispatcher dis = request.getRequestDispatcher("UserAccountForm.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("SysAdmin_UserAccountForm.jsp");
 		dis.forward(request, response);
 	}
 	

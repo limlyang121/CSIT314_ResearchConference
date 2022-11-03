@@ -32,7 +32,7 @@ public class ViewAllProfileController extends HttpServlet{
 		    SystemAdmin temp = new SystemAdmin();
 			List<User> userProf = temp.viewAllProfile();
 			request.setAttribute("userProfileList", userProf);
-			RequestDispatcher dis = request.getRequestDispatcher("/UserProfilePage.jsp");
+			RequestDispatcher dis = request.getRequestDispatcher("/SysAdmin_UserProfilePage.jsp");
 			dis.forward(request, response);
 		}catch (Exception ex) {
 			log(ex.toString());

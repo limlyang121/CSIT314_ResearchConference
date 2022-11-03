@@ -13,13 +13,13 @@ import Paper.Entity.Paper;
 
 
 @WebServlet ("/RatePaper")
-public class RatePaperController extends HttpServlet {
+public class AcceptRejectPaperController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RatePaper (request, response);
+        AcceptRejectPaper (request, response);
     }
     
-    protected void RatePaper(HttpServletRequest request, HttpServletResponse response)
+    protected void AcceptRejectPaper(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Paper tempPaper = new Paper();
         

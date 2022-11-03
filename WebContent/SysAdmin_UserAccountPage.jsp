@@ -13,11 +13,13 @@ table{
 	margin-left: auto;
 	margin-right: auto;
 	background-color: white;
+	td  : {text-align: center;};
+
 }
 
 .main{
 	align: center;
-	width: 60%;
+	width: 80%;
 	background-color: white;
 	margin: auto;
 	min-height: 100%;
@@ -50,19 +52,19 @@ background-position: center center;
 	</div>
 
 
-	<table>
+	<table style="width:80%;height:80%;">
 		<thead>
-			<tr>
-				<th>username</th>
-				<th>password</th>
-				<th>Role </th>
+			<tr style="text-align: center">
+				<th> Username </th>
+				<th> Password</th>
+				<th> Role </th>
 				<th> </th>
 				
 
 			</tr>
 
 		</thead>
-		<tbody>
+		<tbody style="text-align: center">
 			<c:forEach var ="user" items = "${userAccountList}">
 				<tr>
 					
