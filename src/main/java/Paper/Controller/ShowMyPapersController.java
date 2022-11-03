@@ -32,7 +32,7 @@ public class ShowMyPapersController extends HttpServlet{
         String user = request.getParameter("username");
         ArrayList<Paper> listPaper = paper.showMyPapers(user);
         request.setAttribute("listPaper", listPaper);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("ShowMyPapers.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("Author_ShowMyPapers.jsp");
         dispatcher.forward(request, response);
  
     }
