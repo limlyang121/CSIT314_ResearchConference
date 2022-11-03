@@ -38,7 +38,7 @@ public class EditPaperController extends HttpServlet{
             Paper newpaper = paper.getpaperInfo(id, username);
             request.setAttribute("listAuthor", dropdown);
             request.setAttribute("paperinfo", newpaper);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("EditPaper.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("Author_EditPaper.jsp");
             dispatcher.forward(request, response);
  
     }
