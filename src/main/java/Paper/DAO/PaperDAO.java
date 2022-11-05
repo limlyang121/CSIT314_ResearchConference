@@ -40,7 +40,7 @@ public class PaperDAO{
         
     }
     
-    public ArrayList<Paper> getAllPapers(String Status){
+    public ArrayList<Paper> getAllPapersByStatus(String Status){
         ArrayList<Paper> temp = new ArrayList<Paper>();
         String getAllPapers = new String();
         if (Status.equalsIgnoreCase("All")) {

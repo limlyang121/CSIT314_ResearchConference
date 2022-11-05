@@ -23,7 +23,7 @@ public class ViewStatusByPaperController extends HttpServlet {
             throws ServletException, IOException {
         Paper temp = new Paper();
         String Status = request.getParameter("status");
-        ArrayList<Paper> allPaper = temp.getAllPapers(Status);
+        ArrayList<Paper> allPaper = temp.getAllPapersByStatus(Status);
         request.setAttribute("paperInfo", allPaper);
         RequestDispatcher dis = request.getRequestDispatcher("/ConferenceChair_ViewPaper.jsp");
         dis.forward(request, response);
