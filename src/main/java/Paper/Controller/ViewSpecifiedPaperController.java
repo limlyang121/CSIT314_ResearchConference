@@ -21,7 +21,7 @@ public class ViewSpecifiedPaperController {
     protected void ViewAllPaper(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Paper temp = new Paper();
-        ArrayList<Paper> allPaper = temp.getAllPapers();
+        ArrayList<Paper> allPaper = temp.getAllPapers("All");
         request.setAttribute("paperInfo", allPaper);
         RequestDispatcher dis = request.getRequestDispatcher("/ConferenceViewPaper.jsp");
         dis.forward(request, response);

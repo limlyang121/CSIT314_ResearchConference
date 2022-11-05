@@ -104,8 +104,8 @@ public class Paper{
         return paperDao.AcceptRejectPaper(paperID, paperStatus);
     }
     
-    public ArrayList<Paper> getAllPapers(){
-        return paperDao.getAllPapers();
+    public ArrayList<Paper> getAllPapers(String Status){
+        return paperDao.getAllPapers(Status);
     }
     
     public boolean deletePaper(int id){

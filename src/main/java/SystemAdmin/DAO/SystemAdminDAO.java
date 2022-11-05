@@ -53,7 +53,7 @@ public class SystemAdminDAO {
         
     }
     
-    public void createNewProfile(String profileName, String description)throws SQLException   {
+    public boolean createNewProfile(String profileName, String description){
            String insert_new_profile = "insert into userprofile (`profilename`, `description`) VALUES"
                    + " (?, ?)";
            try(Connection connection = DbConnection.init();
@@ -63,7 +63,33 @@ public class SystemAdminDAO {
                preparedStatement.setString(1, profileName);
                preparedStatement.setString(2, description);
                preparedStatement.executeUpdate();
+               createNewProfileDB(profileName);
+               return true;
+           }catch (SQLException e) {
+               e.printStackTrace();
+               return false;
            }
+    }
+    
+    public void createNewProfileDB(String profileName) {
+        String newDB = "CREATE TABLE " + profileName + " ( "
+                + "`id` int(11) primary key auto_increment,"
+                + "`username` varchar(50) not null,`fullname` varchar(50) not null,"
+                + "`password` varchar(50) not null,`email` varchar(70) not null,"
+                + "`profileID` int(11) not null,"
+                + " FOREIGN KEY fk_"+profileName+"(`profileID`) REFERENCES userprofile(profileID));"; 
+        
+        try(Connection connection = DbConnection.init();
+                
+                PreparedStatement preparedStatement = connection.prepareStatement(newDB))
+        {
+            preparedStatement.executeUpdate();
+            
+        }catch (SQLException e) {
+            e.printStackTrace();
+            
+        }
+        
     }
    
     public boolean updateProfile(int profileID,String profileName, String description){

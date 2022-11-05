@@ -29,12 +29,13 @@ background-opacity: 0.1;
 	<%@include file = "include/navbar.jsp" %>
 	
 	<div class="main">
-	<h1 align="center">Current Bid from reviewer</h1>
+	<h1 align="center">All Paper</h1>
 	
 	<div align="center">
-	<a href="<%=request.getContextPath()%>/viewAllPaper?status=Pending" > <button> View Pending </button> </a>
-	<a href="<%=request.getContextPath()%>/viewAllPaper?status=Accept"> <button> View Accept </button> </a>	
-	<a href="<%=request.getContextPath()%>/viewAllPaper?status=Reject"> <button> View Reject </button> </a>
+	<a href="<%=request.getContextPath()%>/ViewPaperByStatus?status=All" > <button> View All </button> </a>
+	<a href="<%=request.getContextPath()%>/ViewPaperByStatus?status=Pending" > <button> View Pending </button> </a>
+	<a href="<%=request.getContextPath()%>/ViewPaperByStatus?status=Accept"> <button> View Accept </button> </a>	
+	<a href="<%=request.getContextPath()%>/ViewPaperByStatus?status=Reject"> <button> View Reject </button> </a>
 	</div>
 	<div align = center>
 		<table border = 1 cellpadding = "10">
@@ -52,7 +53,7 @@ background-opacity: 0.1;
 		
 			<tbody> 
 				<c:forEach var ="paperInfo" items = "${paperInfo}">
-				<c:if test = "${param.status == null || param.status == paperInfo.status}"> 
+				<c:if test = "${param.status == 'All' || param.status == paperInfo.status}"> 
 				<tr>
 					<td>
 						<c:out value="${paperInfo.id}" />
@@ -78,12 +79,12 @@ background-opacity: 0.1;
 					</td>
 					<td>
 						<c:if test="${paperInfo.status == 'Pending'}"> 
-							<a href="<%=request.getContextPath()%>/ConferenceChair_GetPaperReviewAndRating?paperID=<c:out value = '${paperInfo.id}'  />" >
+							<a href="<%=request.getContextPath()%>/GetPaperReviewAndRating?paperID=<c:out value = '${paperInfo.id}'  />" >
 							Accept/Reject Paper
 						</a>
 						</c:if>
 						<c:if test="${paperInfo.status != 'Pending'}"> 
-							<a href="<%=request.getContextPath()%>/ConferenceChair_GetPaperReviewAndRating?paperID=<c:out value = '${paperInfo.id}'  />" >
+							<a href="<%=request.getContextPath()%>/GetPaperReviewAndRating?paperID=<c:out value = '${paperInfo.id}'  />" >
 							Update Paper Status
 						</a>
 						</c:if>

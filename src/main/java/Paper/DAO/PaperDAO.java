@@ -40,10 +40,18 @@ public class PaperDAO{
         
     }
     
-    public ArrayList<Paper> getAllPapers(){
+    public ArrayList<Paper> getAllPapers(String Status){
         ArrayList<Paper> temp = new ArrayList<Paper>();
-        String getAllPapers = "select * from paper inner join paperinfo on paper.paper_id = paperinfo.paperidfk "
-                + "inner join author on paperinfo.Author = author.id ;";
+        String getAllPapers = new String();
+        if (Status.equalsIgnoreCase("All")) {
+            getAllPapers = "select * from paper inner join paperinfo on paper.paper_id = paperinfo.paperidfk "
+                    + "inner join author on paperinfo.Author = author.id ;";            
+        }else {
+            getAllPapers = "select * from paper inner join paperinfo on paper.paper_id = paperinfo.paperidfk "
+                    + "inner join author on paperinfo.Author = author.id "
+                    + "where paper.Status = '" + Status + "' ;";                 
+        }
+
         
         try(Connection connection = DbConnection.init();
                 

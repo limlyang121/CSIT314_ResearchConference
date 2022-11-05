@@ -26,11 +26,11 @@
             </c:if>
             <c:if test="${sessionScope.profileName == 'conference'}">
                <li>
-                  <a class="nav-link" href="<%=request.getContextPath()%>/conferenceBidPage">View Current Bid</a>
+                  <a class="nav-link" href="<%=request.getContextPath()%>/conferenceBidPage">Current Bid</a>
                </li>
                
              	<li>
-               	    <a class="nav-link" href="<%=request.getContextPath()%>/viewAllPaper" > View All Paper </a>
+               	    <a class="nav-link" href="<%=request.getContextPath()%>/ViewPaperByStatus?status=All" > View Paper </a>
              	</li>
             </c:if>
             

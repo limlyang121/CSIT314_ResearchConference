@@ -26,7 +26,7 @@ public class GetPaperReviewAndRatingController extends HttpServlet {
         ArrayList<Review> paperReview = new Review().getAllPaperReview(paperID);
         request.setAttribute("PaperReview", paperReview);
         request.setAttribute("paperID", paperID);
-        RequestDispatcher dis = request.getRequestDispatcher("/ConferencePaperReview.jsp");
+        RequestDispatcher dis = request.getRequestDispatcher("/ConferenceChair_PaperReview.jsp");
         dis.forward(request, response);
         
         

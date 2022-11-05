@@ -1,4 +1,4 @@
-package ConferenceChair.Controller;
+package ConferenceChair.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;

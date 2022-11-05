@@ -12,17 +12,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import Paper.Entity.Paper;
 
-@WebServlet ("/viewAllPaper")
-public class ViewAllPaperController extends HttpServlet {
+@WebServlet ("/ViewPaperByStatus")
+public class ViewStatusByPaperController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        ViewAllPaper (request, response);
+            throws   ServletException, IOException {
+        ViewPaperByStatus (request, response);
     }
     
-    protected void ViewAllPaper(HttpServletRequest request, HttpServletResponse response)
+    protected void ViewPaperByStatus(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Paper temp = new Paper();
-        ArrayList<Paper> allPaper = temp.getAllPapers();
+        String Status = request.getParameter("status");
+        ArrayList<Paper> allPaper = temp.getAllPapers(Status);
         request.setAttribute("paperInfo", allPaper);
         RequestDispatcher dis = request.getRequestDispatcher("/ConferenceChair_ViewPaper.jsp");
         dis.forward(request, response);
