@@ -15,14 +15,14 @@ import general.Entity.User;
 @WebServlet("/readAccountForm")
 public class ReadUserController extends HttpServlet{
     protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
-        readUserInfo (request, response);
+        readUser (request, response);
     }
     
     protected void doPost (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
 //        addNewUserLoginForm(request, response);
     }
     
-    protected void readUserInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+    protected void readUser(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         try {
             String username = request.getParameter("username");
             String profileName = request.getParameter("profilename");

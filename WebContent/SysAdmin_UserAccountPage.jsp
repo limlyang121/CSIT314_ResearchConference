@@ -85,7 +85,7 @@ background-position: center center;
 					</td>
 					<td>
 						<a href="readAccountForm?username=<c:out value = '${user.username}'  />&profilename=<c:out value = '${user.profileName}'/> " >
-						View
+						Read
 						</a>
 					</td>
 				</tr>
