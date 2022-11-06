@@ -20,11 +20,11 @@ import java.util.List;
 public class ViewAllUserController extends HttpServlet{
 	protected void doGet (HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		viewAllUserController(request, response);
+			viewAllUser(request, response);
 	}
 	
 	
-	protected void viewAllUserController(HttpServletRequest request, HttpServletResponse response)
+	protected void viewAllUser(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
 		try {
