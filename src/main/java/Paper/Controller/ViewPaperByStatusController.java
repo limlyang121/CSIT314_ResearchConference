@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import Paper.Entity.Paper;
 
 @WebServlet ("/ViewPaperByStatus")
-public class ViewStatusByPaperController extends HttpServlet {
+public class ViewPaperByStatusController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws   ServletException, IOException {
         ViewPaperByStatus (request, response);
