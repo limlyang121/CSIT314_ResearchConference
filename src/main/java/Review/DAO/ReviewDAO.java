@@ -44,6 +44,11 @@ public class ReviewDAO{
     public boolean allocatePaper(int bidID) {
         String allocate_paper = "insert into reviews (`bid_id`, `paperidfk`, `reviewer`) values (?, ?, ?);";
         Bid myBid = new Bid().getBidInfoByID(bidID);
+        Reviewer tempReviewer = new Reviewer();
+        System.out.println("AAAA" + myBid.getReviewer_id());
+        if (!tempReviewer.checkReviewerReachMaxPaper(myBid.getReviewer_id()) ) {
+            return false;
+        }
         try(Connection connection = DbConnection.init();
                 
                 PreparedStatement preparedStatement = connection.prepareStatement(allocate_paper))

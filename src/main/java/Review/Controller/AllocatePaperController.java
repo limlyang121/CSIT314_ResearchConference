@@ -24,14 +24,12 @@ public class AllocatePaperController extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         
-        Reviewer tempReviewer = new Reviewer();
         Review tempReview = new Review();
         int bidID = Integer.parseInt(request.getParameter("bidID"));
         
         Bid temp = new Bid().getBidInfoByID(bidID);
 
-        if (tempReviewer.checkReviewerReachMaxPaper(temp.getReviewer_id())) {
-            tempReview.AllocatePaper(bidID);
+        if (tempReview.AllocatePaper(bidID)) {
             temp.updateBidStatus(bidID, "allocated");
             session.setAttribute("message", "Successfully Allocated");
             

@@ -22,7 +22,7 @@ public class UpdateProfileController extends HttpServlet{
     
     protected void doPost (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
         try {
-            updateUserProfile(request, response);
+            UpdateProfile(request, response);
         } catch (SQLException | IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -38,7 +38,7 @@ public class UpdateProfileController extends HttpServlet{
         dis.forward(request, response);
     }
     
-    protected void updateUserProfile(HttpServletRequest request, HttpServletResponse response)  throws SQLException, IOException {
+    protected void UpdateProfile(HttpServletRequest request, HttpServletResponse response)  throws SQLException, IOException {
         int profileID = Integer.parseInt(request.getParameter("id"));
         String profileName = request.getParameter("profilename");
         String description = request.getParameter("description");   
