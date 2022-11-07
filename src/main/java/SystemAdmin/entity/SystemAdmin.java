@@ -59,8 +59,8 @@ public class SystemAdmin extends User {
         }
     }
     
-    public ArrayList<User> searchUserByUserName(String userName){
-        return myDAO.searchUserByUserName(userName);
+    public ArrayList<User> SearchUserAccount(String userName){
+        return myDAO.SearchUserAccount(userName);
     }
     
     public static List<User> getAllProfile(){

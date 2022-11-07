@@ -14,7 +14,7 @@ import SystemAdmin.entity.*;
 import general.Entity.User;
 
 @WebServlet("/searchUserAccount")
-public class SearchUserAccount extends HttpServlet{
+public class SearchUserAccountController extends HttpServlet{
 	protected void doPost (HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		searchUserAccount(request, response);
@@ -24,9 +24,9 @@ public class SearchUserAccount extends HttpServlet{
 			throws ServletException, IOException {
 		
 		try {
-			String name = request.getParameter("searchbox");
+			String username = request.getParameter("searchbox");
 //			
-			ArrayList<User> userAcc = new SystemAdmin().searchUserByUserName(name);
+			ArrayList<User> userAcc = new SystemAdmin().SearchUserAccount(username);
 			request.setAttribute("userAccountList", userAcc);
 			RequestDispatcher dis = request.getRequestDispatcher("/SysAdmin_UserAccountPage.jsp");
 			dis.forward(request, response);

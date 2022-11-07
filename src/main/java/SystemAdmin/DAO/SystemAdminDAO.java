@@ -13,7 +13,7 @@ import general.Entity.User;
 
 public class SystemAdminDAO {  
     
-    public ArrayList<User> searchUserByUserName(String userName){
+    public ArrayList<User> SearchUserAccount(String userName){
         ArrayList<User> tempUser = new ArrayList<User>();
         List<User> tempProfile = getAllProfile();
         for (int i = 0 ; i < tempProfile.size(); i++) {

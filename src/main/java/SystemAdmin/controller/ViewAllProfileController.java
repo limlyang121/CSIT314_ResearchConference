@@ -21,11 +21,11 @@ import java.util.List;
 public class ViewAllProfileController extends HttpServlet{
 	protected void doGet (HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		viewAllProfileController(request, response);
+			viewAllProfile(request, response);
 	}
 	
 	
-	protected void viewAllProfileController(HttpServletRequest request, HttpServletResponse response)
+	protected void viewAllProfile(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
 		try {
