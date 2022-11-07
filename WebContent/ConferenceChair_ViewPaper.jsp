@@ -29,7 +29,7 @@ background-opacity: 0.1;
 	<%@include file = "include/navbar.jsp" %>
 	
 	<div class="main">
-	<h1 align="center">All Paper</h1>
+	<h1 align="center"> <c:out value = "${param.status }"> </c:out> Paper</h1>
 	
 	<div align="center">
 	<a href="<%=request.getContextPath()%>/ViewPaperByStatus?status=All" > <button> View All </button> </a>
@@ -53,7 +53,7 @@ background-opacity: 0.1;
 		
 			<tbody> 
 				<c:forEach var ="paperInfo" items = "${paperInfo}">
-				<c:if test = "${param.status == 'All' || param.status == paperInfo.status}"> 
+
 				<tr>
 					<td>
 						<c:out value="${paperInfo.id}" />
@@ -92,7 +92,6 @@ background-opacity: 0.1;
 					</td>
 				
 				</tr>
-				</c:if>
 			
 			
 			</c:forEach>

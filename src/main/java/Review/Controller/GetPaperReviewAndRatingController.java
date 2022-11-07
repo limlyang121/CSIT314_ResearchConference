@@ -23,7 +23,7 @@ public class GetPaperReviewAndRatingController extends HttpServlet {
             throws ServletException, IOException {
         int paperID = Integer.parseInt(request.getParameter("paperID"));
         
-        ArrayList<Review> paperReview = new Review().getAllPaperReview(paperID);
+        ArrayList<Review> paperReview = new Review().getPaperReview(paperID);
         request.setAttribute("PaperReview", paperReview);
         request.setAttribute("paperID", paperID);
         RequestDispatcher dis = request.getRequestDispatcher("/ConferenceChair_PaperReview.jsp");

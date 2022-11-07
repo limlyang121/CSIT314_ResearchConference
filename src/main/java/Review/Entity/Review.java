@@ -82,8 +82,8 @@ public class Review{
         return revDAO.showOtherReviews(paperid, userid);
     }
     
-    public ArrayList<Review> getAllPaperReview(int paperID){
-        return revDAO.getAllPaperReview(paperID);
+    public ArrayList<Review> getPaperReview(int paperID){
+        return revDAO.getPaperReview(paperID);
     }
     
     public boolean editReview(int reviewid, String reviewcontent, int rating) {
@@ -112,6 +112,7 @@ public class Review{
     public boolean UnAllocatePaper(int bidID) {
         return revDAO.UnAllocatePaper(bidID);
     }
+    
     
     public int getReviewid() {
         return reviewid;

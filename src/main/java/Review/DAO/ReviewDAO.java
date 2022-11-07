@@ -45,7 +45,6 @@ public class ReviewDAO{
         String allocate_paper = "insert into reviews (`bid_id`, `paperidfk`, `reviewer`) values (?, ?, ?);";
         Bid myBid = new Bid().getBidInfoByID(bidID);
         Reviewer tempReviewer = new Reviewer();
-        System.out.println("AAAA" + myBid.getReviewer_id());
         if (!tempReviewer.checkReviewerReachMaxPaper(myBid.getReviewer_id()) ) {
             return false;
         }
@@ -65,8 +64,8 @@ public class ReviewDAO{
         
         
     }
-    
-    public ArrayList<Review> getAllPaperReview(int paperID){
+  
+    public ArrayList<Review> getPaperReview(int paperID){
         ArrayList<Review> allReview = new ArrayList<Review>();
         
         String getPaperReview = "select * from paperinfo inner join bid on paperinfo.paperidfk = bid.paperidfk "
@@ -148,32 +147,6 @@ public class ReviewDAO{
             return false;
         }
     }
-    
-//    public boolean checkReviewerReachMaxPaper(int reviewerID) {
-//        String checkReviewerMaxPaper = "select * from reviewer "
-//                + "inner join reviews on reviewer.id = reviews.reviewer where reviewer.id = ?;";
-//        try(Connection connection = DbConnection.init();
-//                
-//                PreparedStatement preparedStatement = connection.prepareStatement(checkReviewerMaxPaper))
-//        {
-//            User temp = new User().getInfoByID(reviewerID, "reviewer");
-//            preparedStatement.setInt(1, reviewerID);
-//            int currentPaper = 0;
-//            ResultSet rs = preparedStatement.executeQuery();
-//            while (rs.next()) {
-//                currentPaper++;
-//            }
-//            
-//            if (currentPaper >= ((Reviewer)temp).getMax_no_papers()) {
-//                return false;
-//            }else
-//                return true;
-//        }catch (SQLException e) {
-//            e.printStackTrace();
-//            return false;
-//        }
-//    }
-    
     
     public ArrayList<Review> showMyReviews(int userid){
         ArrayList<Review> rev = new ArrayList<>();

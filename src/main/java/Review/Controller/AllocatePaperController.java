@@ -27,7 +27,7 @@ public class AllocatePaperController extends HttpServlet {
         Review tempReview = new Review();
         int bidID = Integer.parseInt(request.getParameter("bidID"));
         
-        Bid temp = new Bid().getBidInfoByID(bidID);
+        Bid temp = new Bid();
 
         if (tempReview.AllocatePaper(bidID)) {
             temp.updateBidStatus(bidID, "allocated");

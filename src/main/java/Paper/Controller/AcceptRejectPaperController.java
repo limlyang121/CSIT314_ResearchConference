@@ -34,7 +34,7 @@ public class AcceptRejectPaperController extends HttpServlet {
             session.setAttribute("message", "Fail to Rate the Paper");
             
             
-        response.sendRedirect("viewAllPaper");
+        response.sendRedirect("ViewPaperByStatus?status=All");
         
     }
 }

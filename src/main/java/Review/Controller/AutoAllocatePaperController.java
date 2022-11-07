@@ -27,11 +27,10 @@ public class AutoAllocatePaperController extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         Review tempReview = new Review();
-        
+
         ArrayList<Bid> temp = new Bid().getBidThatUnallocated();
         for (int i = 0 ; i < temp.size(); i++) {
-            if (new Reviewer().checkReviewerReachMaxPaper(temp.get(i).getReviewer_id()) ) {
-                tempReview.AllocatePaper(temp.get(i).getBid_id());
+            if (tempReview.AllocatePaper(temp.get(i).getBid_id()) ) {
                 new Bid().updateBidStatus(temp.get(i).getBid_id(), "allocated");
             }
         }

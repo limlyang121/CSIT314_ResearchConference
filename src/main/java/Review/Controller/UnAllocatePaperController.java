@@ -17,23 +17,23 @@ import Reviewer.Entity.Reviewer;
 public class UnAllocatePaperController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        AllocatePaper (request, response);
+        UnAllocatePaper (request, response);
     }
     
-    protected void AllocatePaper(HttpServletRequest request, HttpServletResponse response)
+    protected void UnAllocatePaper(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         Review tempReview = new Review();
         int bidID = Integer.parseInt(request.getParameter("bidID"));
         
-        Bid temp = new Bid().getBidInfoByID(bidID);
+        Bid temp = new Bid();
 
         if (tempReview.UnAllocatePaper(bidID)) {
             temp.updateBidStatus(bidID, "unallocated");
             session.setAttribute("message", "Successfully UnAllocate");
             response.sendRedirect("conferenceBidPage");
         }else {
-            session.setAttribute("message", "Fail to Allocate");
+            session.setAttribute("message", "Fail to Unallocate");
             response.sendRedirect("conferenceBidPage");
         }
         
