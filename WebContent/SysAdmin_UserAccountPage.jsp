@@ -66,8 +66,9 @@ background-position: center center;
 		</thead>
 		<tbody style="text-align: center">
 			<c:forEach var ="user" items = "${userAccountList}">
+				<c:if test = "${user.ID != sessionScope.id}" > 
 				<tr>
-					
+				
 					<td>
 						<c:out value="${user.username}" />
 					</td>
@@ -89,6 +90,7 @@ background-position: center center;
 						</a>
 					</td>
 				</tr>
+				</c:if>
 			</c:forEach>
 		</tbody>
 	</table>

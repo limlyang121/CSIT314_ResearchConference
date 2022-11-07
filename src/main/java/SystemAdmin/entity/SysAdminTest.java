@@ -68,7 +68,7 @@ public class SysAdminTest {
     @Test
     public void updateProfile() throws SQLException {
         
-        assertTrue("Test create new Profile", temp.updateProfile(5, "TestUpdate", "Snap"));
+        assertTrue("Test Update Profile", temp.updateProfile(5, "TestUpdate", "Snap"));
         
         //Second this since profile exist
         //assertFalse("Test create new Profile", temp.createNewProfile("Test", "Test Build"));
