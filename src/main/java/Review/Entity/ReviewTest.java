@@ -43,7 +43,19 @@ public class ReviewTest {
     @Test
     public void SubmitReviewTest() throws SQLException {
         myReview = new Review();
-        assertTrue("Success Submit review", myReview.submitReview("Test Review", 2, 1, 13) );
+        assertTrue("Success Submit review", myReview.submitReview("Test Review", 2, 1, 3) );
     }
+    
+    @Test
+    public void EditReviewTest() throws SQLException {
+        assertTrue("Success Submit review", myReview.editReview(61, "Edit Comment Test", 2) );
+    }
+    
+    @Test
+    public void DeleteReviewTest() throws SQLException {
+        assertTrue ("Delete Review Test ",myReview.deleteReview(121) );
+    }
+    
+    
 
 }

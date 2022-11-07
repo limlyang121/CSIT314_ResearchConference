@@ -47,8 +47,8 @@ public class SysAdminTest {
     
     @Test
     public void readUser() throws SQLException {
-        User myAcc = new User(1,"admin", "AdminTest", "admin",  "adminTest@gmail.com", 1, "systemadmin");
-        User expected = temp.getMyInfo("admin", "systemadmin");
+        User myAcc = new User(1,"reviewer", "Reviewer", "reviewer",  "reviewer1@asda.com", 2, "Reviewer");
+        User expected = temp.getMyInfo("reviewer", "reviewer");
         
         
         
@@ -58,7 +58,7 @@ public class SysAdminTest {
     @Test
     public void createNewProfile() throws SQLException {
         
-//        assertTrue("Test create new Profile", temp.createNewProfile("Test", "Test Build"));
+        assertTrue("Test create new Profile", temp.createNewProfile("Test", "Test Build"));
         
         //Second this since profile exist
         assertFalse("Test create new Profile", temp.createNewProfile("Test", "Test Build"));
