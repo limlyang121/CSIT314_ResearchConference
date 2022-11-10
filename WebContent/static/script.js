@@ -42,3 +42,24 @@ function logout2() {
 function confirmUserAction (message){
 	return confirm(message);
 }
+
+function formChecking(){
+	alert("ASSSSSS");
+    var username = document.getElementById("username");
+    var password = document.getElementById("password");
+    var email = document.getElementById("email");
+    var fullname = document.getElementById("name");
+    
+    var usernameVal = username.value.trim();
+    var passwordVal = password.value;
+
+    if (usernameVal === "" && passwordVal === "" && email === "" && fullname === ""){
+		alert("ASSSSSS");
+		setFail ("Cannot empty");
+		return false;
+	}
+	
+	return true;
+
+}
+

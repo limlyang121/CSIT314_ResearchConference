@@ -171,7 +171,7 @@ INSERT INTO `systemadmin` (`username`,`fullname`, `password`, `email` , `profile
 
 
 INSERT INTO `reviewer` (`username`,`fullname`, `password`, `email` , `profileID`, `max_no_paper`) VALUES
-('reviewer', 'Reviewer', 'reviewer', 'reviewer1@asda.com', 2, 1),
+('reviewer', 'Reviewer', 'reviewer', 'reviewer1@asda.com', 2, 10),
 ('reviewer1', 'Reviewer1', 'reviewer1', 'reviewer1@asda.com', 2, 2),
 ('reviewer2', 'Reviewer2', 'reviewer2', 'reviewer2@asda.com', 2, 3),
 ('reviewer3', 'Reviewer3', 'reviewer3', 'reviewer3@asda.com', 2, 4),
