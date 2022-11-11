@@ -15,11 +15,11 @@ import Bid.Entity.Bid;
 public class RejectBidController extends HttpServlet{
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        rejectBidController(request, response);
+        rejectBid(request, response);
     }
     
     
-    protected void rejectBidController(HttpServletRequest request, HttpServletResponse response)
+    protected void rejectBid(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int bidID = Integer.parseInt(request.getParameter("bidID"))  ;
         Bid temp = new Bid();

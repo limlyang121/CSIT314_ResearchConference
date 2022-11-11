@@ -27,8 +27,6 @@ public class ReadUserController extends HttpServlet{
             String username = request.getParameter("username");
             String profileName = request.getParameter("profilename");
             
-            log("Username "+username);
-            log("PROFILE " + profileName);
             User temp = new SystemAdmin().readUser(username, profileName);
             request.setAttribute("userAccount", temp);
             RequestDispatcher dispatcher = request.getRequestDispatcher("SysAdmin_UserAccountRead.jsp");
