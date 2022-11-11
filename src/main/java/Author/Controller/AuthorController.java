@@ -1,4 +1,4 @@
-package Author.controller;
+package Author.Controller;
 
 import java.io.IOException;
 import java.io.InputStream;
