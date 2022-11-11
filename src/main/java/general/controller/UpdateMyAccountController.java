@@ -56,13 +56,11 @@ public class UpdateMyAccountController extends HttpServlet {
         if (profileName.equalsIgnoreCase("reviewer")) {
             int maxPaper = Integer.parseInt(request.getParameter("maxPaper")) ;
             Reviewer tempA = new Reviewer();
-            if (tempA.checkUserNameSame(username, oldUsername) || !(tempA.usernameExist(username, profileName)) )
-                success = tempA.updateMyAccountR(myID, username, password, name, email, maxPaper,profileName);
+            success = tempA.updateMyAccountR(myID, username, password, name, email, maxPaper,profileName,oldUsername );
 
         }else {
             temp = new User();
-            if (temp.checkUserNameSame(username, oldUsername) || !(temp.usernameExist(username, profileName)) )
-                success = temp.updateMyAccount(myID, username, password, name, email, profileName);
+            success = temp.updateMyAccount(myID, username, password, name, email, profileName, oldUsername);
         }
 
         if (success) {

@@ -56,12 +56,11 @@ public class User {
 	    return myDAO.login(username, password, profileName);
 	}
 	
-	public boolean updateMyAccount(int myID, String username, String pasword, String name, String email, String profileName ) {
-	    if (myDAO.updateMyAccount(myID, username, pasword, name, email, profileName) )
-	        return true;
-	    else
-	        return false;
-	       
+	public boolean updateMyAccount(int myID, String username, String pasword, String name, String email, String profileName, String oldUserName) {
+	    if (this.checkUserNameSame(username, oldUserName) || !(this.usernameExist(username, profileName)))
+	        return myDAO.updateMyAccount(myID, username, pasword, name, email, profileName); 
+        else
+            return false;
 	}
 	
 	public boolean usernameExist(String username, String profileName) {
