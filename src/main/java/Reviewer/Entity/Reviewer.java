@@ -11,11 +11,12 @@ public class Reviewer extends User {
     private int max_no_papers;
     private ReviewerDAO revDAO = new ReviewerDAO();
     
-    public boolean updateMyAccountR(int myID, String username, String pasword, String name, String email, int maxPapers , String profileName) {
-        if (this.getMyDAO().usernameExist(username, profileName) && revDAO.updateReviewer(myID, username, pasword, name, email, maxPapers, profileName))
-            return true;
-        else
+    public boolean updateMyAccountR(int myID, String username, String pasword, String name, String email, int maxPapers , String profileName,String oldUserName) {
+        if (this.checkUserNameSame(username, oldUserName) || !(this.usernameExist(username, profileName))) {
+            return revDAO.updateReviewer(myID, username, pasword, oldUserName, email, maxPapers, profileName);
+        }else {
             return false;
+        }
     }
 
     public Reviewer(int id, String username, String fullname, String password, String email, int profileID,

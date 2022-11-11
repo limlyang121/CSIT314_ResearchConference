@@ -44,7 +44,7 @@ public class generalTest {
     @Test
     public void updateMyAccountTest() {
         
-        assertTrue ("Test Update my Account ", temp.updateMyAccount(99, "admin999", "AdminTest", "admin999", "adminTest@gmail.com", "systemadmin" ));
+        assertTrue ("Test Update my Account ", temp.updateMyAccount(99, "admin999", "AdminTest", "admin999", "adminTest@gmail.com", "systemadmin", "A" ));
 
     }
     
