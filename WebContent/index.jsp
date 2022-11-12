@@ -26,7 +26,7 @@
 	     </fieldset>
 	     <label for = "profile">Choose Profile: </label>
 		 <select name = "profile" id = "profile" >
-			<option value = "systemadmin" >SysAdmin</option>
+			<option value = "systemadmin" >System Admin</option>
 			<option value = "reviewer" >Reviewer</option>
 			<option value = "conference" >Conference Chair</option>
 			<option value = "author" >Author</option>

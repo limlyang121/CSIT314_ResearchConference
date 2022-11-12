@@ -125,6 +125,8 @@ public class SystemAdminDAO {
                 preparedStatement.executeUpdate();
                 createNewUser (username, password, name, email, profileName);
                 return true;
+            }catch (SQLException e) {
+                return false;
             }
         }else {
             if (!(usernameExist(username, profileName)) || oldUserName.equalsIgnoreCase(username) ) {
@@ -144,6 +146,8 @@ public class SystemAdminDAO {
                     
                     
                     
+                }catch (SQLException e) {
+                    return false;
                 }
                 return true;
             }else {

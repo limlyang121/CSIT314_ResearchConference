@@ -36,9 +36,8 @@
 		</thead>
 		<tbody style="text-align: center">
 			<c:forEach var ="user" items = "${userAccountList}">
-				<c:if test = "${user.ID != sessionScope.id || user.profileName != sessionScope.profileName}" > 
+				<c:if test = "${user.ID != sessionScope.id || fn:toLowerCase(user.profileName) != fn:toLowerCase(sessionScope.profileName)}" > 
 				<tr>
-				
 					<td>
 						<c:out value="${user.username}" />
 					</td>
