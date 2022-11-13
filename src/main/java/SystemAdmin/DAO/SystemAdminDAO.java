@@ -95,6 +95,13 @@ public class SystemAdminDAO {
     public boolean updateProfile(int profileID,String profileName, String description){
         String update_user_profile = "update userprofile set profilename = ?, description = ? where profileID = ?;";
    
+        List<User> tempProfile = getAllProfile();
+        for (int i = 0 ; i < tempProfile.size(); i++) {
+            if (tempProfile.get(i).getProfileName().equalsIgnoreCase(profileName) && !(profileID == tempProfile.get(i).getProfileID()))
+                return false;
+
+        }
+        
         try(Connection connection = DbConnection.init();
                 
                 PreparedStatement preparedStatement = connection.prepareStatement(update_user_profile))
