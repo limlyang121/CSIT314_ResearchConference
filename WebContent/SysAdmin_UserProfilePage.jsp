@@ -50,8 +50,7 @@ table{
 		<thead>
 			<tr>
 				<th>Profile</th>
-				<th>Description</th>
-				<th> </th>
+				<th colspan = 2>Edit And Read </th>
 				
 
 			</tr>
@@ -64,15 +63,18 @@ table{
 					<td>
 						<c:out value="${user.profileName}" />
 					</td>
-					<td>
-						<c:out value="${user.description}" />
-					</td>
 					
 					<td>
 						<a href="<%=request.getContextPath()%>/updateUserProfile?profilename=<c:out value = '${ user.profileName}'  />" >
 						Edit
 						</a>
 					</td>
+										<td>
+						<a href="<%=request.getContextPath()%>/ReadProfileController?profilename=<c:out value = '${ user.profileName}'  />" >
+						Read
+						</a>
+					</td>
+					
 
 				</tr>
 			</c:forEach>
