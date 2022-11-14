@@ -32,7 +32,7 @@ public class ShowAllPaperstoBidController extends HttpServlet{
  
         ArrayList<Paper> listPaper = paper.showAllPaperstoBid(reviewer_id);
         request.setAttribute("listPaper", listPaper);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("Reviewer_BidForPapers.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("Reviewer_ShowPaperstoBid.jsp");
         dispatcher.forward(request, response);
  
 
