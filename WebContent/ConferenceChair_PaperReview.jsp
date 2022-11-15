@@ -58,8 +58,17 @@ background-opacity: 0.1;
 		
 		
 		<hr/>
+		<c:if test ="${param.currentStatus == 'Pending' }"> 
+			<form method = "post" action = "AcceptRejectPaper?paperID=<c:out value = '${paperID}'/>">
 		
-		<form method = "post" action = "RatePaper?paperID=<c:out value = '${paperID}'/>">
+		</c:if>
+		<c:if test ="${param.currentStatus != 'Pending' }"> 
+			<form method = "post" action = "UpdatePaperStatus?paperID=<c:out value = '${paperID}'/>">
+		
+		</c:if>
+		
+		<form method = "post" action = "RatePaper?paperID=<c:out value = '${paperID}'/>&currentStatus
+		=<c:out value = '${param.currentStatus }'/>">
 			<label>Rate Paper </label>
 			<br>
 			<select id ="ratePaper"  name ="ratePaper">
