@@ -32,7 +32,6 @@ background-opacity: 0.1;
      	<div align="center" class="main">
        	<h1>Your Reviews</h1>
         <table border="1" cellpadding="5">
-            <caption><h2>List of reviews</h2></caption>
             <tr>
             	<th>Review ID</th>
                 <th>PaperName</th>

@@ -30,7 +30,7 @@ background-opacity: 0.1;
 <body>
 	<%@include file = "include/navbar.jsp" %>
         <div align="center" class="main">
-   		<h1>Your Papers</h1>
+   		<h1>Reviews</h1>
         <table border="1" cellpadding="5">
             <tr>
             	<th>Paper ID</th>

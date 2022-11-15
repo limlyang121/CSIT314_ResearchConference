@@ -29,7 +29,7 @@ background-opacity: 0.1;
 <body>
 	<%@include file = "include/navbar.jsp" %>
 		<div class="main">
-        <h1>File Upload to Database Demo</h1>
+        <h1>Upload your Paper</h1>
         <form method="post" action="SubmissionPaper" enctype="multipart/form-data">
             <table border="0">
                 <tr>

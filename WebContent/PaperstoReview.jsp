@@ -10,7 +10,6 @@
         <div align="center" class = "main">
         <h1 align = center>Your Papers</h1>
         <table border="1" cellpadding="5">
-            <caption><h2>List of papers</h2></caption>
             <tr>
             	<th>ID</th>
                 <th>PaperName</th>
