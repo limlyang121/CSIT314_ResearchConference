@@ -35,27 +35,27 @@ background-opacity: 0.1;
 	
 		<input name="oldusername" id = "oldusername" value =<c:out value = '${myAccount.username} }'/> hidden>
 		<label> Username</label>
-		<input id = "myusername" name="myusername" value =<c:out value = '${myAccount.username} }'/> >
+		<input class="input-group" id = "myusername" name="myusername" value =<c:out value = '${myAccount.username} }'/> required >
 
 
 		<br>
 		<label> Fullname</label>
-		<input id = "myname" name="myname" value =<c:out value = '${myAccount.fullname} }'/> >
+		<input class="input-group" id = "myname" name="myname" value =<c:out value = '${myAccount.fullname} }'/> required>
 		
 		
 		<br>
 		<label> Password</label>
-		<input id = "mypassword" name="mypassword" value =<c:out value = '${myAccount.password} }'/> >
+		<input class="input-group" id = "mypassword" name="mypassword" value =<c:out value = '${myAccount.password} }'/> required>
 		
 		<br>
 		<label> Email</label>
-		<input id = "myemail"  name="myemail" value =<c:out value = '${myAccount.email} }'/> >
+		<input class="input-group" id = "myemail"  name="myemail" value =<c:out value = '${myAccount.email} }'/> required>
 		
 		<br>
 		
 		<c:if test="${sessionScope.profileName == 'reviewer'}">
 			<label> Max Number of Papers</label>
-			<input id = "maxPaper"  name="maxPaper" value =<c:out value = '${myAccount.max_no_papers} }'/> >
+			<input class="input-group" id = "maxPaper"  name="maxPaper" value =<c:out value = '${myAccount.max_no_papers} }'/> required>
 		</c:if>
 		
 		<br>

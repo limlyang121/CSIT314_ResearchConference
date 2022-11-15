@@ -45,19 +45,19 @@ background-opacity: 0.1;
 
 	
 		<label>Fullname</label>
-		<input type="text" name="name" id="name" value="<c:out value='${userAccount.fullname}' />">
+		<input class="input-group" type="text" name="name" id="name" value="<c:out value='${userAccount.fullname}' />" required>
 		<br/>
 		<label>Username</label>
-		<input type="text" name="username" id="username" value="<c:out value='${userAccount.username}' />">
+		<input class="input-group" type="text" name="username" id="username" value="<c:out value='${userAccount.username}' />" required>
 		<br/>
 		<label>E-mail</label>
-		<input type="text" name="email" id="email" value="<c:out value='${userAccount.email}' />">
+		<input class="input-group" type="text" name="email" id="email" value="<c:out value='${userAccount.email}' />" required>
 
 		<br/>
 		
 		<br/>
 		<label>Password</label>
-		<input type="password" name="password" id="password" value="<c:out value='${userAccount.password}' />" >
+		<input class="input-group" type="password" name="password" id="password" value="<c:out value='${userAccount.password}' />" required>
 		
 		<br/>
 		

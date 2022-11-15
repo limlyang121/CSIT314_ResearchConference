@@ -41,13 +41,13 @@ background-opacity: 0.1;
 		<input type="text" id ="id" name ="id" value="<c:out value='${userProfile.profileID}' />" hidden >
 	
 		<label>Profile Name</label>
-		<input type="text" name="profilename" id="profilename" value="<c:out value='${userProfile.profileName}' />">
+		<input class="input-group" type="text" name="profilename" id="profilename" value="<c:out value='${userProfile.profileName}' />" required>
 
 		<br>
 		
 		<label for="description">Description</label>
 		<br>
-		<textarea class="form-control" rows="3" name="description" id="description" >
+		<textarea class="form-control" rows="3" name="description" id="description" required >
 <c:out value='${userProfile.description}' />
 		
 		</textarea>
