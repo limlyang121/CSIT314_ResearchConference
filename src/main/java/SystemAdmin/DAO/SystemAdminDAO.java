@@ -296,25 +296,12 @@ public class SystemAdminDAO {
         try (Connection connection = DbConnection.init();
                 PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USEERACCOUNT)) 
         {
+            User tempProfile = getProfile(profileName);
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, name);
             preparedStatement.setString(3, password);
             preparedStatement.setString(4, email);
-            int profileID = 0;
-            if (profileName.equalsIgnoreCase("systemadmin")) 
-                profileID = 1;
-            else if (profileName.equalsIgnoreCase("reviewer"))
-                profileID = 2;
-            else if (profileName.equalsIgnoreCase("Conference"))
-                profileID = 3;
-            else if (profileName.equalsIgnoreCase("Author"))
-                profileID = 4;
-            //Test Cases
-            else 
-                profileID = 5;
-            
-            
-            preparedStatement.setInt(5, profileID);
+            preparedStatement.setInt(5, tempProfile.getProfileID());
             preparedStatement.executeUpdate(); 
         }
     }
