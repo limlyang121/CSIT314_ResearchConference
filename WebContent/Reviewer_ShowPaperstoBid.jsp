@@ -39,7 +39,7 @@ background-position: center center;
 	<%@include file = "include/navbar.jsp" %>
 	
 		<div class="main">
-        <h1>Your Papers</h1>
+        <h1 align="center">Your Papers</h1>
          <div align="center">
         <table border="1" cellpadding="5">
             <caption><h2>List of papers</h2></caption>
