@@ -67,8 +67,6 @@ background-opacity: 0.1;
 		
 		</c:if>
 		
-		<form method = "post" action = "RatePaper?paperID=<c:out value = '${paperID}'/>&currentStatus
-		=<c:out value = '${param.currentStatus }'/>">
 			<label>Rate Paper </label>
 			<br>
 			<select id ="ratePaper"  name ="ratePaper">
