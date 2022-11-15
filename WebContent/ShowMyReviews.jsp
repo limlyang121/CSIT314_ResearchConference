@@ -36,15 +36,15 @@ background-opacity: 0.1;
             <tr>
             	<th>Review ID</th>
                 <th>PaperName</th>
-                <th>Review</th>
-                <th>Rating</th>
+                <th style= "text-align:center">Review</th>
+                <th colspan = 4>Rating</th>
             </tr>
             <c:forEach var="review" items="${listReview}">
                 <tr>
                 	<td><c:out value="${review.reviewid}" /></td>
                     <td><c:out value="${review.papername}" /></td>
                     <td><textarea id="review" name="review" rows="4" cols="50">${review.review}</textarea></td>
-                    <td><c:out value="${review.rating}" /></td>
+                    <td style="width:20px"><c:out value="${review.rating}" /></td>
    
             		
                     <td style="width:10%">

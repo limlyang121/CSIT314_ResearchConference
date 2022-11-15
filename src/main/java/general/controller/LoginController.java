@@ -26,14 +26,14 @@ public class LoginController extends HttpServlet{
 //	    loginProfile(request, response);
 //	    
 //	}
-//	
+	
 //	protected void loginProfile(HttpServletRequest request, HttpServletResponse response)
 //            throws ServletException, IOException {
 //        
 //        try {
 //            List<User> userProf = SystemAdmin.getAllProfile();
 //            request.setAttribute("userProfileList", userProf);
-//            RequestDispatcher dis = request.getRequestDispatcher("/index.jsp");
+//            RequestDispatcher dis = request.getRequestDispatcher("/login");
 //            dis.forward(request, response);
 //        }catch (Exception ex) {
 //            log(ex.toString());

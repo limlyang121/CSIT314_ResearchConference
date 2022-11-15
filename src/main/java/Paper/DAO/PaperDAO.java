@@ -16,7 +16,53 @@ import Paper.Entity.*;
 
 public class PaperDAO{
     
-    public boolean AcceptRejectPaper(int paperID, String paperStatus) {
+    public boolean AcceptPaper(int paperID) {
+        String RatePaper = "update paper set Status = 'Accept' where paper_id = ?";
+        
+        try(Connection connection = DbConnection.init();
+                
+                PreparedStatement preparedStatement = connection.prepareStatement(RatePaper))
+        {
+            
+            preparedStatement.setInt(1, paperID);
+            
+            preparedStatement.executeUpdate();
+            
+            return true;
+            
+            
+        }catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        
+        
+    }
+    
+    public boolean RejectPaper(int paperID) {
+        String RatePaper = "update paper set Status = 'Reject' where paper_id = ?";
+        
+        try(Connection connection = DbConnection.init();
+                
+                PreparedStatement preparedStatement = connection.prepareStatement(RatePaper))
+        {
+            
+            preparedStatement.setInt(1, paperID);
+            
+            preparedStatement.executeUpdate();
+            
+            return true;
+            
+            
+        }catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        
+        
+    }
+    
+    public boolean UpdatePaperStatus(int paperID, String paperStatus) {
         String RatePaper = "update paper set Status = ? where paper_id = ?";
         
         try(Connection connection = DbConnection.init();

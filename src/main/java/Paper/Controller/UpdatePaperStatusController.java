@@ -12,14 +12,14 @@ import javax.servlet.http.HttpSession;
 import Paper.Entity.Paper;
 
 
-@WebServlet ("/AcceptRejectPaper")
-public class AcceptRejectPaperController extends HttpServlet {
+@WebServlet ("/UpdatePaperStatus")
+public class UpdatePaperStatusController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        AcceptRejectPaper (request, response);
+        UpdatePaperStatus (request, response);
     }
     
-    protected void AcceptRejectPaper(HttpServletRequest request, HttpServletResponse response)
+    protected void UpdatePaperStatus(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Paper tempPaper = new Paper();
         
@@ -27,19 +27,11 @@ public class AcceptRejectPaperController extends HttpServlet {
         int paperID = Integer.parseInt(request.getParameter("paperID"));
         HttpSession session = request.getSession();
         
-        if (paperStatus.equalsIgnoreCase("Accept")) {
-            if (tempPaper.AcceptPaper(paperID)) 
-                session.setAttribute("message", "Successfully Accept the Paper");                    
-            else
-                session.setAttribute("message", "Fail to Rate the Paper");
-            
-        }else if (paperStatus.equalsIgnoreCase("Reject")) {
-            if ( tempPaper.RejectPaper(paperID))
-                session.setAttribute("message", "Successfully Reject the Paper");
-            else
-                session.setAttribute("message", "Fail to Rate the Paper");
+        if (tempPaper.UpdatePaperStatus(paperID, paperStatus)) {
+            session.setAttribute("message", "Successfully Update the Paper");  
+        }else {
+            session.setAttribute("message", "Fail Update the Paper");   
         }
-        
         response.sendRedirect("ViewPaperByStatus?status=All");
         
     }

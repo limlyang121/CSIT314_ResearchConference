@@ -6,12 +6,13 @@
 </head>
 <body>
 	<%@include file = "include/navbar.jsp" %>
-
+	<div class = "main">
+		<h1 align= "center"> My Review </h1>
          <form method="post" action="submitReview">
           <table border="0">
           <tr>
                <td>Your Review </td>
-                  <td><textarea id="review" name="review" rows="4" cols="50"></textarea></td>
+                  <td><textarea style = "width:100%" id="review" name="review" rows="4" cols="50" required></textarea></td>
                  </tr>
                  <tr>
                     <td>Rating </td>
@@ -30,11 +31,12 @@
                 <tr>
                 <tr>
                     <td colspan="2">
-                        <input type="submit" value="Submit">
+                        <input class = "btn-block" type="submit" value="Submit">
                     </td>
                 </tr>
 			</table>
          </form>
+         </div>
 
 </body>
 </html>
