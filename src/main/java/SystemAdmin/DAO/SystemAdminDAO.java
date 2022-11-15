@@ -309,6 +309,9 @@ public class SystemAdminDAO {
                 profileID = 3;
             else if (profileName.equalsIgnoreCase("Author"))
                 profileID = 4;
+            //Test Cases
+            else 
+                profileID = 5;
             
             
             preparedStatement.setInt(5, profileID);
