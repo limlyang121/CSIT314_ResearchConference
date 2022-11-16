@@ -38,7 +38,7 @@ CREATE TABLE `reviewer` (
 	`password` varchar(50) not null,
 	`email` varchar(70) not null,
 	`profileID` int(11),
-	`max_no_paper` int (11) default 1, 
+	`max_no_paper` int (11) default 3, 
 	 FOREIGN KEY fk_reviewer(`profileID`) REFERENCES userprofile(profileID)
 );
 

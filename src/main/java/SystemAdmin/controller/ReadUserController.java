@@ -18,10 +18,6 @@ public class ReadUserController extends HttpServlet{
         readUser (request, response);
     }
     
-    protected void doPost (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
-//        addNewUserLoginForm(request, response);
-    }
-    
     protected void readUser(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         try {
             String username = request.getParameter("username");
